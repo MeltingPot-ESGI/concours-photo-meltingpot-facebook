@@ -24,20 +24,20 @@
     $loginUrl = "";
     $helper = new FacebookRedirectLoginHelper(REDIRECT_URL);
     
-    try {
-        $session = $helper->getSessionFromRedirect();
-    } catch(FacebookRequestException $ex) {
+    if (isset($_SESSION) && isset($_SESSION[FB_TOKEN])) {
+        $session = new FacebookSession($_SESSION[FB_TOKEN]);
+    } else {
+        try {
+            $session = $helper->getSessionFromRedirect();
+        } catch(FacebookRequestException $ex) {
 
-    } catch(\Exception $ex) {
+        } catch(\Exception $ex) {
 
+        }
     }
     
     if ($session) {
-        if (isset($_SESSION) && isset($_SESSION[FB_TOKEN])) {
-            
-        } else {
-            $_SESSION[FB_TOKEN] = $session->getAccessToken();
-        }
+        $_SESSION[FB_TOKEN] = $session->getAccessToken();
         
         $request = new FacebookRequest( $session, 'GET', '/me' );
         $response = $request->execute();
