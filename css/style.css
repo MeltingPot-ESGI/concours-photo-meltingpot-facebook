@@ -1,1 +1,10 @@
-body{margin: auto 40px auto 0; text-align: center;}
+@font-face{
+	font-family: 'Oxygen';
+	src: url(../fonts/Oxygen-Regular.ttf);
+}
+
+body{margin: 200px auto  0 auto; text-align: center; font-family: 'Oxygen', Arial; color: white;}
+	.encart_concours{width: 400px; display: inline-block; margin:40px; padding: 40px; border-radius: 10px; background-image:linear-gradient(#2E96BF, #2E72BF);}
+		.encart_concours form{ text-align: left;}
+			.encart_concours input[type='text']{text-align: right;}
+			.encart_concours label{}
