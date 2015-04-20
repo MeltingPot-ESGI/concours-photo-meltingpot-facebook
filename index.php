@@ -74,34 +74,32 @@
       </script>
     </head>
    <?php 
-   		include_once("./include/fonction.php");
-   		
-   		echo get_head();	
-   	?>   
+   	include_once("./include/fonction.php");
+
+        echo get_head();	
+    ?>   
    <body>
-   		<?php
-            if (isset($graphObject)) {
-                echo "Vous êtes connecté en tant que ".$graphObject->getName();
-                echo '<img src="http://graph.facebook.com/'.$graphObject->getId().'/picture" alt="Facebook profile picture" height="42" width="42">';
-            } else {
-                echo '<a class="fb-button" href="'.$loginUrl.'">S\'authentifier avec Facebook</a>';
-            }
-        ?>
-        
-        <div
-            class="fb-like"
-            data-share="true"
-            data-width="450"
-            data-show-faces="true">
+        <div id="wrapper">
+            <div class="under_wrapper">
+                <div id="wrapper_admin">
+                    <?php
+                        if (isset($graphObject)) {
+                            echo "Vous êtes connecté en tant que ".$graphObject->getName();
+                            echo ' <img src="http://graph.facebook.com/'.$graphObject->getId().'/picture" alt="Facebook profile picture" height="42" width="42">';
+                        } else {
+                            echo '<a class="fb-button" href="'.$loginUrl.'">S\'authentifier avec Facebook</a>';
+                        }
+                    ?>
+                    
+                    <div
+                        class="fb-like"
+                        data-share="true"
+                        data-width="450"
+                        data-show-faces="true">
+                    </div>
+                </div>
+            </div>
         </div>
-		
-		<div id="wrapper">
-   			<div class="under_wrapper">
-   				<div id="wrapper_admin">
-	   				
-   				</div>
-   			</div>
-   		</div>
    </body>
    <?php echo include_js(); ?>
 </html>
