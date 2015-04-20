@@ -14,7 +14,7 @@
     
     const APP_ID = "342576715932172";
     const APP_SECRET = "f3f97bb62cd6c603fe00128e847586dd";
-    const REDIRECT_URL = "https://meltingpot-photo-contest.herokuapp.com/";
+    const REDIRECT_URL = "https://meltingpot-photo-contest.herokuapp.com/formulaire.php";
     const FB_TOKEN = 'fb_token';
     
     session_start();
