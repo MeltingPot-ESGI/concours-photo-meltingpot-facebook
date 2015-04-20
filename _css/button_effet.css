@@ -1,0 +1,99 @@
+/*-------------------------------------------------
+///				BUTTON							///
+-------------------------------------------------*/
+.button{
+    font-family: Arial,sans-serif;
+    font-size: 1em;
+    
+    text-align: center;
+    color: #000;
+    background: #444;
+    background: -webkit-linear-gradient(#979797 0%, #505050 100%);
+    background:    -moz-linear-gradient(#979797 0%, #505050 100%);
+    background:     -ms-linear-gradient(#979797 0%, #505050 100%);
+    background:      -o-linear-gradient(#979797 0%, #505050 100%);
+    background:         linear-gradient(#979797 0%, #505050 100%);
+    border-radius: 8px;
+    text-shadow: 0px 1px 0px rgba( 255, 255, 255, 0.2);
+    box-shadow: 0 0 5px rgba( 0, 0, 0, 0.5),
+                 0 -1px 0 rgba( 255, 255, 255, 0.4);
+    float: left;
+    padding-left: 7px;
+	padding-right: 7px;
+	padding-bottom: 4px;
+	padding-top: 4px;
+    
+    		     
+}
+
+.button:hover{
+	cursor: pointer;	
+	color: #222;
+	background: #555;
+	background: -webkit-linear-gradient(#a9a9a9 0%, #5d5d5d 100%);
+	background:    -moz-linear-gradient(#a9a9a9 0%, #5d5d5d 100%);
+	background:     -ms-linear-gradient(#a9a9a9 0%, #5d5d5d 100%);
+	background:      -o-linear-gradient(#a9a9a9 0%, #5d5d5d 100%);
+	background:         linear-gradient(#a9a9a9 0%, #5d5d5d 100%);
+}
+
+.button:active{
+	color: #000;
+	background: #444;
+    background: -webkit-linear-gradient(#979797 0%, #505050 100%);
+    background:    -moz-linear-gradient(#979797 0%, #505050 100%);
+    background:     -ms-linear-gradient(#979797 0%, #505050 100%);
+    background:      -o-linear-gradient(#979797 0%, #505050 100%);
+    background:         linear-gradient(#979797 0%, #505050 100%);
+	box-shadow: 1px 1px 10px black inset, 
+             0 1px 0 rgba( 255, 255, 255, 0.4);
+}
+
+
+/*-------------------------------------------------
+///					PULSE						///
+-------------------------------------------------*/
+//color : #009dfd
+
+//color : #2F60C0
+
+@-moz-keyframes pulse{
+       0%{         -moz-box-shadow:0 0 1px #009CFC;}
+       50%{        -moz-box-shadow:0 0 13px #009CFC;}
+       100%{       -moz-box-shadow:0 0 1px #009CFC;}
+}
+
+/* Webkit keyframe animation */
+@-webkit-keyframes pulse{
+       0%{         -webkit-box-shadow:0px 0px 1px 0px #009CFC;}
+       50%{        -webkit-box-shadow:0px 0px 25px 3px #009CFC;}
+       100%{       -webkit-box-shadow:0px 0px 1px 0px #009CFC;}
+}
+
+@-ms-keyframes pulse{
+       0%{         -ms-box-shadow:0 0 1px #2F60C0;}
+       50%{        -ms-box-shadow:0 0 13px #2F60C0;}
+       100%{       -ms-box-shadow:0 0 1px #2F60C0;}
+}
+
+@-o-keyframes pulse{
+       0%{         -o-box-shadow:0 0 1px #2F60C0;}
+       50%{        -o-box-shadow:0 0 13px #2F60C0;}
+       100%{       -o-box-shadow:0 0 1px #2F60C0;}
+}
+
+pulse{
+       0%{         box-shadow:0 0 1px #2F60C0;}
+       50%{        box-shadow:0 0 13px #2F60C0;}
+       100%{       box-shadow:0 0 1px #2F60C0;}
+}
+
+.pulseOn {
+    display: inline !important;
+   	-webkit-animation: pulse 2s infinite;
+   	   -moz-animation: pulse 2s infinite;
+   		-ms-animation: pulse 2s infinite;
+   		 -o-animation: pulse 2s infinite;
+   			animation: pulse 2s infinite;
+}
+
