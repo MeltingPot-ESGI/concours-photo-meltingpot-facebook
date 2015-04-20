@@ -7,7 +7,8 @@ a{color: white;}
 
 body{margin: 200px auto  0 auto; text-align: center; font-family: 'Oxygen', Arial; color: white;}
 	.encart_concours{width: 400px; display: inline-block; margin:40px; padding: 40px; border-radius: 10px; background-image:url(../image/background_inscription.png); background-size: 500px;}
-		.encart_concours form{ text-align: center;}
+		#fb_connect_bt{padding: 15px 20px 15px 20px; background: white; border-radius: 5px; background-image:linear-gradient(#2E96BF, #2E72BF); text-decoration: none;}
+		.encart_concours form{ text-align: center; margin-top:40px;}
 			.encart_concours input[type='text']{text-align: center;}
 			.encart_concours label{}
 			.label_checkbox{text-align: left;}
