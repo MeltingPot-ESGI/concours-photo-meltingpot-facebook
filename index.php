@@ -76,7 +76,7 @@
                 $pdo->bindParam(':accept_bons_plans', true);
                 
                 $pdo->execute();
-    
+    /*
                 $photos = array();
                 while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
                     $app['monolog']->addDebug('Row ' . $row['name']);
@@ -85,7 +85,7 @@
 
                 return $app['twig']->render('database.twig', array(
                     'names' => $names
-                ));
+                ));*/
             }
         } catch (Exception $e) {
             echo $e->getCode().'--'.$e->getMessage();
