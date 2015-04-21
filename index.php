@@ -9,6 +9,7 @@
     session_start();
     error_reporting(E_ALL);
     
+    
     use Facebook\FacebookSession;
     use Facebook\FacebookRedirectLoginHelper;
     use Facebook\FacebookRequest;
