@@ -17,12 +17,9 @@ class FormParticipateContestView extends View
 
         
         if (!empty($graphObject)) {
-            $text = print_r(get_class_methods($graphObject), true);
-            $text .= print_r($graphObject, true);
-            return $text;
-            /*
-            $html .= "Vous êtes connecté en tant que ".$graphObject->getName();
-            $html .= ' <img src="http://graph.facebook.com/'.$graphObject->getId().'/picture" alt="Facebook profile picture" height="42" width="42">';*/
+            
+            $html .= "Vous êtes connecté en tant que ".$graphObject->getProperty('name');
+            //$html .= ' <img src="http://graph.facebook.com/'.$graphObject->getId().'/picture" alt="Facebook profile picture" height="42" width="42">';
         } else {
             $html .= '<a class="fb-button button" href="'.$loginUrl.'">S\'authentifier avec Facebook</a>';
         }
