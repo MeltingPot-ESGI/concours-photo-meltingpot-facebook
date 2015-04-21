@@ -45,12 +45,32 @@
     if ($session) {
         $_SESSION[FB_TOKEN] = $session->getAccessToken();
         
-        $request = new FacebookRequest( $session, 'GET', '/me' );
-        $response = $request->execute();
-        
-        // Get response
-        $graphObject = $response->getGraphObject(GraphUser::className());
-        
+        try {
+            $request = new FacebookRequest( $session, 'GET', '/me' );
+            $response = $request->execute();
+
+            // Get response
+            $graphObject = $response->getGraphObject(GraphUser::className());
+            
+            if (isset($_POST['fileUpload'])) {
+                // Upload to a user's profile. The photo will be in the
+                // first album in the profile. You can also upload to
+                // a specific album by using /ALBUM_ID as the path     
+                $response = (new FacebookRequest(
+                  $session, 'POST', '/me/photos', array(
+                    'source' => new CURLFile($_FILES['photo']['tmp_name'], 'image/png'),
+                    'message' => $_POST['photoName']
+                  )
+                ))->execute()->getGraphObject();
+
+                // If you're not using PHP 5.5 or later, change the file reference to:
+                // 'source' => '@/path/to/file.name'
+
+                echo "Posted with id: " . $response->getProperty('id');
+            }
+        } catch (Exception $e) {
+            echo 'erreur';
+        }
     } else {
         $loginUrl = $helper->getLoginUrl();
     }
@@ -118,23 +138,26 @@
             <div class="under_wrapper">
                 <div id="wrapper_admin">
                     <div class="encart_concours">
-                    <h1>PARTICIPER AU CONCOURS</h1>
-                    <?php
-                        if (!empty($graphObject)) {
-                            echo "Vous êtes connecté en tant que ".$graphObject->getName();
-                            echo ' <img src="http://graph.facebook.com/'.$graphObject->getId().'/picture" alt="Facebook profile picture" height="42" width="42">';
-                        } else {
-                            echo '<a class="fb-button button" href="'.$loginUrl.'">S\'authentifier avec Facebook</a>';
-                        }
-                    ?>
-                    
-                    <form>
-                        <input type="text" name="name" value="Nom" id="form_name" size="50" onclick="this.value=\'\';"><br>
-                        <input type="text" name="email" value="E-mail" id="form_email" size="50" onclick="this.value=\'\';"><br>
-                        <input type="text" name="city" value="Ville" id="form_city" size="50" onclick="this.value=\'\';"><br>
-                        <div class="form_ligne"><label for="form_gooddeals" class="label_checkbox">Je veux recevoir les bons plans </label><input type="checkbox" name="form_gooddeals" value="" id="form_gooddeals"></div>
-                        <div class="form_ligne"><label for="form_policy" class="label_checkbox">J\'accepte <a href="cgu.php">le règlement</a> </label><input type="checkbox" name="form_policy" value="" id="form_reglement"></div>
-                        <input type="submit" class="button" name="form_validate" value="Participer">
+                        <h1>PARTICIPER AU CONCOURS</h1>
+                        <?php
+                            if (!empty($graphObject)) {
+                                echo "Vous êtes connecté en tant que ".$graphObject->getName();
+                                echo ' <img src="http://graph.facebook.com/'.$graphObject->getId().'/picture" alt="Facebook profile picture" height="42" width="42">';
+                            } else {
+                                echo '<a class="fb-button button" href="'.$loginUrl.'">S\'authentifier avec Facebook</a>';
+                            }
+                        ?>
+
+                        <form method='post' action="#" enctype="multipart/form-data">
+                            <input type="hidden" name="fileUpload" value='1' />
+                            <input type="file" name="photo" />
+                            <input type="text" name="photoName" value="" />
+                            <input type="text" name="name" value="Nom" id="form_name" size="50" onclick="this.value=\'\';"><br>
+                            <input type="text" name="email" value="E-mail" id="form_email" size="50" onclick="this.value=\'\';"><br>
+                            <input type="text" name="city" value="Ville" id="form_city" size="50" onclick="this.value=\'\';"><br>
+                            <div class="form_ligne"><label for="form_gooddeals" class="label_checkbox">Je veux recevoir les bons plans </label><input type="checkbox" name="form_gooddeals" value="" id="form_gooddeals"></div>
+                            <div class="form_ligne"><label for="form_policy" class="label_checkbox">J\'accepte <a href="cgu.php">le règlement</a> </label><input type="checkbox" name="form_policy" value="" id="form_reglement"></div>
+                            <input type="submit" class="button" name="form_validate" value="Participer">
                       </form>
                     </div>
                 </div>
