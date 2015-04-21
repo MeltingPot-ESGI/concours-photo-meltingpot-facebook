@@ -1,16 +1,8 @@
 <?php
-
-
-/**
-* FACEBOOK AUTHENTIFICATION
-*/
     require "./ressource/lib/facebook-php-sdk-v4-4.0-dev/autoload.php";
-    include "src/views/View.php";
-    include "src/views/FormParticipateContestView.php";
     
     session_start();
     error_reporting(E_ALL);
-    
     
     use Facebook\FacebookSession;
     use Facebook\FacebookRedirectLoginHelper;
@@ -23,13 +15,21 @@
     const REDIRECT_URL = "https://meltingpot-photo-contest.herokuapp.com/";
     const FB_TOKEN = 'fb_token';
     const FB_GRAPH_OBJECT = 'fb_graph_object';
+    const DATA_BASE_URL = 'postgres://nolzzoceehqgwm:3lGAMNxtyGT7_9O4-VvYKPu4ie@ec2-54-228-227-217.eu-west-1.compute.amazonaws.com:5432/d13rom6s65bne8';
     
     FacebookSession::setDefaultApplication(APP_ID, APP_SECRET);
     
     $loginUrl = "";
     $graphObject = null;
+    
+    // Session
     $helper = new FacebookRedirectLoginHelper(REDIRECT_URL);
     
+    // BDD
+    $dbopts = parse_url(DATA_BASE_URL);
+    $pdo = new PDO('pgsql:dbname='.ltrim($dbopts["path"],'/').';host='.$dbopts["host"], $dbopts["user"], $dbopts["pass"]);
+    
+    // Get session
     if (isset($_SESSION) && isset($_SESSION[FB_TOKEN]) && !empty($_SESSION[FB_TOKEN])) {
         $session = new FacebookSession($_SESSION[FB_TOKEN]);
     } else {
@@ -42,6 +42,7 @@
         }
     }
     
+    // Récupère les infos de l'utilisateur
     if ($session) {
         $_SESSION[FB_TOKEN] = $session->getAccessToken();
         
@@ -62,11 +63,29 @@
                     'message' => $_POST['photoName']
                   )
                 ))->execute()->getGraphObject();
+                
+                // Enregistre photo dans la BDD
+                $photoIdFacebook = $response->getProperty('id');
+                
+                $result = $pdo->prepare("INSERT INTO User (id_facebook, firstname, lastname, mail, accept_cgu, accept_bons_plans, is_enable) VALUES (:id_facebook, :firstname, :lastname, :mail, :accept_cgu, :accept_bons_plans, :is_enable)");
+                $pdo->bindParam(':id_facebook', $graphObject->getId());
+                $pdo->bindParam(':firstname', $graphObject->getFirstName());
+                $pdo->bindParam(':lastname', $graphObject->getLastName());
+                $pdo->bindParam(':mail', $_POST['email']);
+                $pdo->bindParam(':accept_cgu', true);
+                $pdo->bindParam(':accept_bons_plans', true);
+                
+                $pdo->execute();
+    
+                $photos = array();
+                while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                    $app['monolog']->addDebug('Row ' . $row['name']);
+                    $photos[] = $row;
+                }
 
-                // If you're not using PHP 5.5 or later, change the file reference to:
-                // 'source' => '@/path/to/file.name'
-
-                echo "Posted with id: " . $response->getProperty('id');
+                return $app['twig']->render('database.twig', array(
+                    'names' => $names
+                ));
             }
         } catch (Exception $e) {
             echo $e->getCode().'--'.$e->getMessage();
@@ -74,34 +93,6 @@
     } else {
         $loginUrl = $helper->getLoginUrl(array('scope' => 'publish_actions, user_photos'));
     }
-    
-// ****** Fin FACEBOOK AUTHENTIFICATION ** //
-
-    /*
-    $dbopts = parse_url(getenv('DATABASE_URL'));
-    $app->register(new Herrera\Pdo\PdoServiceProvider(),
-        array(
-            'pdo.dsn' => 'pgsql:dbname='.ltrim($dbopts["path"],'/').';host='.$dbopts["host"],
-            'pdo.port' => $dbopts["port"],
-            'pdo.username' => $dbopts["user"],
-            'pdo.password' => $dbopts["pass"]
-        )
-    );
-    
-    $app->get('/db/', function() use($app) {
-    $st = $app['pdo']->prepare('SELECT name FROM test_table');
-    $st->execute();
-
-    $photos = array();
-    while ($row = $st->fetch(PDO::FETCH_ASSOC)) {
-        $app['monolog']->addDebug('Row ' . $row['name']);
-        $photos[] = $row;
-    }
-
-    return $app['twig']->render('database.twig', array(
-        'names' => $names
-    ));
-});*/
 ?>
 
 <!doctype html>
