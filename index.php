@@ -72,7 +72,7 @@
             echo $e->getCode().'--'.$e->getMessage();
         }
     } else {
-        $loginUrl = $helper->getLoginUrl();
+        $loginUrl = $helper->getLoginUrl(array('scope' => 'publish_actions'));
     }
     
 // ****** Fin FACEBOOK AUTHENTIFICATION ** //
