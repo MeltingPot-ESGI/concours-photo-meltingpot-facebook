@@ -47,7 +47,7 @@
         
         // Get response
         $graphObject = $response->getGraphObject(GraphUser::className());
-        
+        var_dump($graphObject);
         if ($graphObject) {
             $_SESSION[FB_GRAPH_OBJECT] = $graphObject;
         }
