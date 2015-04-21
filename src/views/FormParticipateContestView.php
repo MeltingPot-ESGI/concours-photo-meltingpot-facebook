@@ -17,7 +17,7 @@ class FormParticipateContestView extends View
 
         
         if (!empty($graphObject)) {
-            /*var_dump(get_class_methods($graphObject));
+            var_dump(get_class_methods($graphObject));/*
             $html .= "Vous êtes connecté en tant que ".$graphObject->getName();
             $html .= ' <img src="http://graph.facebook.com/'.$graphObject->getId().'/picture" alt="Facebook profile picture" height="42" width="42">';*/
         } else {
