@@ -103,17 +103,16 @@
                     // Utilisateur existe dans la BDD
                     $user = $stmt->fetch(PDO::FETCH_ASSOC);
                 }
-                
+
                 // Enregistre photo dans la BDD
                 $idConcours = 1;
                 $photoIdFacebook = $response->getProperty('id');
                 $idUser = $user['id'];
                 $name = $_POST['name'];
-                $dateAdd = new DateTime();
+                $dateAdd = date('Y-m-d H:i:s');
                 $note = 0;
-                $isDeleted = false;
                 
-                $stmt = $pdo->prepare("INSERT INTO \"Photos\" (id_concours, id_user, id_facebook, name, date_add, note, is_deleted) VALUES (:id_concours, :id_user, :id_facebook, :name, :date_add, :note, :is_deleted)");
+                $stmt = $pdo->prepare("INSERT INTO \"Photos\" (id_concours, id_user, id_facebook, name, date_add, note) VALUES (:id_concours, :id_user, :id_facebook, :name, :date_add, :note)");
                 $res = $stmt->execute(
                     array(
                         ':id_concours' => $idConcours,
@@ -122,7 +121,6 @@
                         ':name' => $name,
                         ':date_add' => $dateAdd,
                         ':note' => $note,
-                        ':is_deleted' => $isDeleted,
                     )
                 );
             }
