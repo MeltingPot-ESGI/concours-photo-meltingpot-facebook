@@ -12,7 +12,10 @@ include_once(dirname(dirname(__DIR__))."/include_config.php");
 						
 						'.include_js().'
 						
-						<link rel="stylesheet" type="text/css" media="screen" href="_css/style.css" />
+						<link rel="stylesheet" type="text/css" media="screen" href="ressource/public/_css/structure.css" />
+						<link rel="stylesheet" type="text/css" media="screen" href="ressource/public/_css/admin_css.css" />
+						<link rel="stylesheet" type="text/css" media="screen" href="ressource/public/_css/button_effet.css" />
+						<link rel="stylesheet" type="text/css" media="screen" href="ressource/public/_css/style.css" />
 						
 						
 						
