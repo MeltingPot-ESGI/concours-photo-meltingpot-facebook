@@ -2,15 +2,21 @@
 
 class Controller
 {
-    const VIEWS_DIRECTORY = "../views/";
     const VIEWS_FILE_EXTENSION = ".php";
     
-    public function getView($name)
+    public function getView($name, $viewParams = array())
     {
-        $viewFile = self::VIEWS_DIRECTORY.$name.self::VIEWS_FILE_EXTENSION;
+        $name .= "View";
+        
+        $viewFile = dirname(__DIR__)."/views/".$name.self::VIEWS_FILE_EXTENSION;
         
         if (file_exists($viewFile)) {
-            return file_get_contents($name);
+            include $viewFile;
+            
+            $viewClass = ucfirst($name);
+            $viewClass = new $viewClass();
+            
+            return $viewClass->getView($viewParams);
         } else {
             return "";
         }
