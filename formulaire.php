@@ -53,8 +53,8 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<link rel="stylesheet" type="text/css" media="screen" href="./_css/style.css" />
-        <link rel="stylesheet" type="text/css" media="screen" href="./_css/button_effet.css" />
+		<link rel="stylesheet" type="text/css" media="screen" href="./ressource/public/_css/style.css" />
+        <link rel="stylesheet" type="text/css" media="screen" href="./ressource/public/_css/button_effet.css" />
 		<title>Formulaire de participation</title>
 		<meta name="description" content="Facebook - Concours Photos Tatouages">
 		<!--<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>-->
@@ -78,7 +78,7 @@
 	</head>
 	<body>
 		<div class="encart_concours">
-			<h1>PARTICIPER AU CONCOURS</h1>
+			<h1>TEST PARTICIPER AU CONCOURS</h1>
                         
                 <?php
                     if (isset($graphObject)) {
