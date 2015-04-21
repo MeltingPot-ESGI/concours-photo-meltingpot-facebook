@@ -42,37 +42,6 @@
         }
     }
     
-    if (isset($_POST['fileUpload'])) {
-        $stmt = $pdo->prepare("SELECT * FROM \"Utilisateur\" WHERE id_facebook = :id_facebook;");
-        $stmt->execute(
-            array(':id_facebook' => "dfdsf")
-        );
-
-        // Utilisateur existe dans la BDD
-        $user = $stmt->fetch(PDO::FETCH_ASSOC);
-        
-        // Enregistre photo dans la BDD
-        $idConcours = 1;
-        $photoIdFacebook = "dsfdsf";
-        $idUser = $user['id'];
-        $name = "test";
-        $dateAdd = date('Y-m-d H:i:s');;
-        $note = 0;
-        $isDeleted = false;
-
-        $stmt = $pdo->prepare("INSERT INTO \"Photos\" (id_concours, id_user, id_facebook, name, date_add, note) VALUES (:id_concours, :id_user, :id_facebook, :name, :date_add, :note)");
-        $res = $stmt->execute(
-            array(
-                ':id_concours' => $idConcours,
-                ':id_user' => $idUser,
-                ':id_facebook' => $photoIdFacebook,
-                ':name' => $name,
-                ':date_add' => $dateAdd,
-                ':note' => $note,
-            )
-        );
-    }
-    
     // Récupère les infos de l'utilisateur
     if ($session) {
         $_SESSION[FB_TOKEN] = $session->getAccessToken();
