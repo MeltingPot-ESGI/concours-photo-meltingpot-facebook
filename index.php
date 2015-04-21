@@ -31,13 +31,14 @@
     } else {
         try {
             $session = $helper->getSessionFromRedirect();
+            die(var_dump($session));
         } catch(FacebookRequestException $ex) {
 
         } catch(\Exception $ex) {
 
         }
     }
-    var_dump($_SESSION);
+    
     if ($session) {
         var_dump("OK");
         $_SESSION[FB_TOKEN] = $session->getAccessToken();
