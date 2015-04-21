@@ -51,10 +51,6 @@
         // Get response
         $graphObject = $response->getGraphObject(GraphUser::className());
         
-        if ($graphObject) {
-            $_SESSION['fb_graph_object'] = $graphObject;
-        }
-        
     } else {
         $loginUrl = $helper->getLoginUrl();
     }
@@ -121,7 +117,26 @@
         <div id="wrapper">
             <div class="under_wrapper">
                 <div id="wrapper_admin">
-                    <?php $view = new FormParticipateContestView(); echo $view->getView(array('loginUrl' => $loginUrl)); ?>
+                    <div class="encart_concours">
+                    <h1>PARTICIPER AU CONCOURS</h1>
+                    <?php
+                        if (!empty($graphObject)) {
+                            echo "Vous êtes connecté en tant que ".$graphObject->getName();
+                            echo ' <img src="http://graph.facebook.com/'.$graphObject->getId().'/picture" alt="Facebook profile picture" height="42" width="42">';
+                        } else {
+                            echo '<a class="fb-button button" href="'.$loginUrl.'">S\'authentifier avec Facebook</a>';
+                        }
+                    ?>
+                    
+                    <form>
+                        <input type="text" name="name" value="Nom" id="form_name" size="50" onclick="this.value=\'\';"><br>
+                        <input type="text" name="email" value="E-mail" id="form_email" size="50" onclick="this.value=\'\';"><br>
+                        <input type="text" name="city" value="Ville" id="form_city" size="50" onclick="this.value=\'\';"><br>
+                        <div class="form_ligne"><label for="form_gooddeals" class="label_checkbox">Je veux recevoir les bons plans </label><input type="checkbox" name="form_gooddeals" value="" id="form_gooddeals"></div>
+                        <div class="form_ligne"><label for="form_policy" class="label_checkbox">J\'accepte <a href="cgu.php">le règlement</a> </label><input type="checkbox" name="form_policy" value="" id="form_reglement"></div>
+                        <input type="submit" class="button" name="form_validate" value="Participer">
+                      </form>
+                    </div>
                 </div>
             </div>
         </div>
