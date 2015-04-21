@@ -5,7 +5,7 @@
 * FACEBOOK AUTHENTIFICATION
 */
     require "./ressource/lib/facebook-php-sdk-v4-4.0-dev/autoload.php";
-include "src/views/View.php";
+    include "src/views/View.php";
     include "src/views/FormParticipateContestView.php";
     
     session_start();
@@ -49,7 +49,7 @@ include "src/views/View.php";
         $response = $request->execute();
         
         // Get response
-        $graphObject = $response->getGraphObject()->asArray();
+        $graphObject = $response->getGraphObject(GraphUser::className());
         
         if ($graphObject) {
             $_SESSION['fb_graph_object'] = $graphObject;
