@@ -71,7 +71,7 @@
 
                 // Utilisateur existe dans la BDD
                 $user = $stmt->fetch(PDO::FETCH_ASSOC);
-    var_dump($user);  
+                
                 if (!$user) {
                     // Enregire utilisateur dans la BDD
                     $idFacebook= $graphObject->getId();
@@ -103,7 +103,7 @@
                     // Utilisateur existe dans la BDD
                     $user = $stmt->fetch(PDO::FETCH_ASSOC);
                 }
-    var_dump($user);
+                
                 // Enregistre photo dans la BDD
                 $idConcours = 1;
                 $photoIdFacebook = $response->getProperty('id');
@@ -123,8 +123,6 @@
                         ':note' => $note,
                     )
                 );
-                
-                die(var_dump($stmt->errorInfo()));
             }
         } catch (Exception $e) {
             echo $e->getCode().'--'.$e->getMessage();
@@ -173,6 +171,17 @@
                             if (!empty($graphObject)) {
                                 echo "Vous êtes connecté en tant que ".$graphObject->getName();
                                 echo ' <img src="http://graph.facebook.com/'.$graphObject->getId().'/picture" alt="Facebook profile picture" height="42" width="42">';
+                                
+                                
+                                $request = new FacebookRequest(
+                                    $session,
+                                    'GET',
+                                    '/1405753299745910'
+                                  );
+                                  $response = $request->execute();
+                                  $graphObject = $response->getGraphObject();
+                                  
+                                echo '<br><br><br><br><img src="'.$graphObject->getProperty('link').'" alt="Facebook profile picture" height="42" width="42">';
                             } else {
                                 echo '<a class="fb-button button" href="'.$loginUrl.'">S\'authentifier avec Facebook</a>';
                             }
