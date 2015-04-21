@@ -1,8 +1,8 @@
 <?php
     require "./ressource/lib/facebook-php-sdk-v4-4.0-dev/autoload.php";
     
-    session_start();
     error_reporting(E_ALL);
+    session_start();
     
     use Facebook\FacebookSession;
     use Facebook\FacebookRedirectLoginHelper;
@@ -67,16 +67,28 @@
                 // Enregistre photo dans la BDD
                 $photoIdFacebook = $response->getProperty('id');
                 
-                $result = $pdo->prepare("INSERT INTO User (id_facebook, firstname, lastname, mail, accept_cgu, accept_bons_plans, is_enable) VALUES (:id_facebook, :firstname, :lastname, :mail, :accept_cgu, :accept_bons_plans, :is_enable)");
-                $pdo->bindParam(':id_facebook', $graphObject->getId());
-                $pdo->bindParam(':firstname', $graphObject->getFirstName());
-                $pdo->bindParam(':lastname', $graphObject->getLastName());
-                $pdo->bindParam(':mail', $_POST['email']);
-                $pdo->bindParam(':accept_cgu', true);
-                $pdo->bindParam(':accept_bons_plans', true);
-                $pdo->bindParam(':is_enable', true);
+                // Enregire photo dans la BDD
+                $idFacebook= $graphObject->getId();
+                $firstName = $graphObject->getFirstName();
+                $lastName= $graphObject->getLastName();
+                $email= $_POST['email'];
+                $acceptCgu = true;
+                $acceptBonsPlans = true;
+                $isEnable = true;
                 
-                $pdo->execute();
+                
+                $stmt = $pdo->prepare("INSERT INTO \"Utilisateur\" (id_facebook, firstname, lastname, mail, accept_cgu, accept_bons_plans, is_enable) VALUES (:id_facebook, :firstname, :lastname, :mail, :accept_cgu, :accept_bons_plans, :is_enable)");
+                $res = $stmt->execute(
+                    array(
+                        ':id_facebook' => $idFacebook,
+                        ':firstname' => $firstName,
+                        ':lastname' => $lastName,
+                        ':mail' => $email,
+                        ':accept_cgu' => $acceptCgu,
+                        ':accept_bons_plans' => $acceptBonsPlans,
+                        ':is_enable' => $isEnable,
+                    )
+                );
     /*
                 $photos = array();
                 while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
