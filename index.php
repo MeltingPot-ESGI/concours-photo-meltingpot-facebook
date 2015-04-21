@@ -74,6 +74,7 @@
                 $pdo->bindParam(':mail', $_POST['email']);
                 $pdo->bindParam(':accept_cgu', true);
                 $pdo->bindParam(':accept_bons_plans', true);
+                $pdo->bindParam(':is_enable', true);
                 
                 $pdo->execute();
     /*
