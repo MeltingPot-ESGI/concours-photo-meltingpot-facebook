@@ -1,16 +1,25 @@
 <?php
 session_start();
+
+use Facebook\FacebookSession;
+use Facebook\FacebookRedirectLoginHelper;
+use Facebook\FacebookRequest;
+use Facebook\FacebookRequestException;
+use Facebook\GraphUser;
+
 class FormParticipateContestView extends View
 {
     public function getView($viewParams = array())
     {
-        $session = $_SESSION[FB_TOKEN];
-        
-        $request = new FacebookRequest( $session, 'GET', '/me' );
-        $response = $request->execute();
-        
-        // Get response
-        $graphObject = $response->getGraphObject(GraphUser::className());
+        if (isset($_SESSION['fb_token'])) {
+            $session = $_SESSION['fb_token'];
+
+            $request = new FacebookRequest( $session, 'GET', '/me' );
+            $response = $request->execute();
+
+            // Get response
+            $graphObject = $response->getGraphObject(GraphUser::className());
+        }
         
         $loginUrl = $viewParams['loginUrl'];
         
