@@ -39,10 +39,7 @@
     }
     
     if ($session) {
-        var_dump("OK");
         $_SESSION[FB_TOKEN] = $session->getAccessToken();
-        var_dump($_SESSION);
-        
         
         $request = new FacebookRequest( $session, 'GET', '/me' );
         $response = $request->execute();

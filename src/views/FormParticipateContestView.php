@@ -5,6 +5,7 @@ class FormParticipateContestView extends View
     public function getView($viewParams = array())
     {
         $graphObject = $viewParams['graphObject'];
+        var_dump($graphObject);
         $loginUrl = $viewParams['loginUrl'];
         
         $html = '<div class="encart_concours">
