@@ -25,15 +25,9 @@ class FormParticipateContestView extends View
         }
 
         $html .= '
-                <div
-                    class="fb-like"
-                    data-share="true"
-                    data-width="450"
-                    data-show-faces="true">
-                </div>
+               
         ';
-        /*
-                    if($session) {
+        /*          if($session) {
                         try {
                           // Upload to a user's profile. The photo will be in the
                           // first album in the profile. You can also upload to
@@ -65,7 +59,15 @@ class FormParticipateContestView extends View
                         <div class="form_ligne"><label for="form_policy" class="label_checkbox">J\'accepte <a href="cgu.php">le règlement</a> </label><input type="checkbox" name="form_policy" value="" id="form_reglement"></div>
                         <input type="submit" class="button" name="form_validate" value="Participer">
                       </form>
-                    </div>';
+                    </div>
+
+                    <div
+                      class="fb-like"
+                      data-share="true"
+                      data-width="450"
+                      data-show-faces="true">
+                    </div>
+                    ';
 
          return $html;
     }
