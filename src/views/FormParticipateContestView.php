@@ -5,7 +5,7 @@ class FormParticipateContestView extends View
     public function getView($viewParams = array())
     {
         $graphObject = null;
-        
+        var_dump($_SESSION['fb_graph_object']);
         if (isset($_SESSION['fb_graph_object'])) {
             $graphObject = $_SESSION['fb_graph_object'];
         }
