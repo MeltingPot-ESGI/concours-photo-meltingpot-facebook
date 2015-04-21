@@ -47,7 +47,7 @@
         $response = $request->execute();
         
         // Get response
-        $graphObject = $response->getGraphObject(GraphUser::className());
+        $graphObject = $response->getGraphObject()->asArray();
         
         if ($graphObject) {
             $_SESSION['fb_graph_object'] = $graphObject;
