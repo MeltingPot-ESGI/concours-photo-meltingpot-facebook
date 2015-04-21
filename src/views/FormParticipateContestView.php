@@ -15,7 +15,7 @@ class FormParticipateContestView extends View
         $html = '<div class="encart_concours">
                 <h1>PARTICIPER AU CONCOURS</h1>';
 
-die(var_dump($graphObject));
+var_dump($graphObject);
         if (!empty($graphObject)) {
             $html .= "Vous êtes connecté en tant que ".$graphObject->getName();
             $html .= ' <img src="http://graph.facebook.com/'.$graphObject->getId().'/picture" alt="Facebook profile picture" height="42" width="42">';
