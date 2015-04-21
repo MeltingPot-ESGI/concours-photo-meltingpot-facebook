@@ -28,6 +28,60 @@ font-family: AxelRegular,"Helvetica Neue",Helvetica,Arial,sans-serif;
 
 
 
+
+
+#wrapper_admin{
+	height: 100%;
+}
+
+.bloc_login{
+	background: -webkit-linear-gradient(rgba(57,57,58,1) 0%, rgba(3,3,5,1) 100%);
+	background: 	 -o-linear-gradient(rgba(57,57,58,1) 0%, rgba(3,3,5,1) 100%);
+	background: -moz-linear-gradient(rgba(57,57,58,1) 0%, rgba(3,3,5,1) 100%);
+	background: 		linear-gradient(rgba(57,57,58,1) 0%, rgba(3,3,5,1) 100%);
+	
+	
+	
+	/* border: 1px solid; */ /* pour l'exepmle on désactive*/
+	border: 1px solid rgba(162,162,164,1);
+	height: 190px;
+	width: 35%;
+	margin-top: 19%;
+	margin-left: 31%;
+	padding-left: 3%;
+	
+}
+
+.bloc_menu_admin{
+	background: -webkit-linear-gradient(rgba(57,57,58,1) 0%, rgba(3,3,5,1) 100%);
+	background: 	 -o-linear-gradient(rgba(57,57,58,1) 0%, rgba(3,3,5,1) 100%);
+	background: -moz-linear-gradient(rgba(57,57,58,1) 0%, rgba(3,3,5,1) 100%);
+	background: 		linear-gradient(rgba(57,57,58,1) 0%, rgba(3,3,5,1) 100%);
+	/* border: 1px solid; */ /* pour l'exepmle on désactive*/
+	border: 1px solid rgba(162,162,164,1);
+	/* height: 199px; */
+	width: 64%;
+	margin-top: 18%;
+	margin-left: 18%;
+	padding-bottom: 5.38%;
+}
+
+
+.bloc_global{
+	background: -webkit-linear-gradient(rgba(57,57,58,1) 0%, rgba(3,3,5,1) 100%);
+	background: 	 -o-linear-gradient(rgba(57,57,58,1) 0%, rgba(3,3,5,1) 100%);
+	background: -moz-linear-gradient(rgba(57,57,58,1) 0%, rgba(3,3,5,1) 100%);
+	background: 		linear-gradient(rgba(57,57,58,1) 0%, rgba(3,3,5,1) 100%);
+	border: 1px solid rgba(162,162,164,1);
+	/* height: 375px; */
+	margin-top: 15%;
+	padding: 30px;
+	padding-bottom: 50px;
+}
+
+
+
+
 @font-face
 {
     font-family: 'AxelRegular';

@@ -5,7 +5,7 @@
 
 a{color: white;}
 
-body{margin: 200px auto  0 auto; text-align: center; font-family: 'Oxygen', Arial; color: white;}
+
 	.encart_concours{width: 400px; display: inline-block; margin:40px; padding: 40px; border-radius: 10px; background-image:url(../image/background_inscription.png); background-size: 500px;}
 		#fb_connect_bt{}
 		.encart_concours form{ text-align: center; margin-top:40px;}
