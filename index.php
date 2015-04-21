@@ -17,7 +17,7 @@
     
     const APP_ID = "342576715932172";
     const APP_SECRET = "f3f97bb62cd6c603fe00128e847586dd";
-    const REDIRECT_URL = "https://meltingpot-photo-contest.herokuapp.com/";
+    const REDIRECT_URL = "https://meltingpot-photo-contest.herokuapp.com";
     const FB_TOKEN = 'fb_token';
     
     FacebookSession::setDefaultApplication(APP_ID, APP_SECRET);
