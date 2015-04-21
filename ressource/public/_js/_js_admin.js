@@ -15,11 +15,11 @@ console.log(dataForm);
         processData: true,
         url: './ressource/ajax/ajx_data_admin.php',
         data: dataForm,
-        dataType: 'html'
+        dataType: 'json'
     })
     .done( function (Data) {
         $('#wrapper_admin').hide('slow', function(){
-            $('#wrapper_admin').html(Data);
+            $('#wrapper_admin').html(Data['html']);
             $('#wrapper_admin').show('slow');
         });
      })

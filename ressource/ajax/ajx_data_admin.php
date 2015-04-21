@@ -17,5 +17,14 @@
     $function = "get".$_POST['action'];
     $html = $controller->{$function}($params);
 
-    echo $html;
+   
+    
+    
+    $data = array('html' => $html
+    			,'controller' => $controller
+    			,'data' => 'polak de merde'
+    			,'function' => $function
+    			);
+    			
+     echo json_encode($data);
 ?>
