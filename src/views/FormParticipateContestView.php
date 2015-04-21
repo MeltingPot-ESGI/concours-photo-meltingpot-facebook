@@ -1,13 +1,13 @@
 <?php
-session_start();
+
 class FormParticipateContestView extends View
 {
     public function getView($viewParams = array())
     {
         $graphObject = null;
         
-        if (isset($_SESSION['fb_graph_object'])) {
-            $graphObject = $_SESSION['fb_graph_object'];
+        if (isset($viewParams['graphObject'])) {
+            $graphObject = $viewParams['graphObject'];
         }
         
         $loginUrl = $viewParams['loginUrl'];
@@ -18,8 +18,8 @@ class FormParticipateContestView extends View
         
         if (!empty($graphObject)) {
             
-            $html .= "Vous êtes connecté en tant que ".$graphObject->getProperty('name');
-            //$html .= ' <img src="http://graph.facebook.com/'.$graphObject->getId().'/picture" alt="Facebook profile picture" height="42" width="42">';
+            $html .= "Vous êtes connecté en tant que ".$graphObject->getName();
+            $html .= ' <img src="http://graph.facebook.com/'.$graphObject->getId().'/picture" alt="Facebook profile picture" height="42" width="42">';
         } else {
             $html .= '<a class="fb-button button" href="'.$loginUrl.'">S\'authentifier avec Facebook</a>';
         }
