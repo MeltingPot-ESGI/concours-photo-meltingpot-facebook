@@ -4,24 +4,25 @@ class FormParticipateContestView extends View
 {
     public function getView($viewParams = array())
     {
-        $graphObject = null;
+        $session = $_SESSION[FB_TOKEN];
         
-        if (isset($_SESSION['fb_graph_object'])) {
-            $graphObject = $_SESSION['fb_graph_object'];
-        }
+        $request = new FacebookRequest( $session, 'GET', '/me' );
+        $response = $request->execute();
+        
+        // Get response
+        $graphObject = $response->getGraphObject(GraphUser::className());
         
         $loginUrl = $viewParams['loginUrl'];
         
         $html = '<div class="encart_concours">
                 <h1>PARTICIPER AU CONCOURS</h1>';
 
-        /*
         if (!empty($graphObject)) {
             $html .= "Vous êtes connecté en tant que ".$graphObject->getName();
             $html .= ' <img src="http://graph.facebook.com/'.$graphObject->getId().'/picture" alt="Facebook profile picture" height="42" width="42">';
         } else {
             $html .= '<a class="fb-button" href="'.$loginUrl.'">S\'authentifier avec Facebook</a>';
-        }*/
+        }
 
         $html .= '
                 <div
