@@ -5,6 +5,8 @@
 * FACEBOOK AUTHENTIFICATION
 */
     require "./ressource/lib/facebook-php-sdk-v4-4.0-dev/autoload.php";
+    include "src/views/View.php";
+    include "src/views/FormParticipateContestView.php";
     
     session_start();
     error_reporting(E_ALL);
@@ -47,7 +49,7 @@
         $response = $request->execute();
         
         // Get response
-        $graphObject = $response->getGraphObject()->asArray();
+        $graphObject = $response->getGraphObject(GraphUser::className());
         
         if ($graphObject) {
             $_SESSION['fb_graph_object'] = $graphObject;
@@ -119,7 +121,7 @@
         <div id="wrapper">
             <div class="under_wrapper">
                 <div id="wrapper_admin">
-                    
+                    <?php $view = new FormParticipateContestView(); echo $view->getView(array('loginUrl' => $loginUrl)); ?>
                 </div>
             </div>
         </div>
@@ -131,8 +133,8 @@
 <script>
     $(document).ready(function() {
       
-        var test = <?php echo json_encode(array('loginUrl' => $loginUrl)); ?>;
+        var test = <?php echo json_encode(array('loginUrl' => $loginUrl, 'graphObject' => $graphObject)); ?>;
         console.log(test);  
-        get_data_admin('FormParticipateContest', test);
+        //get_data_admin('FormParticipateContest', test);
     });
 </script>
