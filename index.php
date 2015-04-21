@@ -50,7 +50,6 @@
         
         if ($graphObject) {
             $_SESSION['fb_graph_object'] = $graphObject;
-            var_dump($_SESSION['fb_graph_object']);
         }
         
     } else {
