@@ -19,6 +19,7 @@
     const APP_SECRET = "f3f97bb62cd6c603fe00128e847586dd";
     const REDIRECT_URL = "https://meltingpot-photo-contest.herokuapp.com/";
     const FB_TOKEN = 'fb_token';
+    const FB_GRAPH_OBJECT = 'fb_graph_object';
     
     FacebookSession::setDefaultApplication(APP_ID, APP_SECRET);
     
@@ -46,6 +47,11 @@
         
         // Get response
         $graphObject = $response->getGraphObject(GraphUser::className());
+        
+        if ($graphObject) {
+            $_SESSION[FB_GRAPH_OBJECT] = $graphObject;
+        }
+        
     } else {
         $loginUrl = $helper->getLoginUrl();
     }
@@ -124,7 +130,7 @@
 <script>
     $(document).ready(function() {
       
-        var test = <?php echo json_encode(array('graphObject' => $graphObject, 'loginUrl' => $loginUrl)); ?>;
+        var test = <?php echo json_encode(array('loginUrl' => $loginUrl)); ?>;
         console.log(test);  
         get_data_admin('FormParticipateContest', test);
     });

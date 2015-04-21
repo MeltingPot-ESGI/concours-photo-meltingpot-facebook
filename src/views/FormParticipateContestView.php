@@ -4,8 +4,10 @@ class FormParticipateContestView extends View
 {
     public function getView($viewParams = array())
     {
-        $graphObject = $viewParams['graphObject'];
-        var_dump($graphObject);
+        if (isset($_SESSION['fb_graph_object'])) {
+            $graphObject = $viewParams['fb_graph_object'];
+        }
+        
         $loginUrl = $viewParams['loginUrl'];
         
         $html = '<div class="encart_concours">
