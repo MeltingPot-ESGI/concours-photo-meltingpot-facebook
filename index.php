@@ -71,7 +71,7 @@
 
                 // Utilisateur existe dans la BDD
                 $user = $stmt->fetch(PDO::FETCH_ASSOC);
-                
+    var_dump($user);  
                 if (!$user) {
                     // Enregire utilisateur dans la BDD
                     $idFacebook= $graphObject->getId();
@@ -103,7 +103,7 @@
                     // Utilisateur existe dans la BDD
                     $user = $stmt->fetch(PDO::FETCH_ASSOC);
                 }
-
+    var_dump($user);
                 // Enregistre photo dans la BDD
                 $idConcours = 1;
                 $photoIdFacebook = $response->getProperty('id');
@@ -123,6 +123,8 @@
                         ':note' => $note,
                     )
                 );
+                
+                die(var_dump($stmt->errorInfo()));
             }
         } catch (Exception $e) {
             echo $e->getCode().'--'.$e->getMessage();
