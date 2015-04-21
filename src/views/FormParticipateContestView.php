@@ -25,7 +25,7 @@ class FormParticipateContestView extends View
         }
 
         $html .= '
-               
+               <div class="fb-like" data-share="true" data-width="450" data-show-faces="true"></div>
         ';
         /*          if($session) {
                         try {
@@ -60,13 +60,7 @@ class FormParticipateContestView extends View
                         <input type="submit" class="button" name="form_validate" value="Participer">
                       </form>
                     </div>
-
-                    <div
-                      class="fb-like"
-                      data-share="true"
-                      data-width="450"
-                      data-show-faces="true">
-                    </div>
+                    
                     ';
 
          return $html;
