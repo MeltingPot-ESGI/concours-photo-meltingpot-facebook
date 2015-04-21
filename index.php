@@ -181,7 +181,7 @@
                                   $response = $request->execute();
                                   $graphObject = $response->getGraphObject();
                                   
-                                echo '<br><br><br><br><img src="'.$graphObject->getProperty('link').'" alt="Facebook profile picture" height="42" width="42">';
+                                echo '<br><br><br><br><img src="'.$graphObject->getProperty('picture').'" alt="Facebook profile picture" height="42" width="42">';
                             } else {
                                 echo '<a class="fb-button button" href="'.$loginUrl.'">S\'authentifier avec Facebook</a>';
                             }
