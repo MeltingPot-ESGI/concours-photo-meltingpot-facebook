@@ -42,6 +42,37 @@
         }
     }
     
+    if (isset($_POST['fileUpload'])) {
+        $stmt = $pdo->prepare("SELECT * FROM \"Utilisateur\" WHERE id_facebook = :id_facebook;");
+        $stmt->execute(
+            array(':id_facebook' => "dfdsf")
+        );
+
+        // Utilisateur existe dans la BDD
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+        
+        // Enregistre photo dans la BDD
+        $idConcours = 1;
+        $photoIdFacebook = "dsfdsf";
+        $idUser = $user['id'];
+        $name = "test";
+        $dateAdd = date('Y-m-d H:i:s');;
+        $note = 0;
+        $isDeleted = false;
+
+        $stmt = $pdo->prepare("INSERT INTO \"Photos\" (id_concours, id_user, id_facebook, name, date_add, note) VALUES (:id_concours, :id_user, :id_facebook, :name, :date_add, :note)");
+        $res = $stmt->execute(
+            array(
+                ':id_concours' => $idConcours,
+                ':id_user' => $idUser,
+                ':id_facebook' => $photoIdFacebook,
+                ':name' => $name,
+                ':date_add' => $dateAdd,
+                ':note' => $note,
+            )
+        );
+    }
+    
     // Récupère les infos de l'utilisateur
     if ($session) {
         $_SESSION[FB_TOKEN] = $session->getAccessToken();
@@ -64,41 +95,67 @@
                   )
                 ))->execute()->getGraphObject();
                 
+                $stmt = $pdo->prepare("SELECT * FROM \"Utilisateur\" WHERE id_facebook = :id_facebook;");
+                $stmt->execute(
+                    array(':id_facebook' => $graphObject->getId())
+                );
+
+                // Utilisateur existe dans la BDD
+                $user = $stmt->fetch(PDO::FETCH_ASSOC);
+                
+                if (!$user) {
+                    // Enregire utilisateur dans la BDD
+                    $idFacebook= $graphObject->getId();
+                    $firstName = $graphObject->getFirstName();
+                    $lastName= $graphObject->getLastName();
+                    $email= $_POST['email'];
+                    $acceptCgu = isset($_POST['form_policy']);
+                    $acceptBonsPlans = isset($_POST['form_gooddeals']);
+                    $isEnable = true;
+
+                    $stmt = $pdo->prepare("INSERT INTO \"Utilisateur\" (id_facebook, firstname, lastname, mail, accept_cgu, accept_bons_plans, is_enable) VALUES (:id_facebook, :firstname, :lastname, :mail, :accept_cgu, :accept_bons_plans, :is_enable)");
+                    $res = $stmt->execute(
+                        array(
+                            ':id_facebook' => $idFacebook,
+                            ':firstname' => $firstName,
+                            ':lastname' => $lastName,
+                            ':mail' => $email,
+                            ':accept_cgu' => $acceptCgu,
+                            ':accept_bons_plans' => $acceptBonsPlans,
+                            ':is_enable' => $isEnable,
+                        )
+                    );
+                    
+                    $stmt = $pdo->prepare("SELECT * FROM \"Utilisateur\" WHERE id_facebook = :id_facebook;");
+                    $stmt->execute(
+                        array(':id_facebook' => $graphObject->getId())
+                    );
+
+                    // Utilisateur existe dans la BDD
+                    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+                }
+                
                 // Enregistre photo dans la BDD
+                $idConcours = 1;
                 $photoIdFacebook = $response->getProperty('id');
+                $idUser = $user['id'];
+                $name = $_POST['name'];
+                $dateAdd = new DateTime();
+                $note = 0;
+                $isDeleted = false;
                 
-                // Enregire photo dans la BDD
-                $idFacebook= $graphObject->getId();
-                $firstName = $graphObject->getFirstName();
-                $lastName= $graphObject->getLastName();
-                $email= $_POST['email'];
-                $acceptCgu = true;
-                $acceptBonsPlans = true;
-                $isEnable = true;
-                
-                
-                $stmt = $pdo->prepare("INSERT INTO \"Utilisateur\" (id_facebook, firstname, lastname, mail, accept_cgu, accept_bons_plans, is_enable) VALUES (:id_facebook, :firstname, :lastname, :mail, :accept_cgu, :accept_bons_plans, :is_enable)");
+                $stmt = $pdo->prepare("INSERT INTO \"Photos\" (id_concours, id_user, id_facebook, name, date_add, note, is_deleted) VALUES (:id_concours, :id_user, :id_facebook, :name, :date_add, :note, :is_deleted)");
                 $res = $stmt->execute(
                     array(
-                        ':id_facebook' => $idFacebook,
-                        ':firstname' => $firstName,
-                        ':lastname' => $lastName,
-                        ':mail' => $email,
-                        ':accept_cgu' => $acceptCgu,
-                        ':accept_bons_plans' => $acceptBonsPlans,
-                        ':is_enable' => $isEnable,
+                        ':id_concours' => $idConcours,
+                        ':id_user' => $idUser,
+                        ':id_facebook' => $photoIdFacebook,
+                        ':name' => $name,
+                        ':date_add' => $dateAdd,
+                        ':note' => $note,
+                        ':is_deleted' => $isDeleted,
                     )
                 );
-    /*
-                $photos = array();
-                while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-                    $app['monolog']->addDebug('Row ' . $row['name']);
-                    $photos[] = $row;
-                }
-
-                return $app['twig']->render('database.twig', array(
-                    'names' => $names
-                ));*/
             }
         } catch (Exception $e) {
             echo $e->getCode().'--'.$e->getMessage();
@@ -159,8 +216,8 @@
                             <input type="text" name="name" value="Nom" id="form_name" size="50" onclick="this.value=\'\';"><br>
                             <input type="text" name="email" value="E-mail" id="form_email" size="50" onclick="this.value=\'\';"><br>
                             <input type="text" name="city" value="Ville" id="form_city" size="50" onclick="this.value=\'\';"><br>
-                            <div class="form_ligne"><label for="form_gooddeals" class="label_checkbox">Je veux recevoir les bons plans </label><input type="checkbox" name="form_gooddeals" value="" id="form_gooddeals"></div>
-                            <div class="form_ligne"><label for="form_policy" class="label_checkbox">J\'accepte <a href="cgu.php">le règlement</a> </label><input type="checkbox" name="form_policy" value="" id="form_reglement"></div>
+                            <div class="form_ligne"><label for="form_gooddeals" class="label_checkbox">Je veux recevoir les bons plans </label><input type="checkbox" name="form_gooddeals" value="1" id="form_gooddeals"></div>
+                            <div class="form_ligne"><label for="form_policy" class="label_checkbox">J\'accepte <a href="cgu.php">le règlement</a> </label><input type="checkbox" name="form_policy" value="1" id="form_reglement"></div>
                             <input type="submit" class="button" name="form_validate" value="Participer">
                       </form>
                     </div>
