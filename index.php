@@ -69,7 +69,7 @@
                 echo "Posted with id: " . $response->getProperty('id');
             }
         } catch (Exception $e) {
-            echo 'erreur';
+            echo $e->getCode().'--'.$e->getMessage();
         }
     } else {
         $loginUrl = $helper->getLoginUrl();
