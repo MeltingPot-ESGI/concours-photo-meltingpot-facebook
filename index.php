@@ -191,11 +191,11 @@
                             <input type="hidden" name="fileUpload" value='1' />
                             <input type="file" name="photo" />
                             <input type="text" name="photoName" value="" />
-                            <input type="text" name="name" value="Nom" id="form_name" size="50" onclick="this.value=\'\';"><br>
-                            <input type="text" name="email" value="E-mail" id="form_email" size="50" onclick="this.value=\'\';"><br>
-                            <input type="text" name="city" value="Ville" id="form_city" size="50" onclick="this.value=\'\';"><br>
+                            <input type="text" name="name" value="Nom" id="form_name" size="50" onclick="this.value='';"><br>
+                            <input type="text" name="email" value="E-mail" id="form_email" size="50" onclick="this.value='';"><br>
+                            <input type="text" name="city" value="Ville" id="form_city" size="50" onclick="this.value='';"><br>
                             <div class="form_ligne"><label for="form_gooddeals" class="label_checkbox">Je veux recevoir les bons plans </label><input type="checkbox" name="form_gooddeals" value="1" id="form_gooddeals"></div>
-                            <div class="form_ligne"><label for="form_policy" class="label_checkbox">J\'accepte <a href="cgu.php">le règlement</a> </label><input type="checkbox" name="form_policy" value="1" id="form_reglement"></div>
+                            <div class="form_ligne"><label for="form_policy" class="label_checkbox">J'accepte <a href="cgu.php">le règlement</a> </label><input type="checkbox" name="form_policy" value="1" id="form_reglement"></div>
                             <input type="submit" class="button" name="form_validate" value="Participer">
                       </form>
                     </div>

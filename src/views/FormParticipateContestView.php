@@ -51,7 +51,7 @@ class FormParticipateContestView extends View
                         }
                     }*/
 
-         $html .=  "  <form>
+         $html .=  " <form>
                         <input type='text' name='name' value='Nom' id='form_name' size='50' onclick='this.value='';'><br>
                         <input type='text' name='email' value='E-mail' id='form_email' size='50' onclick='this.value='';'><br>
                         <input type='text' name='city' value='Ville' id='form_city' size='50' onclick='this.value='';'><br>
@@ -60,7 +60,6 @@ class FormParticipateContestView extends View
                         <input type='submit' class='button' name='form_validate' value='Participer'>
                       </form>
                     </div>
-                    
                     ";
 
          return $html;
