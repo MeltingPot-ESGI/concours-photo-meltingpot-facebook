@@ -1,24 +1,13 @@
 <?php
 session_start();
-
-use Facebook\FacebookSession;
-use Facebook\FacebookRedirectLoginHelper;
-use Facebook\FacebookRequest;
-use Facebook\FacebookRequestException;
-use Facebook\GraphUser;
-
 class FormParticipateContestView extends View
 {
     public function getView($viewParams = array())
     {
-        if (isset($_SESSION['fb_token'])) {
-            $session = $_SESSION['fb_token'];
-
-            $request = new FacebookRequest( $session, 'GET', '/me' );
-            $response = $request->execute();
-
-            // Get response
-            $graphObject = $response->getGraphObject(GraphUser::className());
+        $graphObject = null;
+        
+        if (isset($_SESSION['fb_graph_object'])) {
+            $graphObject = $_SESSION['fb_graph_object'];
         }
         
         $loginUrl = $viewParams['loginUrl'];
@@ -26,9 +15,10 @@ class FormParticipateContestView extends View
         $html = '<div class="encart_concours">
                 <h1>PARTICIPER AU CONCOURS</h1>';
 
+        
         if (!empty($graphObject)) {
             $html .= "Vous êtes connecté en tant que ".$graphObject->getName();
-            $html .= ' <img src="http://graph.facebook.com/'.$graphObject->getId().'/picture" alt="Facebook profile picture" height="42" width="42">';
+            //$html .= ' <img src="http://graph.facebook.com/'.$graphObject->getId().'/picture" alt="Facebook profile picture" height="42" width="42">';
         } else {
             $html .= '<a class="fb-button" href="'.$loginUrl.'">S\'authentifier avec Facebook</a>';
         }
