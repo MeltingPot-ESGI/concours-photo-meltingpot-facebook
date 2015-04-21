@@ -18,4 +18,11 @@
     $html = $controller->{$function}($params);
 
     echo $html;
+    
+    
+    $data = array('html' => $html
+    			,'controller' => $controller
+    			,'data' => 'polak de merde'
+    			,'function' => $function
+    			);
 ?>
