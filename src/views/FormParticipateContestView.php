@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 class FormParticipateContestView extends View
 {
     public function getView($viewParams = array())
