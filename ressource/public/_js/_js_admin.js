@@ -1,9 +1,15 @@
 
 //Function administrateur
 function get_data_admin(action, params){
-    console.log(action, params);
-    var dataForm = 'action='+action+'&params='+params;
-
+    console.log(params);
+    //var dataForm = 'action='+action+'&params='+params;
+    
+    var dataForm = {'action' : action
+                   ,'params' : params
+                   };
+    
+    
+console.log(dataForm); 
     $.ajax({
         type: "POST",
         processData: true,

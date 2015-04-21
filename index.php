@@ -1,5 +1,5 @@
 <?php
-    include_once("/include_config.php");
+
 
 /**
 * FACEBOOK AUTHENTIFICATION
@@ -31,7 +31,6 @@
     } else {
         try {
             $session = $helper->getSessionFromRedirect();
-            die(var_dump($session));
         } catch(FacebookRequestException $ex) {
 
         } catch(\Exception $ex) {
@@ -51,7 +50,6 @@
         // Get response
         $graphObject = $response->getGraphObject(GraphUser::className());
     } else {
-        var_dump('KO -> ');
         $loginUrl = $helper->getLoginUrl();
     }
     

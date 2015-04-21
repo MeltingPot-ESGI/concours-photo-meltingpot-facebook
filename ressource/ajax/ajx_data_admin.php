@@ -2,11 +2,12 @@
     include_once("../include/fonction.php"); 
 
     add_slashes($_POST);
+    
     $html = '';
     $params = array();
-
+    
     if (isset($_POST['params'])) {
-        $params = json_decode($_POST['params']);
+        $params = $_POST['params'];
     }
 
     /**
