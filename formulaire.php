@@ -78,7 +78,7 @@
 	</head>
 	<body>
 		<div class="encart_concours">
-			<h1>PARTICIPER AU CONCOURS</h1>
+			<h1>TEST PARTICIPER AU CONCOURS</h1>
                         
                 <?php
                     if (isset($graphObject)) {
