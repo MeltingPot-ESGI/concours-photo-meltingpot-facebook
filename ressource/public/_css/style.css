@@ -11,7 +11,7 @@ a{color: white;}
 		#fb_connect_bt{}
 		.encart_concours form{ text-align: center; margin-top:40px;}
 			.encart_concours input[type='text']{text-align: center; width: 245px; height:25px; border-radius: 2px; margin-bottom:10px; border: none;}
-			.encart_concours input[type='submit']{display: block; margin: 25px auto 0 auto!important; height:25px; width: 90px;}
+			.encart_concours input[type='submit']{display: block; margin: 25px auto 0 auto!important; height:25px; width: 90px; padding: inherit;}
 			.form_ligne{margin: 10px auto; vertical-align: bottom;}
 				.form_ligne label{margin-right: 3px;}
 				.form_ligne label, .form_ligne input{display: inline-block;}
