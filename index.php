@@ -104,7 +104,7 @@
     </script>
     </head>
    <?php 
-   	include_once(AppConfig::getRessourcesDirectory()."/include/fonction.php");
+   	include_once("ressource/include/fonction.php");
 
         echo get_head();	
     ?>   
