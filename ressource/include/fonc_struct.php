@@ -12,11 +12,8 @@ include_once(dirname(dirname(__DIR__))."/include_config.php");
 						
 						'.include_js().'
 						
-						<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-						<link rel="stylesheet" type="text/css" media="screen" href="'.AppConfig::getCssDirectory().'style.css" />
-						<link rel="stylesheet" media="screen" type="text/css" title="Design" href="'.AppConfig::getCssDirectory().'structure.css" />
-						<link rel="stylesheet" media="screen" type="text/css" title="Design" href="'.AppConfig::getCssDirectory().'button_effet.css" />
-						<link rel="stylesheet" media="screen" type="text/css" title="Design" href="'.AppConfig::getCssDirectory().'admin_css.css" />	
+						<link rel="stylesheet" type="text/css" media="screen" href="_css/style.css" />
+						
 						
 						
 					</head>';
@@ -27,11 +24,11 @@ include_once(dirname(dirname(__DIR__))."/include_config.php");
 	function include_js(){
 		$js = '';
 		
-		$js .= '<script src="'.AppConfig::getJsDirectory().'jquery-1.10.2.js"></script>
-				<script src="'.AppConfig::getJsDirectory().'jquery-ui-1.10.4.custom.min.js"></script>	
-				<script type="text/javascript" src="'.AppConfig::getJsDirectory().'liveQuery.js"></script>	
-				<script type="text/javascript" src="'.AppConfig::getJsDirectory().'_js_admin.js"></script>
-                                    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+		$js .= '<script src="ressource/public/_js/jquery-1.10.2.js"></script>
+				<script src="ressource/public/_js/jquery-ui-1.10.4.custom.min.js"></script>	
+				<script type="text/javascript" src="ressource/public/_js/liveQuery.js"></script>	
+				<script type="text/javascript" src="ressource/public/_js/_js_admin.js"></script>
+                                    
 		
 				
 				
