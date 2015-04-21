@@ -6,7 +6,8 @@
 a{color: white;}
 
 
-	.encart_concours{width: 400px; display: inline-block; margin:40px; padding: 40px; border-radius: 10px; background-image:url(../image/background_inscription.png); background-size: 500px;}
+	.encart_concours{text-align: center; width: 400px; display: inline-block; margin:40px; padding: 40px; border-radius: 10px; background-image:url(../image/background_inscription.png); background-size: 500px;}
+		.encart_concours h1{margin-bottom: 30px;}
 		#fb_connect_bt{}
 		.encart_concours form{ text-align: center; margin-top:40px;}
 			.encart_concours input[type='text']{text-align: center; width: 245px; height:25px; border-radius: 2px; margin-bottom:10px; border: none;}
