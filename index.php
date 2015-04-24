@@ -19,8 +19,10 @@
     
     FacebookSession::setDefaultApplication(APP_ID, APP_SECRET);
     
+    //Initialisation des variables
     $loginUrl = "";
     $graphObject = null;
+    $formErrors = array();
     
     // Session
     $helper = new FacebookRedirectLoginHelper(REDIRECT_URL);
@@ -54,47 +56,40 @@
             $graphObject = $response->getGraphObject(GraphUser::className());
             
             if (isset($_POST['fileUpload'])) {
-                // Upload to a user's profile. The photo will be in the
-                // first album in the profile. You can also upload to
-                // a specific album by using /ALBUM_ID as the path     
-                $response = (new FacebookRequest(
-                  $session, 'POST', '/me/photos', array(
-                    'source' => new CURLFile($_FILES['photo']['tmp_name'], 'image/png'),
-                    'message' => $_POST['photoName']
-                  )
-                ))->execute()->getGraphObject();
-                
-                $stmt = $pdo->prepare("SELECT * FROM \"Utilisateur\" WHERE id_facebook = :id_facebook;");
-                $stmt->execute(
-                    array(':id_facebook' => $graphObject->getId())
-                );
+                // Vérifie les valeurs
+                $_POST['photoName'] = htmlspecialchars($_POST['photoName']);
+                $_POST['name'] = htmlspecialchars($_POST['name']);
+                $_POST['email'] = htmlspecialchars($_POST['email']);
+                $_POST['city'] = htmlspecialchars($_POST['city']);
 
-                // Utilisateur existe dans la BDD
-                $user = $stmt->fetch(PDO::FETCH_ASSOC);
-                
-                if (!$user) {
-                    // Enregire utilisateur dans la BDD
-                    $idFacebook= $graphObject->getId();
-                    $firstName = $graphObject->getFirstName();
-                    $lastName= $graphObject->getLastName();
-                    $email= $_POST['email'];
-                    $acceptCgu = isset($_POST['form_policy']);
-                    $acceptBonsPlans = isset($_POST['form_gooddeals']);
-                    $isEnable = true;
+                if (empty($_POST['photoName']) || empty($_POST['name']) || empty($_POST['email']) || empty($_POST['city'])) {
+                    $formErrors[] = "Vous devez remplir tous les champs du formulaire.";
+                }
 
-                    $stmt = $pdo->prepare("INSERT INTO \"Utilisateur\" (id_facebook, firstname, lastname, mail, accept_cgu, accept_bons_plans, is_enable) VALUES (:id_facebook, :firstname, :lastname, :mail, :accept_cgu, :accept_bons_plans, :is_enable)");
-                    $res = $stmt->execute(
-                        array(
-                            ':id_facebook' => $idFacebook,
-                            ':firstname' => $firstName,
-                            ':lastname' => $lastName,
-                            ':mail' => $email,
-                            ':accept_cgu' => $acceptCgu,
-                            ':accept_bons_plans' => $acceptBonsPlans,
-                            ':is_enable' => $isEnable,
-                        )
-                    );
-                    
+                if (empty($_POST['form_policy'])) {
+                    $formErrors[] = "Vous devez accepter le règlement pour pouvoir participer au concours.";
+                }
+
+                if (!preg_match("#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#", $_POST['email'])) {
+                    $formErrors[] = "L'adresse e-mail n'est pas valide.";
+                }
+                
+                if ($_FILES['photo']['size'] <= 0) {
+                    $formErrors[] = "Veuillez sélectionner un fichier à envoyer.";
+                }
+                
+                // Si les valeurs sont valides
+                if (0 < count($formErrors)) {
+                    // Upload to a user's profile. The photo will be in the
+                    // first album in the profile. You can also upload to
+                    // a specific album by using /ALBUM_ID as the path     
+                    $response = (new FacebookRequest(
+                      $session, 'POST', '/me/photos', array(
+                        'source' => new CURLFile($_FILES['photo']['tmp_name'], 'image/png'),
+                        'message' => $_POST['photoName']
+                      )
+                    ))->execute()->getGraphObject();
+
                     $stmt = $pdo->prepare("SELECT * FROM \"Utilisateur\" WHERE id_facebook = :id_facebook;");
                     $stmt->execute(
                         array(':id_facebook' => $graphObject->getId())
@@ -102,31 +97,65 @@
 
                     // Utilisateur existe dans la BDD
                     $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                    if (!$user) {
+                        // Enregire utilisateur dans la BDD
+                        $idFacebook= $graphObject->getId();
+                        $firstName = $graphObject->getFirstName();
+                        $lastName= $graphObject->getLastName();
+                        $email= $_POST['email'];
+                        $acceptCgu = isset($_POST['form_policy']);
+                        $acceptBonsPlans = isset($_POST['form_gooddeals']);
+                        $isEnable = true;
+
+                        $stmt = $pdo->prepare("INSERT INTO \"Utilisateur\" (id_facebook, firstname, lastname, mail, accept_cgu, accept_bons_plans, is_enable) VALUES (:id_facebook, :firstname, :lastname, :mail, :accept_cgu, :accept_bons_plans, :is_enable)");
+                        $res = $stmt->execute(
+                            array(
+                                ':id_facebook' => $idFacebook,
+                                ':firstname' => $firstName,
+                                ':lastname' => $lastName,
+                                ':mail' => $email,
+                                ':accept_cgu' => $acceptCgu,
+                                ':accept_bons_plans' => $acceptBonsPlans,
+                                ':is_enable' => $isEnable,
+                            )
+                        );
+
+                        $stmt = $pdo->prepare("SELECT * FROM \"Utilisateur\" WHERE id_facebook = :id_facebook;");
+                        $stmt->execute(
+                            array(':id_facebook' => $graphObject->getId())
+                        );
+
+                        // Utilisateur existe dans la BDD
+                        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+                    }
+
+                    // Enregistre photo dans la BDD
+                    $idConcours = 1;
+                    $photoIdFacebook = $response->getProperty('id');
+                    $idUser = $user['id'];
+                    $name = $_POST['name'];
+                    $dateAdd = date('Y-m-d H:i:s');
+                    $note = 0;
+
+                    $stmt = $pdo->prepare("INSERT INTO \"Photos\" (id_concours, id_user, id_facebook, name, date_add, note) VALUES (:id_concours, :id_user, :id_facebook, :name, :date_add, :note)");
+                    $res = $stmt->execute(
+                        array(
+                            ':id_concours' => $idConcours,
+                            ':id_user' => $idUser,
+                            ':id_facebook' => $photoIdFacebook,
+                            ':name' => $name,
+                            ':date_add' => $dateAdd,
+                            ':note' => $note,
+                        )
+                    );
                 }
-                
-                // Enregistre photo dans la BDD
-                $idConcours = 1;
-                $photoIdFacebook = $response->getProperty('id');
-                $idUser = $user['id'];
-                $name = $_POST['name'];
-                $dateAdd = date('Y-m-d H:i:s');
-                $note = 0;
-                
-                $stmt = $pdo->prepare("INSERT INTO \"Photos\" (id_concours, id_user, id_facebook, name, date_add, note) VALUES (:id_concours, :id_user, :id_facebook, :name, :date_add, :note)");
-                $res = $stmt->execute(
-                    array(
-                        ':id_concours' => $idConcours,
-                        ':id_user' => $idUser,
-                        ':id_facebook' => $photoIdFacebook,
-                        ':name' => $name,
-                        ':date_add' => $dateAdd,
-                        ':note' => $note,
-                    )
-                );
             }
         } catch (Exception $e) {
-            echo $e->getCode().'--'.$e->getMessage();
+            echo $formErrors[] = 'Code: '.$e->getCode().' -- Messsage: '.$e->getMessage();
         }
+    } elseif (isset($_POST['fileUpload'])) {
+        $formErrors[] = "Veuillez vous identifier à facebook pour participer au concours.";
     } else {
         $loginUrl = $helper->getLoginUrl(array('scope' => 'publish_actions, user_photos'));
     }
@@ -167,12 +196,22 @@
                 <div id="wrapper_admin">
                     <div class="encart_concours">
                         <h1>PARTICIPER AU CONCOURS</h1>
+                        <div class="form_erros">
+                            <?php
+                                if (count($formErrors) > 0) {
+                                    foreach ($formErrors as $error) {
+                                        echo '<span class="form_error">'.$error.'</span><br>';
+                                    }
+                                }
+                            ?>
+                        </div>
+                        
                         <?php
                             if (!empty($graphObject)) {
                                 echo "Vous êtes connecté en tant que ".$graphObject->getName();
                                 echo ' <img src="http://graph.facebook.com/'.$graphObject->getId().'/picture" alt="Facebook profile picture" height="42" width="42">';
                                 
-                                
+                                // GET PHOTO BY ID
                                 $request = new FacebookRequest(
                                     $session,
                                     'GET',
