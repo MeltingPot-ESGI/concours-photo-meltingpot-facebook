@@ -23,6 +23,7 @@
     $loginUrl = "";
     $graphObject = null;
     $formErrors = array();
+    $successMessage = "Merci pour votre participation ! Votre participation au concours a bien été enregistré.";
     
     // Session
     $helper = new FacebookRedirectLoginHelper(REDIRECT_URL);
@@ -74,8 +75,16 @@
                     $formErrors[] = "L'adresse e-mail n'est pas valide.";
                 }
                 
-                if ($_FILES['photo']['size'] <= 0) {
+                if (!isset($_FILES['photo'])) {
                     $formErrors[] = "Veuillez sélectionner un fichier à envoyer.";
+                } else if ($_FILES['photo']['size'] <= 0) {
+                    $formErrors[] = "Veuillez sélectionner un fichier à envoyer.";
+                }
+                
+                $allowedTypes = array(IMAGETYPE_PNG, IMAGETYPE_JPEG, IMAGETYPE_GIF);
+                $detectedType = exif_imagetype($_FILES['fupload']['tmp_name']);
+                if (!in_array($detectedType, $allowedTypes)) {
+                    $formErrors[] = "Le fichier envoyé n'est pas au bon format. Veuillez envoyer un fichier de type JPEG, PNG ou GIF.";
                 }
                 
                 // Si les valeurs sont valides
@@ -196,15 +205,23 @@
                 <div id="wrapper_admin">
                     <div class="encart_concours">
                         <h1>PARTICIPER AU CONCOURS</h1>
-                        <div class="form_erros">
-                            <?php
-                                if (count($formErrors) > 0) {
-                                    foreach ($formErrors as $error) {
-                                        echo '<span class="form_error">'.$error.'</span><br>';
-                                    }
+                        <?php
+                            if (count($formErrors) > 0) {
+                                echo '<div class="form-erros">';
+
+                                foreach ($formErrors as $error) {
+                                    echo '<span class="form-error">'.$error.'</span><br>';
                                 }
-                            ?>
-                        </div>
+                                
+                                echo '</div>';
+                            } else {
+                                echo '<div class="form-success">';
+                                
+                                echo '<span class="success-message">'.$successMessage.'</span>';
+                                
+                                echo '</div>';
+                            }
+                        ?>
                         
                         <?php
                             if (!empty($graphObject)) {
