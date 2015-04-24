@@ -51,17 +51,16 @@ class FormParticipateContestView extends View
                         }
                     }*/
 
-         $html .=  '  <form>
-                        <input type="text" name="name" value="Nom" id="form_name" size="50" onclick="this.value=ʹʹ;"><br>
-                        <input type="text" name="email" value="E-mail" id="form_email" size="50" onclick="this.value=ʹʹ;"><br>
-                        <input type="text" name="city" value="Ville" id="form_city" size="50" onclick="this.value=ʹʹ;"><br>
-                        <div class="form_ligne"><label for="form_gooddeals" class="label_checkbox">Je veux recevoir les bons plans </label><input type="checkbox" name="form_gooddeals" value="" id="form_gooddeals"></div>
-                        <div class="form_ligne"><label for="form_policy" class="label_checkbox">Jʹaccepte <a href="cgu.php">le règlement</a> </label><input type="checkbox" name="form_policy" value="" id="form_reglement"></div>
-                        <input type="submit" class="button" name="form_validate" value="Participer">
+         $html .=  " <form>
+                        <input type='text' name='name' value='Nom' id='form_name' size='50' onclick='this.value='';'><br>
+                        <input type='text' name='email' value='E-mail' id='form_email' size='50' onclick='this.value='';'><br>
+                        <input type='text' name='city' value='Ville' id='form_city' size='50' onclick='this.value='';'><br>
+                        <div class='form_ligne'><label for='form_gooddeals' class='label_checkbox'>Je veux recevoir les bons plans </label><input type='checkbox' name='form_gooddeals' value='' id='form_gooddeals'></div>
+                        <div class='form_ligne'><label for='form_policy' class='label_checkbox'>J'accepte <a href='cgu.php'>le règlement</a> </label><input type='checkbox' name='form_policy' value='' id='form_reglement'></div>
+                        <input type='submit' class='button' name='form_validate' value='Participer'>
                       </form>
                     </div>
-                    
-                    ';
+                    ";
 
          return $html;
     }
