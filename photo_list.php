@@ -70,10 +70,9 @@ if (isset($_SESSION) && isset($_SESSION[FB_TOKEN]) && !empty($_SESSION[FB_TOKEN]
 
                                 $response = $request->execute();
                                 $graphObject = $response->getGraphObject();
-                                $link = $graphObject->getProperty('link');
-                                var_dump($graphObject);
-                                var_dump($link);
-                                die();
+                                $images = $graphObject->getProperty('images');
+                                $source = $images['source'];
+                                
                                 /*$stmt = $pdo->query("SELECT * FROM \"Photos\" ORDER BY date_add DESC LIMIT 15;");
                                 
                                 while ($photo = $stmt->fetch(PDO::FETCH_ASSOC)) {
@@ -92,7 +91,7 @@ if (isset($_SESSION) && isset($_SESSION[FB_TOKEN]) && !empty($_SESSION[FB_TOKEN]
                                 }*/
                             }
                         ?>
-                            <a href="<?php $link; ?>" data-mfp-src="<?php $link; ?>" title="<button type='button' onclick='clickMyButton();' >tarte creme </button> penis de vache" ><img src="<?php $link; ?>" title="plume sur tete" border="0" height="50" width="50" ></a>
+                            <a href="<?php $source; ?>" data-mfp-src="<?php $source; ?>" title="<button type='button' onclick='clickMyButton();' >tarte creme </button> penis de vache" ><img src="<?php $source; ?>" title="plume sur tete" border="0" height="50" width="50" ></a>
                         </div>
                     </div>
                 </div>
