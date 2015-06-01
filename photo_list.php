@@ -71,7 +71,9 @@ if (isset($_SESSION) && isset($_SESSION[FB_TOKEN]) && !empty($_SESSION[FB_TOKEN]
                                 $response = $request->execute();
                                 $graphObject = $response->getGraphObject();
                                 $link = $graphObject->getProperty('link');
-                                
+                                var_dump($graphObject);
+                                var_dump($link);
+                                die();
                                 /*$stmt = $pdo->query("SELECT * FROM \"Photos\" ORDER BY date_add DESC LIMIT 15;");
                                 
                                 while ($photo = $stmt->fetch(PDO::FETCH_ASSOC)) {
