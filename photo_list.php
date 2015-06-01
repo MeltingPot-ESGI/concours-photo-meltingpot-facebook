@@ -14,6 +14,16 @@ FacebookSession::setDefaultApplication(APP_ID, APP_SECRET);
 
 $helper = new FacebookRedirectLoginHelper(REDIRECT_URL);
 
+// BDD
+$dbopts = parse_url(DATA_BASE_URL);
+
+try {
+    $pdo = new PDO('pgsql:dbname='.ltrim($dbopts["path"],'/').';host='.$dbopts["host"], $dbopts["user"], $dbopts["pass"]);
+} catch (PDOException $e) {
+    die(var_dump($e->getMessage()));
+}
+
+// Session
 if (isset($_SESSION) && isset($_SESSION[FB_TOKEN]) && !empty($_SESSION[FB_TOKEN])) {
     $session = new FacebookSession($_SESSION[FB_TOKEN]);
 } else {
@@ -24,17 +34,6 @@ if (isset($_SESSION) && isset($_SESSION[FB_TOKEN]) && !empty($_SESSION[FB_TOKEN]
     } catch(\Exception $ex) {
 
     }
-}
-
-if ($session) {
-    $request = new FacebookRequest(
-      $session,
-      'GET',
-      '/1407733866214520'
-    );
-    $response = $request->execute();
-    $graphObject = $response->getGraphObject();
-    die(var_dump($graphObject));
 }
 
 ?>
@@ -61,9 +60,26 @@ if ($session) {
                     <div class="encart_concours">
                         <h1>CONCOURS PHOTO TATOUAGE</h1>
                         <div class="parent-container">
-                            <a href="image/femme-tatouage-au-bras.jpg" data-mfp-src="image/femme-tatouage-au-bras.jpg" title="<button type='button' onclick='clickMyButton();' >tarte creme </button> penis de vache" ><img src="image/femme-tatouage-au-bras.jpg" title="plume sur tete" border="0" height="50" width="50" ></a>
-                            <a href="image/8b4d724e76d3f1db6fb504bf3aa29062_h.jpg" data-mfp-src="image/8b4d724e76d3f1db6fb504bf3aa29062_h.jpg" ><img src="image/8b4d724e76d3f1db6fb504bf3aa29062_h.jpg" border="0" height="50" width="50" ></a>
-                            <a href="image/62b7528ec90516c621d0ef8f5554fc62_h.jpg" data-mfp-src="image/62b7528ec90516c621d0ef8f5554fc62_h.jpg" ><img src="image/62b7528ec90516c621d0ef8f5554fc62_h.jpg" border="0" height="50" width="50" ></a>
+                        <?php
+                            if ($session) {
+                                $stmt = $pdo->query("SELECT * FROM \"Photos\" ORDER BY date_add DESC LIMIT 15;");
+                                
+                                while ($photo = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                                    $request = new FacebookRequest(
+                                        $session,
+                                        'GET',
+                                        '/'.$photo['id_facebook']
+                                    );
+                                    
+                                    $response = $request->execute();
+                                    $graphObject = $response->getGraphObject();
+                                    $link = $graphObject->getProperty('link');
+                        ?>
+                            <a href="<?php $link; ?>" data-mfp-src="<?php $link; ?>" title="<button type='button' onclick='clickMyButton();' >tarte creme </button> penis de vache" ><img src="<?php $link; ?>" title="plume sur tete" border="0" height="50" width="50" ></a>
+                        <?php
+                                }
+                            }
+                        ?>
                         </div>
                     </div>
                 </div>
