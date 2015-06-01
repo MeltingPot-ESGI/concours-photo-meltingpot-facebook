@@ -1,5 +1,6 @@
 <?php
     require "./ressource/lib/facebook-php-sdk-v4-4.0-dev/autoload.php";
+    include_once("ressource/include/fonction.php");
     
     error_reporting(E_ALL);
     session_start();
@@ -9,13 +10,6 @@
     use Facebook\FacebookRequest;
     use Facebook\FacebookRequestException;
     use Facebook\GraphUser;
-    
-    const APP_ID = "342576715932172";
-    const APP_SECRET = "f3f97bb62cd6c603fe00128e847586dd";
-    const REDIRECT_URL = "https://meltingpot-photo-contest.herokuapp.com/";
-    const FB_TOKEN = 'fb_token';
-    const FB_GRAPH_OBJECT = 'fb_graph_object';
-    const DATA_BASE_URL = 'postgres://nolzzoceehqgwm:3lGAMNxtyGT7_9O4-VvYKPu4ie@ec2-54-228-227-217.eu-west-1.compute.amazonaws.com:5432/d13rom6s65bne8';
     
     FacebookSession::setDefaultApplication(APP_ID, APP_SECRET);
     
@@ -30,7 +24,12 @@
     
     // BDD
     $dbopts = parse_url(DATA_BASE_URL);
-    $pdo = new PDO('pgsql:dbname='.ltrim($dbopts["path"],'/').';host='.$dbopts["host"], $dbopts["user"], $dbopts["pass"]);
+    
+    try {
+        $pdo = new PDO('pgsql:dbname='.ltrim($dbopts["path"],'/').';host='.$dbopts["host"], $dbopts["user"], $dbopts["pass"]);
+    } catch (PDOException $e) {
+        die(var_dump($e->getMessage()));
+    }
     
     // Get session
     if (isset($_SESSION) && isset($_SESSION[FB_TOKEN]) && !empty($_SESSION[FB_TOKEN])) {
@@ -195,10 +194,8 @@
     </script>
     </head>
    <?php 
-   	include_once("ressource/include/fonction.php");
-
-        echo get_head();	
-    ?>   
+   	echo get_head();	
+   ?>   
    <body>
         <div id="wrapper">
             <div class="under_wrapper">
