@@ -43,10 +43,6 @@ if (isset($_SESSION) && isset($_SESSION[FB_TOKEN]) && !empty($_SESSION[FB_TOKEN]
         <meta charset="UTF-8">
         <title>Titre de la page</title>
         <meta name="description" content="description de ma page">
-        <link rel="stylesheet" type="text/css" media="screen" href="dist/magnific-popup.css" />
-        <script type="text/javascript" src="dist/jquery-1.10.2.js"></script>
-        <script type="text/javascript" src="dist/jquery.magnific-popup.js"></script>
-
     </head>
     
     <?php 
