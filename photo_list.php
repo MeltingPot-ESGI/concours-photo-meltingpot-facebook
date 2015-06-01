@@ -27,14 +27,14 @@ if (isset($_SESSION) && isset($_SESSION[FB_TOKEN]) && !empty($_SESSION[FB_TOKEN]
 }
 
 if ($session) {
-die('sd');
     $request = new FacebookRequest(
       $session,
       'GET',
-      '/{photo-id}'
+      '/1407733866214520'
     );
     $response = $request->execute();
     $graphObject = $response->getGraphObject();
+    die(var_dump($graphObject));
 }
 
 ?>
