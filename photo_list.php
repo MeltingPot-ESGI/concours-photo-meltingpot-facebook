@@ -80,9 +80,8 @@ if (isset($_SESSION) && isset($_SESSION[FB_TOKEN]) && !empty($_SESSION[FB_TOKEN]
                                         <a href="<?php echo $source; ?>" data-mfp-src="<?php echo $source; ?>" title="<button type='button' onclick='clickMyButton();' >tarte creme </button> penis de vache" ><img src="<?php echo $source; ?>" title="plume sur tete" border="0" height="50" width="50" ></a>
                         <?php
                                     } catch (Exception $e) {
-                                        var_dump($e->getMessage());
+                                        continue;
                                     }
-                                    break;
                                 }
                             }
                         ?>
