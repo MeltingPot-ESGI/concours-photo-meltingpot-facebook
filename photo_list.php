@@ -64,11 +64,11 @@ if (isset($_SESSION) && isset($_SESSION[FB_TOKEN]) && !empty($_SESSION[FB_TOKEN]
                                     $request = new FacebookRequest(
                                         $session,
                                         'GET',
-                                        '/'.trim($photo['id_facebook'])
+                                        '/sdfsdf'//.trim($photo['id_facebook'])
                                     );
                                     
                                     $response = $request->execute();
-                                        
+                                    var_dump($response);
                                     if ($response) {
                                         $graphObject = $response->getGraphObject();
                                         $images = $graphObject->getProperty('images')->asArray();
