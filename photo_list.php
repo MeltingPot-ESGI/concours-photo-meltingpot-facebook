@@ -58,14 +58,18 @@ if (isset($_SESSION) && isset($_SESSION[FB_TOKEN]) && !empty($_SESSION[FB_TOKEN]
                         <div class="parent-container">
                         <?php
                             if ($session) {
-                                var_dump('test1');
                                 try {
                                     $stmt = $pdo->query("SELECT * FROM \"Photos\" ORDER BY date_add DESC LIMIT 15;");
                                 } catch(Exception $e) {
                                     var_dump($e->getMessage());
                                 }
-                                var_dump('test2');
+                                var_dump("1");
+                                $photo = $stmt->fetch(PDO::FETCH_ASSOC);
+                                var_dump('2');
+                                var_dump($photo);
                                 while ($photo = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                                    var_dump('$photo');
+                                    var_dump($photo);
                                     $request = new FacebookRequest(
                                         $session,
                                         'GET',
