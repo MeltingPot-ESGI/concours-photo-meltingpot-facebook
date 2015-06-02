@@ -67,9 +67,10 @@ if (isset($_SESSION) && isset($_SESSION[FB_TOKEN]) && !empty($_SESSION[FB_TOKEN]
                                 $response = $request->execute();
                                 $graphObject = $response->getGraphObject();
                                 $images = $graphObject->getProperty('images')->asArray();
+                                $imageTmp = $images[0];
+                                $image = $imageTmp->asArray();
                                 var_dump("test1");
-                                var_dump($images);
-                                $image  = $images[0]->asArray();
+                                var_dump($image);
                                 $source = $image['source'];
                                 var_dump("test3");
                                 var_dump($source);
