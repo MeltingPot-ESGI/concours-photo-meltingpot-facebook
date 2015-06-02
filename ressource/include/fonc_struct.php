@@ -1,5 +1,4 @@
 <?php
-include_once(dirname(dirname(__DIR__))."/include_config.php");
 	function get_head(){
 
 		
@@ -12,11 +11,10 @@ include_once(dirname(dirname(__DIR__))."/include_config.php");
 						
 						'.include_js().'
 						
-						<link rel="stylesheet" type="text/css" media="screen" href="ressource/public/_css/structure.css" />
-						<link rel="stylesheet" type="text/css" media="screen" href="ressource/public/_css/button_effet.css" />
-						<link rel="stylesheet" type="text/css" media="screen" href="ressource/public/_css/style.css" />
-						<link rel="stylesheet" type="text/css" media="screen" href="ressource/lib/magnific-popup-0.9.9/dist/magnific-popup.css" />
-						
+						<link rel="stylesheet" type="text/css" media="screen" href="'.$_SERVER["HTTP_HOST"].'/../../../ressource/public/_css/structure.css" />
+						<link rel="stylesheet" type="text/css" media="screen" href="'.$_SERVER["HTTP_HOST"].'/../../../ressource/public/_css/button_effet.css" />
+						<link rel="stylesheet" type="text/css" media="screen" href="'.$_SERVER["HTTP_HOST"].'/../../../ressource/lib/Magnific-Popup-master/dist/magnific-popup.css" />
+						<link rel="stylesheet" type="text/css" media="screen" href="'.$_SERVER["HTTP_HOST"].'/../../../ressource/public/_css/style.css" />						
 						
 					</head>';
 		
@@ -26,16 +24,12 @@ include_once(dirname(dirname(__DIR__))."/include_config.php");
 	function include_js(){
 		$js = '';
 		
-		$js .= '<script src="ressource/public/_js/jquery-1.10.2.js"></script>
-				<script src="ressource/public/_js/jquery-ui-1.10.4.custom.min.js"></script>	
-				<script type="text/javascript" src="ressource/public/_js/liveQuery.js"></script>	
-				<script type="text/javascript" src="ressource/public/_js/_js_admin.js"></script>
-                                <script type="text/javascript" src="ressource/lib/magnific-popup-0.9.9/dist/jquery.magnific-popup.js"></script>
-
-		
-				
-				
-				';
+		$js .= '<script type="text/javascript" src="'.$_SERVER["HTTP_HOST"].'/../../../ressource/public/_js/jquery-1.10.2.js"></script>
+				<script type="text/javascript" src="'.$_SERVER["HTTP_HOST"].'/../../../ressource/public/_js/jquery-ui-1.10.4.custom.min.js"></script>	
+				<script type="text/javascript" src="'.$_SERVER["HTTP_HOST"].'/../../../ressource/public/_js/liveQuery.js"></script>	
+				<script type="text/javascript" src="'.$_SERVER["HTTP_HOST"].'/../../../ressource/public/_js/_js_admin.js"></script>
+				<script type="text/javascript" src="'.$_SERVER["HTTP_HOST"].'/../../../ressource/lib/Magnific-Popup-master/dist/jquery.magnific-popup.js"></script>
+          						';
 				
 		return $js;
 	}
