@@ -68,6 +68,8 @@ if (isset($_SESSION) && isset($_SESSION[FB_TOKEN]) && !empty($_SESSION[FB_TOKEN]
                                 $graphObject = $response->getGraphObject();
                                 $images = $graphObject->getProperty('images')->asArray();
                                 $imageTmp = $images[0];
+                                var_dump('test0');
+                                var_dump($imageTmp);
                                 $image = $imageTmp->asArray();
                                 var_dump("test1");
                                 var_dump($image);
