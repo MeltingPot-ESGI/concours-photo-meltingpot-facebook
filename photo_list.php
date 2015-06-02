@@ -83,6 +83,7 @@ if (isset($_SESSION) && isset($_SESSION[FB_TOKEN]) && !empty($_SESSION[FB_TOKEN]
                                         var_dump("reponse");
                                         var_dump($response);
                                     }
+                                    break;
                                 }
                             }
                         ?>
