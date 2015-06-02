@@ -67,13 +67,10 @@ if (isset($_SESSION) && isset($_SESSION[FB_TOKEN]) && !empty($_SESSION[FB_TOKEN]
                                 $response = $request->execute();
                                 $graphObject = $response->getGraphObject();
                                 $images = $graphObject->getProperty('images')->asArray();
-                                $imageTmp = $images[0];
+                                $image = $images[0];
                                 var_dump('test0');
-                                var_dump($imageTmp);
-                                $image = $imageTmp->asArray();
-                                var_dump("test1");
                                 var_dump($image);
-                                $source = $image['source'];
+                                $source = $image->source;
                                 var_dump("test3");
                                 var_dump($source);
                                 /*$stmt = $pdo->query("SELECT * FROM \"Photos\" ORDER BY date_add DESC LIMIT 15;");
