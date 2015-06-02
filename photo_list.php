@@ -76,10 +76,6 @@ if (isset($_SESSION) && isset($_SESSION[FB_TOKEN]) && !empty($_SESSION[FB_TOKEN]
                                         $image = $images[0];
                                         
                                         $source = $image->source;
-                                        
-                                        var_dump("reponse0.4");
-                                        var_dump($source);
-                                    
                         ?>
                                     <a href="<?php echo $source; ?>" data-mfp-src="<?php echo $source; ?>" title="<button type='button' onclick='clickMyButton();' >tarte creme </button> penis de vache" ><img src="<?php echo $source; ?>" title="plume sur tete" border="0" height="50" width="50" ></a>
                         <?php
@@ -98,32 +94,33 @@ if (isset($_SESSION) && isset($_SESSION[FB_TOKEN]) && !empty($_SESSION[FB_TOKEN]
 
     </body>
     <script>
+        $(document).ready(function() {
+            function clickMyButton(){
+                console.log('mon beau button');	
 
-        function clickMyButton(){
-            console.log('mon beau button');	
+            }
 
-        }
-		
-        $('.parent-container').magnificPopup({
-            delegate: 'a', // child items selector, by clicking on it popup will open
-            type: 'image',
-            image: {
-	           // markup:'<div>toto en string</div>',
-            },
-	         gallery: {
-	             enabled: true, // set to true to enable gallery
-	             
-	             preload: [0,2], // read about this option in next Lazy-loading section
-	             
-	             navigateByImgClick: true,
-	             
-	             arrowMarkup: '<button title="%title%" type="button" class="mfp-arrow mfp-arrow-%dir%">kiri</button>', // markup of an arrow button
-	             
-	             tPrev: 'Previous (Left arrow key)', // title for left button
-	             tNext: 'Next (Right arrow key)', // title for right button
-	             tCounter: '<span class="mfp-counter">%curr% of %total%</span>' // markup of counter
-	         }
-        });
+            $('.parent-container').magnificPopup({
+                delegate: 'a', // child items selector, by clicking on it popup will open
+                type: 'image',
+                image: {
+                       // markup:'<div>toto en string</div>',
+                },
+                     gallery: {
+                         enabled: true, // set to true to enable gallery
+
+                         preload: [0,2], // read about this option in next Lazy-loading section
+
+                         navigateByImgClick: true,
+
+                         arrowMarkup: '<button title="%title%" type="button" class="mfp-arrow mfp-arrow-%dir%">kiri</button>', // markup of an arrow button
+
+                         tPrev: 'Previous (Left arrow key)', // title for left button
+                         tNext: 'Next (Right arrow key)', // title for right button
+                         tCounter: '<span class="mfp-counter">%curr% of %total%</span>' // markup of counter
+                     }
+            });
+            });
 
     </script>
 
