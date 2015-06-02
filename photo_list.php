@@ -20,7 +20,7 @@ $dbopts = parse_url(DATA_BASE_URL);
 try {
     $pdo = new PDO('pgsql:dbname='.ltrim($dbopts["path"],'/').';host='.$dbopts["host"], $dbopts["user"], $dbopts["pass"]);
 } catch (PDOException $e) {
-    die(var_dump($e->getMessage()));
+    var_dump($e->getMessage());
 }
 
 // Session
@@ -66,7 +66,7 @@ if (isset($_SESSION) && isset($_SESSION[FB_TOKEN]) && !empty($_SESSION[FB_TOKEN]
 
                                 $response = $request->execute();
                                 $graphObject = $response->getGraphObject();
-                                $images = $graphObject->getProperty('images')->asArray();
+                                $images = $graphObject->getPropertyAsArray('images');
                                 $image  = $images[0];
                                 $source = $image['source'];
                                 var_dump($source);
