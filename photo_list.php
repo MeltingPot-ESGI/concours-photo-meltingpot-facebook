@@ -63,14 +63,22 @@ if (isset($_SESSION) && isset($_SESSION[FB_TOKEN]) && !empty($_SESSION[FB_TOKEN]
                                 $photo = $stmt->fetch(PDO::FETCH_ASSOC);
                                 
                                 while ($photo = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                                    var_dump("reponse0");
+                                    
                                     $request = new FacebookRequest(
                                         $session,
                                         'GET',
                                         '/'.trim($photo['id_facebook'])
                                     );
-
-                                    $response = $request->execute();
                                     
+                                    var_dump("reponse0.1");
+                                    var_dump($request);
+                                    
+                                    
+                                    $response = $request->execute();
+                                    var_dump("reponse1");
+                                    var_dump($response);
+                                        
                                     if ($response) {
                                         $graphObject = $response->getGraphObject();
                                         $images = $graphObject->getProperty('images')->asArray();
