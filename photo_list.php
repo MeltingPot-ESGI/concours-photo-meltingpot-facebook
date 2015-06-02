@@ -58,40 +58,26 @@ if (isset($_SESSION) && isset($_SESSION[FB_TOKEN]) && !empty($_SESSION[FB_TOKEN]
                         <div class="parent-container">
                         <?php
                             if ($session) {
-                                $request = new FacebookRequest(
-                                    $session,
-                                    'GET',
-                                    '/1407733866214520'
-                                );
-
-                                $response = $request->execute();
-                                $graphObject = $response->getGraphObject();
-                                $images = $graphObject->getProperty('images')->asArray();
-                                $image = $images[0];
-                                var_dump('test0');
-                                var_dump($image);
-                                $source = $image->source;
-                                var_dump("test3");
-                                var_dump($source);
-                                /*$stmt = $pdo->query("SELECT * FROM \"Photos\" ORDER BY date_add DESC LIMIT 15;");
+                                $stmt = $pdo->query("SELECT * FROM \"Photos\" ORDER BY date_add DESC LIMIT 15;");
                                 
                                 while ($photo = $stmt->fetch(PDO::FETCH_ASSOC)) {
                                     $request = new FacebookRequest(
                                         $session,
                                         'GET',
-                                        '/'.$photo['id_facebook']
+                                        '/1407733866214520'
                                     );
-                                    
+
                                     $response = $request->execute();
                                     $graphObject = $response->getGraphObject();
-                                    $link = $graphObject->getProperty('link');
-                        ?>
-                            <a href="<?php $link; ?>" data-mfp-src="<?php $link; ?>" title="<button type='button' onclick='clickMyButton();' >tarte creme </button> penis de vache" ><img src="<?php $link; ?>" title="plume sur tete" border="0" height="50" width="50" ></a>
-                        <?php
-                                }*/
-                            }
+                                    $images = $graphObject->getProperty('images')->asArray();
+                                    $image = $images[0];
+                                    $source = $image->source;
                         ?>
                             <a href="<?php echo $source; ?>" data-mfp-src="<?php echo $source; ?>" title="<button type='button' onclick='clickMyButton();' >tarte creme </button> penis de vache" ><img src="<?php echo $source; ?>" title="plume sur tete" border="0" height="50" width="50" ></a>
+                        <?php
+                                }
+                            }
+                        ?>
                         </div>
                     </div>
                 </div>
