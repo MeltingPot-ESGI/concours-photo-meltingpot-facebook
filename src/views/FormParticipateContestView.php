@@ -1,13 +1,13 @@
 <?php
-session_start();
+
 class FormParticipateContestView extends View
 {
     public function getView($viewParams = array())
     {
         $graphObject = null;
         
-        if (isset($_SESSION['fb_graph_object'])) {
-            $graphObject = $_SESSION['fb_graph_object'];
+        if (isset($viewParams['graphObject'])) {
+            $graphObject = $viewParams['graphObject'];
         }
         
         $loginUrl = $viewParams['loginUrl'];
@@ -17,22 +17,17 @@ class FormParticipateContestView extends View
 
         
         if (!empty($graphObject)) {
-            //$html .= "Vous êtes connecté en tant que ".$graphObject->getName();
+            
+            $html .= "Vous êtes connecté en tant que ".$graphObject->getName();
             $html .= ' <img src="http://graph.facebook.com/'.$graphObject->getId().'/picture" alt="Facebook profile picture" height="42" width="42">';
         } else {
             $html .= '<a class="fb-button button" href="'.$loginUrl.'">S\'authentifier avec Facebook</a>';
         }
 
         $html .= '
-                <div
-                    class="fb-like"
-                    data-share="true"
-                    data-width="450"
-                    data-show-faces="true">
-                </div>
+               <div class="fb-like" data-share="true" data-width="450" data-show-faces="true"></div>
         ';
-        /*
-                    if($session) {
+        /*          if($session) {
                         try {
                           // Upload to a user's profile. The photo will be in the
                           // first album in the profile. You can also upload to
@@ -56,15 +51,16 @@ class FormParticipateContestView extends View
                         }
                     }*/
 
-         $html .=  '<form>
-                        <label for="form_name">Nom: </label><input type="text" name="name" value="Nom" id="form_name" maxlength="100" size="50" onclick="this.value=\'\';"><br>
-                        <label for="form_email">E-mail: </label><input type="text" name="email" value="E-mail" id="form_email" maxlength="100" size="50" onclick="this.value=\'\';"><br>
-                        <label for="form_city">Ville: </label><input type="text" name="city" value="Ville" id="form_city" maxlength="100" size="50" onclick="this.value=\'\';"><br>
-                        <label for="form_gooddeals">Je veux recevoir les bons plans </label><input type="checkbox" name="form_gooddeals" value="" id="form_gooddeals"><br>
-                        <label for="form_policy">J\'accepte <a href="cgu.php">le règlement</a> </label><input type="checkbox" name="form_policy" value="" id="form_reglement">
-                        <input type="submit" name="form_validate" value="Participer">
-                </form>
-            </div>';
+         $html .=  " <form>
+                        <input type='text' name='name' value='Nom' id='form_name' size='50' onclick='this.value='';'><br>
+                        <input type='text' name='email' value='E-mail' id='form_email' size='50' onclick='this.value='';'><br>
+                        <input type='text' name='city' value='Ville' id='form_city' size='50' onclick='this.value='';'><br>
+                        <div class='form_ligne'><label for='form_gooddeals' class='label_checkbox'>Je veux recevoir les bons plans </label><input type='checkbox' name='form_gooddeals' value='' id='form_gooddeals'></div>
+                        <div class='form_ligne'><label for='form_policy' class='label_checkbox'>J'accepte <a href='cgu.php'>le règlement</a> </label><input type='checkbox' name='form_policy' value='' id='form_reglement'></div>
+                        <input type='submit' class='button' name='form_validate' value='Participer'>
+                      </form>
+                    </div>
+                    ";
 
          return $html;
     }

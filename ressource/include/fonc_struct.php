@@ -14,8 +14,7 @@
 						<link rel="stylesheet" type="text/css" media="screen" href="'.$_SERVER["HTTP_HOST"].'/../../../ressource/public/_css/structure.css" />
 						<link rel="stylesheet" type="text/css" media="screen" href="'.$_SERVER["HTTP_HOST"].'/../../../ressource/public/_css/button_effet.css" />
 						<link rel="stylesheet" type="text/css" media="screen" href="'.$_SERVER["HTTP_HOST"].'/../../../ressource/lib/Magnific-Popup-master/dist/magnific-popup.css" />
-						<link rel="stylesheet" type="text/css" media="screen" href="'.$_SERVER["HTTP_HOST"].'/../../../ressource/public/_css/style.css" />
-						
+						<link rel="stylesheet" type="text/css" media="screen" href="'.$_SERVER["HTTP_HOST"].'/../../../ressource/public/_css/style.css" />						
 						
 					</head>';
 		
@@ -30,8 +29,7 @@
 				<script type="text/javascript" src="'.$_SERVER["HTTP_HOST"].'/../../../ressource/public/_js/liveQuery.js"></script>	
 				<script type="text/javascript" src="'.$_SERVER["HTTP_HOST"].'/../../../ressource/public/_js/_js_admin.js"></script>
 				<script type="text/javascript" src="'.$_SERVER["HTTP_HOST"].'/../../../ressource/lib/Magnific-Popup-master/dist/jquery.magnific-popup.js"></script>
-          		
-				';
+          						';
 				
 		return $js;
 	}
