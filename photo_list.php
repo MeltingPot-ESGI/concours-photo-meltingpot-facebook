@@ -59,29 +59,44 @@ if (isset($_SESSION) && isset($_SESSION[FB_TOKEN]) && !empty($_SESSION[FB_TOKEN]
                         <?php
                             if ($session) {
                                 $stmt = $pdo->query("SELECT * FROM \"Photos\" ORDER BY date_add DESC LIMIT 15;");
-                                var_dump("reponse-1");
+                                
                                 while ($photo = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                                    var_dump("reponse0");
-                                    
                                     $request = new FacebookRequest(
                                         $session,
                                         'GET',
                                         '/'.trim($photo['id_facebook'])
                                     );
                                     
-                                    var_dump("reponse0.1");
-                                    var_dump($request);
-                                    
-                                    
                                     $response = $request->execute();
+                                    
+                                    
                                     var_dump("reponse1");
                                     var_dump($response);
                                         
                                     if ($response) {
+                                        var_dump("reponse0.1");
+                                        
+                                        
                                         $graphObject = $response->getGraphObject();
                                         $images = $graphObject->getProperty('images')->asArray();
+                                        
+                                        var_dump("reponse0.2");
+                                        var_dump($images);
+                                    
+                                        
                                         $image = $images[0];
+                                        
+                                        
+                                        
+                                        var_dump("reponse0.3");
+                                        var_dump($image);
+                                    
+                                        
                                         $source = $image->source;
+                                        
+                                        var_dump("reponse0.4");
+                                        var_dump($source);
+                                    
                         ?>
                                     <a href="<?php echo $source; ?>" data-mfp-src="<?php echo $source; ?>" title="<button type='button' onclick='clickMyButton();' >tarte creme </button> penis de vache" ><img src="<?php echo $source; ?>" title="plume sur tete" border="0" height="50" width="50" ></a>
                         <?php
