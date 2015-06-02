@@ -20,7 +20,7 @@ $dbopts = parse_url(DATA_BASE_URL);
 try {
     $pdo = new PDO('pgsql:dbname='.ltrim($dbopts["path"],'/').';host='.$dbopts["host"], $dbopts["user"], $dbopts["pass"]);
 } catch (PDOException $e) {
-    //var_dump($e->getMessage());
+    var_dump($e->getMessage());
 }
 
 // Session
