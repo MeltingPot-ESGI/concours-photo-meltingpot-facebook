@@ -65,7 +65,7 @@ if (isset($_SESSION) && isset($_SESSION[FB_TOKEN]) && !empty($_SESSION[FB_TOKEN]
                                         $request = new FacebookRequest(
                                             $session,
                                             'GET',
-                                            '/sqdqd'//.trim($photo['id_facebook'])
+                                            '/'.trim($photo['id_facebook'])
                                         );
 
                                         $response = $request->execute();
