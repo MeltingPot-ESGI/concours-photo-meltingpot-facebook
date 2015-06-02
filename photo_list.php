@@ -61,27 +61,26 @@ if (isset($_SESSION) && isset($_SESSION[FB_TOKEN]) && !empty($_SESSION[FB_TOKEN]
                                 $stmt = $pdo->query("SELECT * FROM \"Photos\" ORDER BY date_add DESC LIMIT 15;");
                                 
                                 while ($photo = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                                    $request = new FacebookRequest(
-                                        $session,
-                                        'GET',
-                                        '/sdfsdf'//.trim($photo['id_facebook'])
-                                    );
-                                    
-                                    $response = $request->execute();
-                                    var_dump($response);
-                                    if ($response) {
+                                    try {
+                                        $request = new FacebookRequest(
+                                            $session,
+                                            'GET',
+                                            '/sqdqd'//.trim($photo['id_facebook'])
+                                        );
+
+                                        $response = $request->execute();
+
                                         $graphObject = $response->getGraphObject();
                                         $images = $graphObject->getProperty('images')->asArray();
-                                        
+
                                         $image = $images[0];
-                                        
+
                                         $source = $image->source;
                         ?>
-                                    <a href="<?php echo $source; ?>" data-mfp-src="<?php echo $source; ?>" title="<button type='button' onclick='clickMyButton();' >tarte creme </button> penis de vache" ><img src="<?php echo $source; ?>" title="plume sur tete" border="0" height="50" width="50" ></a>
+                                        <a href="<?php echo $source; ?>" data-mfp-src="<?php echo $source; ?>" title="<button type='button' onclick='clickMyButton();' >tarte creme </button> penis de vache" ><img src="<?php echo $source; ?>" title="plume sur tete" border="0" height="50" width="50" ></a>
                         <?php
-                                    } else {
-                                        var_dump("reponse");
-                                        var_dump($response);
+                                    } catch (Exception $e) {
+                                        var_dump($e->getMessage());
                                     }
                                     break;
                                 }
