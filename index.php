@@ -277,14 +277,14 @@ var_dump('error 3');
    <script>
         function clickFbAlbum(id) {
             console.log('sdfs');
-//            FB.api(
-//                "/"+id+"/photos",
-//                function (response) {
-//                  if (response && !response.error) {
-//                    console.log(response);
-//                  }
-//                }
-//            );
+            FB.api(
+                "/"+id+"/photos",
+                function (response) {
+                  if (response && !response.error) {
+                    console.log(response);
+                  }
+                }
+            );
         }
     </script>
    <?php echo include_js(); ?>
