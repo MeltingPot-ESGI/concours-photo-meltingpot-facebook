@@ -275,25 +275,17 @@ var_dump('error 3');
         </div>
    </body>
    <script>
-        $(document).ready(function() {
-
-            var test = <?php echo json_encode(array('loginUrl' => $loginUrl, 'graphObject' => $graphObject)); ?>;
-            console.log(test);  
-            //get_data_admin('FormParticipateContest', test);
-
-
-
-            function clickFbAlbum(id) {
-                FB.api(
-                    "/"+id+"/photos",
-                    function (response) {
-                      if (response && !response.error) {
-                        console.log(response);
-                      }
-                    }
-                );
-            }
-        });
+        function clickFbAlbum(id) {
+            console.log('sdfs');
+//            FB.api(
+//                "/"+id+"/photos",
+//                function (response) {
+//                  if (response && !response.error) {
+//                    console.log(response);
+//                  }
+//                }
+//            );
+        }
     </script>
    <?php echo include_js(); ?>
 </html>
