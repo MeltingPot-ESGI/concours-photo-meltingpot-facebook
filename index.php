@@ -55,15 +55,13 @@ var_dump('49');
 var_dump('55');
             // Get response
             $graphObject = $response->getGraphObject(GraphUser::className());
+            $graphObjectUser = $response->getGraphObject();
 var_dump('58');        
             if (isset($_POST['fileUpload'])) {
                 // Vérifie les valeurs
                 $_POST['photoName'] = htmlspecialchars($_POST['photoName']);
-                $_POST['name'] = htmlspecialchars($_POST['name']);
-                $_POST['email'] = htmlspecialchars($_POST['email']);
-                $_POST['city'] = htmlspecialchars($_POST['city']);
 var_dump('65');
-                if (empty($_POST['photoName']) || empty($_POST['name']) || empty($_POST['email']) || empty($_POST['city'])) {
+                if (empty($_POST['photoName'])) {
                     $formErrors[] = "Vous devez remplir tous les champs du formulaire.";
                 }
 
@@ -71,9 +69,6 @@ var_dump('65');
                     $formErrors[] = "Vous devez accepter le règlement pour pouvoir participer au concours.";
                 }
 
-                if (!preg_match("#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#", $_POST['email'])) {
-                    $formErrors[] = "L'adresse e-mail n'est pas valide.";
-                }
  var_dump('77');               
                 if (!isset($_FILES['photo'])) {
                     $formErrors[] = "Veuillez sélectionner un fichier à envoyer.";
@@ -118,7 +113,7 @@ var_dump('2');
                         $idFacebook= $graphObject->getId();
                         $firstName = $graphObject->getFirstName();
                         $lastName= $graphObject->getLastName();
-                        $email= $_POST['email'];
+                        $email = $graphObjectUser->getProperty('email');
                         $acceptCgu = isset($_POST['form_policy']);
                         $acceptBonsPlans = isset($_POST['form_gooddeals']);
                         $isEnable = true;
@@ -240,9 +235,6 @@ var_dump('error 3');
                             <input type="hidden" name="fileUpload" value='1' />
                             <input type="file" name="photo" />
                             <input type="text" name="photoName" value="" />
-                            <input type="text" name="name" value="Nom" id="form_name" size="50" onclick="this.value='';"><br>
-                            <input type="text" name="email" value="E-mail" id="form_email" size="50" onclick="this.value='';"><br>
-                            <input type="text" name="city" value="Ville" id="form_city" size="50" onclick="this.value='';"><br>
                             <div class="form_ligne"><label for="form_gooddeals" class="label_checkbox">Je veux recevoir les bons plans </label><input type="checkbox" name="form_gooddeals" value="1" id="form_gooddeals"></div>
                             <div class="form_ligne"><label for="form_policy" class="label_checkbox">J'accepte <a href="cgu.php">le règlement</a> </label><input type="checkbox" name="form_policy" value="1" id="form_reglement"></div>
                             <input type="submit" class="button" name="form_validate" value="Participer">
