@@ -75,7 +75,7 @@ if (isset($_SESSION) && isset($_SESSION[FB_TOKEN]) && !empty($_SESSION[FB_TOKEN]
                                 $response = $request->execute();
 
                                 $graphObject = $response->getGraphObject();
-                            echo "<div class='fb-like' data-href='".$graphObject->getProperty('link')."' data-layout='standard' data-action='like' data-show-faces='true' data-share='true' style='height:24px;'></div>".$photo['name']; ?>
+                            echo "<div class='fb-like' data-href='".URL_FOR_LIKE_BUTTON.$graphObject->getProperty('id')."' data-layout='standard' data-action='like' data-show-faces='true' data-share='true' style='height:24px;'></div>".$photo['name']; ?>
                         
                         
                         

@@ -70,19 +70,23 @@ var_dump('65');
                 }
 
  var_dump('77');               
-                if (!isset($_FILES['photo'])) {
-                    $formErrors[] = "Veuillez sélectionner un fichier à envoyer.";
-                } else if ($_FILES['photo']['size'] <= 0) {
-                    $formErrors[] = "Veuillez sélectionner un fichier à envoyer.";
-                } else if (empty($_FILES['photo']['tmp_name'])) {
-                    $formErrors[] = "Le nom du fichier ne peut être vide.";
+                if (isset($_POST['fb-photo-id'])) {
+                    $fbPhotoId = $_POST['fb-photo-id'];
                 } else {
-var_dump('85');
-                    $allowedTypes = array('image/png', 'image/jpeg', 'image/gif');
-var_dump('89');
-                    if (!in_array($_FILES['photo']['type'], $allowedTypes)) {
-var_dump('91');
-                        $formErrors[] = "Le fichier envoyé n'est pas au bon format. Veuillez envoyer un fichier de type JPEG, PNG ou GIF.";
+                    if (!isset($_FILES['photo'])) {
+                        $formErrors[] = "Veuillez sélectionner un fichier à envoyer.";
+                    } else if ($_FILES['photo']['size'] <= 0) {
+                        $formErrors[] = "Veuillez sélectionner un fichier à envoyer.";
+                    } else if (empty($_FILES['photo']['tmp_name'])) {
+                        $formErrors[] = "Le nom du fichier ne peut être vide.";
+                    } else {
+    var_dump('85');
+                        $allowedTypes = array('image/png', 'image/jpeg', 'image/gif');
+    var_dump('89');
+                        if (!in_array($_FILES['photo']['type'], $allowedTypes)) {
+    var_dump('91');
+                            $formErrors[] = "Le fichier envoyé n'est pas au bon format. Veuillez envoyer un fichier de type JPEG, PNG ou GIF.";
+                        }
                     }
                 }
   var_dump('95');              
@@ -92,12 +96,14 @@ var_dump('91');
                     // first album in the profile. You can also upload to
                     // a specific album by using /ALBUM_ID as the path     
 var_dump('0');
-                    $response = (new FacebookRequest(
-                      $session, 'POST', '/me/photos', array(
-                        'source' => new CURLFile($_FILES['photo']['tmp_name'], 'image/png'),
-                        'message' => $_POST['photoName']
-                      )
-                    ))->execute()->getGraphObject();
+                    if (empty($fbPhotoId)) {
+                        $response = (new FacebookRequest(
+                          $session, 'POST', '/me/photos', array(
+                            'source' => new CURLFile($_FILES['photo']['tmp_name'], 'image/png'),
+                            'message' => $_POST['photoName']
+                          )
+                        ))->execute()->getGraphObject();
+                    }
 var_dump('1');
                     $stmt = $pdo->prepare("SELECT * FROM \"Utilisateur\" WHERE id_facebook = :id_facebook;");
                     
@@ -142,11 +148,16 @@ var_dump('5');
 
                     // Enregistre photo dans la BDD
                     $idConcours = 1;
-                    $photoIdFacebook = $response->getProperty('id');
                     $idUser = $user['id'];
                     $name = $_POST['name'];
                     $dateAdd = date('Y-m-d H:i:s');
                     $note = 0;
+                    
+                    if (empty($fbPhotoId)) {
+                        $photoIdFacebook =  $response->getProperty('id');
+                    } else {
+                        $photoIdFacebook = $fbPhotoId;
+                    }
 var_dump('6');
                     $stmt = $pdo->prepare("INSERT INTO \"Photos\" (id_concours, id_user, id_facebook, name, date_add, note) VALUES (:id_concours, :id_user, :id_facebook, :name, :date_add, :note)");
                     $res = $stmt->execute(
@@ -295,7 +306,7 @@ var_dump('error 3');
                                         photosHtml += "<div>";
                                     }
                                     
-                                    photosHtml += "<input type='radio' name='photo-id' value='"+photo.id+"'><img src='"+photo.source+"' alt='Photo facebook' height='50' width='50'>";
+                                    photosHtml += "<input type='radio' name='fb-photo-id' value='"+photo.id+"'><img src='"+photo.source+"' alt='Photo facebook' height='50' width='50'>";
                                     
                                     if ((i%3) == 0) {
                                         photosHtml += "</div>";
