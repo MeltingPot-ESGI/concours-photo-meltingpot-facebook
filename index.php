@@ -286,7 +286,7 @@ var_dump('error 3');
                         function (response) {
                             if (response && !response.error) {
                                 var data = response.data;
-                                var photosHtml = "<span onclick='clickReturnAlbums();'></span><br>";
+                                var photosHtml = "<span onclick='clickReturnAlbums();'>Retour</span><br>";
                                 
                                 for (i=0, l = data.length; i < l; i++) {
                                     var photo = data[i];
