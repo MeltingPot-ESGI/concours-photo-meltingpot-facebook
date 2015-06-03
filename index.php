@@ -274,6 +274,7 @@ var_dump('error 3');
             </div>
         </div>
    </body>
+   <?php echo include_js(); ?>
    <script>
         function clickFbAlbum(id) {
             console.log('sdfs');
@@ -289,5 +290,5 @@ var_dump('error 3');
             );
         }
     </script>
-   <?php echo include_js(); ?>
+   
 </html>
