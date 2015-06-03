@@ -55,7 +55,30 @@ if (isset($_SESSION) && isset($_SESSION[FB_TOKEN]) && !empty($_SESSION[FB_TOKEN]
                 <div id="wrapper_admin">
                     <div class="encart_concours">
                         <h1>CONCOURS PHOTO TATOUAGE</h1>
-                        <?php echo "<div class='fb-like' data-href='".$graphObject->getProperty('link')."' data-layout='standard' data-action='like' data-show-faces='true' data-share='true' style='height:24px;'></div>".$photo['name']; ?>
+                        
+                            
+                            
+                            <?php
+                            
+                            
+                            
+                            $stmt = $pdo->query("SELECT * FROM \"Photos\" ORDER BY date_add DESC LIMIT 15;");
+                                
+                               $photo = $stmt->fetch(PDO::FETCH_ASSOC);
+                            
+                                $request = new FacebookRequest(
+                                    $session,
+                                    'GET',
+                                    '/'.trim($photo['id_facebook'])
+                                );
+
+                                $response = $request->execute();
+
+                                $graphObject = $response->getGraphObject();
+                            echo "<div class='fb-like' data-href='".$graphObject->getProperty('link')."' data-layout='standard' data-action='like' data-show-faces='true' data-share='true' style='height:24px;'></div>".$photo['name']; ?>
+                        
+                        
+                        
                         <div class="parent-container">
                         <?php
                             if ($session) {
