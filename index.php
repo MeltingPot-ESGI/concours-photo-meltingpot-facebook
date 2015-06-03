@@ -82,13 +82,17 @@ var_dump('65');
                 } else if (empty($_FILES['photo']['tmp_name'])) {
                     $formErrors[] = "Le nom du fichier ne peut être vide.";
                 } else {
+var_dump('85');
                     $allowedTypes = array(IMAGETYPE_PNG, IMAGETYPE_JPEG, IMAGETYPE_GIF);
+var_dump('87');
                     $detectedType = exif_imagetype($_FILES['photo']['tmp_name']);
+var_dump('89');
                     if (!in_array($detectedType, $allowedTypes)) {
+var_dump('91');
                         $formErrors[] = "Le fichier envoyé n'est pas au bon format. Veuillez envoyer un fichier de type JPEG, PNG ou GIF.";
                     }
                 }
-  var_dump('91');              
+  var_dump('95');              
                 // Si les valeurs sont valides
                 if (count($formErrors) <= 0) {
                     // Upload to a user's profile. The photo will be in the
