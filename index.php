@@ -256,7 +256,7 @@ var_dump('error 3');
                                     <td>
                                         <input type="file" name="photo" />
                                     </td>
-                                    <td class="fb-albums">
+                                    <td id="fb-albums">
                                         <?php echo $albumsHtml; ?>
                                     </td>
                                 </tr>
@@ -287,7 +287,7 @@ var_dump('error 3');
                             if (response && !response.error) {
                                 console.log(response);
                                 
-                                document.getElementsByClassName("fb-albums").innerHTML = "toto";
+                                document.getElementById("fb-albums").innerHTML = "toto";
                             } else {
                                 console.log(response);
                             }
