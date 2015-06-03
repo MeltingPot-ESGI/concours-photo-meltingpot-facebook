@@ -77,7 +77,8 @@ if (isset($_SESSION) && isset($_SESSION[FB_TOKEN]) && !empty($_SESSION[FB_TOKEN]
 
                                         $source = $image->source;
                                         
-                                        $title = '<div class="fb-like" data-href="'.$graphObject->getProperty('link').'" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>'.$photo['name'];
+                                        //<button type='button' onclick='clickMyButton();' >tarte creme </button> penis de vache
+                                        $title = "<div class='fb-like' data-href='".$graphObject->getProperty('link')."' data-layout='standard' data-action='like' data-show-faces='true' data-share='true'></div>".$photo['name'];
                         ?>
                                         <a href="<?php echo $source; ?>" data-mfp-src="<?php echo $source; ?>" title="<?php echo $title; ?>" ><img src="<?php echo $source; ?>" title="plume sur tete" border="0" height="50" width="50" ></a>
                         <?php
