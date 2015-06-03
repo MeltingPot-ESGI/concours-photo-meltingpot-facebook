@@ -149,7 +149,7 @@ var_dump('5');
                     // Enregistre photo dans la BDD
                     $idConcours = 1;
                     $idUser = $user['id'];
-                    $name = $_POST['name'];
+                    $name = $_POST['photoName'];
                     $dateAdd = date('Y-m-d H:i:s');
                     $note = 0;
                     
