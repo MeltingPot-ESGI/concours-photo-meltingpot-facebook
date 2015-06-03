@@ -93,6 +93,7 @@
                     // Upload to a user's profile. The photo will be in the
                     // first album in the profile. You can also upload to
                     // a specific album by using /ALBUM_ID as the path     
+var_dump('0');
                     $response = (new FacebookRequest(
                       $session, 'POST', '/me/photos', array(
                         'source' => new CURLFile($_FILES['photo']['tmp_name'], 'image/png'),
