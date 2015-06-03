@@ -81,7 +81,7 @@ if (isset($_SESSION) && isset($_SESSION[FB_TOKEN]) && !empty($_SESSION[FB_TOKEN]
                                 <script>
                                     window.fbAsyncInit = function() {
                                       FB.init({
-                                        appId      : '".APP_ID."',
+                                        appId      : '342576715932172',
                                         cookie: true,
                                         xfbml      : true,
                                         oauth: true,
