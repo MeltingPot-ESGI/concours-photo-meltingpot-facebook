@@ -277,17 +277,28 @@ var_dump('error 3');
    <?php echo include_js(); ?>
    <script>
         function clickFbAlbum(id) {
-            console.log('sdfs');
-            FB.api(
-                "/"+id+"/photos",
-                function (response) {
-                  if (response && !response.error) {
-                    console.log(response);
-                  } else {
-                      console.log(response);
-                  }
+            
+        console.log('0');
+        FB.getLoginStatus(function(response) {
+                console.log('1');
+                if (response.authResponse) {
+                    console.log('1.1');
+                  //token = response.authResponse.accessToken;
+                    FB.api(
+                        "/"+id+"/photos",
+                        function (response) {
+                            if (response && !response.error) {
+                                console.log(response);
+                            } else {
+                                console.log(response);
+                            }
+                        }
+                    );
+                } else {
+                    console.log('2');
+                  // no user session available, someone you dont know
                 }
-            );
+            });
         }
     </script>
    

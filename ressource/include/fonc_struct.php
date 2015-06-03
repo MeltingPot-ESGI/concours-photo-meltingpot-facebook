@@ -34,7 +34,9 @@
                                     window.fbAsyncInit = function() {
                                       FB.init({
                                         appId      : "'.APP_ID.'",
+                                        cookie: true,
                                         xfbml      : true,
+                                        oauth: true,
                                         version    : "v2.3"
                                       });
                                     };
