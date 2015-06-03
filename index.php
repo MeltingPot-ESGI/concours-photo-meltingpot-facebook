@@ -307,7 +307,7 @@ var_dump('error 3');
         }
         
         function clickReturnAlbums() {
-            document.getElementById("fb-albums").innerHTML = <?php echo $albumsHtml; ?>;
+            document.getElementById("fb-albums").innerHTML = '<?php echo $albumsHtml; ?>';
         }
     </script>
    
