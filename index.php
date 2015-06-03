@@ -246,8 +246,9 @@ var_dump('error 3');
                                                 '/'. $graphObject->getId().'/albums'
                                               );
                                               $responseAlbums = $requestAlbums->execute();
+                                              var_dump($responseAlbums);
                                               $graphObjectAlbums = $responseAlbums->getGraphObject();
-                                              
+                                              var_dump($graphObjectAlbums);
                                               $albums = $graphObjectAlbums->getProperty('data')->asArray();
                                               
                                               var_dump($albums);
