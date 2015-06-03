@@ -187,7 +187,7 @@ var_dump('error 3');
       $albums = $graphObjectAlbums->getProperty('data')->asArray();
       
       foreach ($albums as $album) {
-          echo "<span onclick='clickFbAlbum(\"".$album->id."\");'>".$album->name."</span>";
+          echo "<span onclick=\"clickFbAlbum('".$album->id."');\">".$album->name."</span>";
           
       }
     }
@@ -274,28 +274,26 @@ var_dump('error 3');
             </div>
         </div>
    </body>
+   <script>
+        $(document).ready(function() {
+
+            var test = <?php echo json_encode(array('loginUrl' => $loginUrl, 'graphObject' => $graphObject)); ?>;
+            console.log(test);  
+            //get_data_admin('FormParticipateContest', test);
+
+
+
+            function clickFbAlbum(id) {
+                FB.api(
+                    "/"+id+"/photos",
+                    function (response) {
+                      if (response && !response.error) {
+                        console.log(response);
+                      }
+                    }
+                );
+            }
+        });
+    </script>
    <?php echo include_js(); ?>
 </html>
-
-
-<script>
-    $(document).ready(function() {
-      
-        var test = <?php echo json_encode(array('loginUrl' => $loginUrl, 'graphObject' => $graphObject)); ?>;
-        console.log(test);  
-        //get_data_admin('FormParticipateContest', test);
-        
-        
-        
-        function clickFbAlbum(id) {
-            FB.api(
-                "/"+id+"/photos",
-                function (response) {
-                  if (response && !response.error) {
-                    console.log(response);
-                  }
-                }
-            );
-        }
-    });
-</script>
