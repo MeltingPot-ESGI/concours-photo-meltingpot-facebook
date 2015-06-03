@@ -99,15 +99,16 @@
                         'message' => $_POST['photoName']
                       )
                     ))->execute()->getGraphObject();
-
+var_dump('1');
                     $stmt = $pdo->prepare("SELECT * FROM \"Utilisateur\" WHERE id_facebook = :id_facebook;");
+                    
                     $stmt->execute(
                         array(':id_facebook' => $graphObject->getId())
                     );
 
                     // Utilisateur existe dans la BDD
                     $user = $stmt->fetch(PDO::FETCH_ASSOC);
-
+var_dump('2');
                     if (!$user) {
                         // Enregire utilisateur dans la BDD
                         $idFacebook= $graphObject->getId();
@@ -117,7 +118,7 @@
                         $acceptCgu = isset($_POST['form_policy']);
                         $acceptBonsPlans = isset($_POST['form_gooddeals']);
                         $isEnable = true;
-
+var_dump('3');
                         $stmt = $pdo->prepare("INSERT INTO \"Utilisateur\" (id_facebook, firstname, lastname, mail, accept_cgu, accept_bons_plans, is_enable) VALUES (:id_facebook, :firstname, :lastname, :mail, :accept_cgu, :accept_bons_plans, :is_enable)");
                         $res = $stmt->execute(
                             array(
@@ -130,12 +131,12 @@
                                 ':is_enable' => $isEnable,
                             )
                         );
-
+var_dump('4');
                         $stmt = $pdo->prepare("SELECT * FROM \"Utilisateur\" WHERE id_facebook = :id_facebook;");
                         $stmt->execute(
                             array(':id_facebook' => $graphObject->getId())
                         );
-
+var_dump('5');
                         // Utilisateur existe dans la BDD
                         $user = $stmt->fetch(PDO::FETCH_ASSOC);
                     }
@@ -147,7 +148,7 @@
                     $name = $_POST['name'];
                     $dateAdd = date('Y-m-d H:i:s');
                     $note = 0;
-
+var_dump('6');
                     $stmt = $pdo->prepare("INSERT INTO \"Photos\" (id_concours, id_user, id_facebook, name, date_add, note) VALUES (:id_concours, :id_user, :id_facebook, :name, :date_add, :note)");
                     $res = $stmt->execute(
                         array(
@@ -159,14 +160,18 @@
                             ':note' => $note,
                         )
                     );
+var_dump('7');
                 }
             }
         } catch (Exception $e) {
+var_dump('error1');
             echo $formErrors[] = 'Code: '.$e->getCode().' -- Messsage: '.$e->getMessage();
         }
     } elseif (isset($_POST['fileUpload'])) {
+var_dump('error 2');
         $formErrors[] = "Veuillez vous identifier à facebook pour participer au concours.";
     } else {
+var_dump('error 3');
         $loginUrl = $helper->getLoginUrl(array('scope' => 'publish_actions, user_photos'));
     }
 ?>
