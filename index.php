@@ -84,7 +84,7 @@ var_dump('65');
                 } else {
 var_dump('85');
                     $allowedTypes = array(IMAGETYPE_PNG, IMAGETYPE_JPEG, IMAGETYPE_GIF);
-var_dump('87');
+var_dump($_FILES['photo']);
                     $detectedType = exif_imagetype($_FILES['photo']['tmp_name']);
 var_dump('89');
                     if (!in_array($detectedType, $allowedTypes)) {
