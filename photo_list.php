@@ -74,7 +74,7 @@ if (isset($_SESSION) && isset($_SESSION[FB_TOKEN]) && !empty($_SESSION[FB_TOKEN]
                                         $images = $graphObject->getProperty('images')->asArray();
 
                                         $image = $images[0];
-                                        
+
                                         $source = $image->source;
                                         
                                         $title = "<div class='fb-like' data-href='".URL_FOR_LIKE_BUTTON.$graphObject->getProperty('id')."' data-layout='standard' data-action='like' data-show-faces='true' data-share='true' style='height:24px;'></div>".$photo['name'];
