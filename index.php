@@ -285,9 +285,16 @@ var_dump('error 3');
                         "/"+id+"/photos",
                         function (response) {
                             if (response && !response.error) {
-                                console.log(response);
+                                var data = response.data;
+                                var photosHtml = "";
                                 
-                                document.getElementById("fb-albums").innerHTML = "toto";
+                                for (i=0, l = data.length; i < l; i++) {
+                                    var photo = data[i];
+                                    
+                                    photosHtml += "<input type='radio' name='photo-id' value='"+photo.id+"'><img src='"+photo.source+"' alt='Photo facebook' height='42' width='42'><br>";
+                                }
+                                
+                                document.getElementById("fb-albums").innerHTML = photosHtml;
                             } else {
                                 console.log(response);
                             }
@@ -297,6 +304,10 @@ var_dump('error 3');
                   // no user session available, someone you dont know
                 }
             });
+        }
+        
+        function clickReturnAlbums() {
+            document.getElementById("fb-albums").innerHTML = <?php echo $albumsHtml; ?>;
         }
     </script>
    
