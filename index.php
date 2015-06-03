@@ -291,11 +291,7 @@ var_dump('error 3');
                                 for (i=0, l = data.length; i < l; i++) {
                                     var photo = data[i];
                                     
-                                    photosHtml += "<input type='radio' name='photo-id' value='"+photo.id+"'><img src='"+photo.source+"' alt='Photo facebook' height='50' width='50'>";
-                                    
-                                    if ((i % 3) == 0) {
-                                        photosHtml += "<br>";
-                                    }
+                                    photosHtml += "<input type='radio' name='photo-id' value='"+photo.id+"'><img src='"+photo.source+"' alt='Photo facebook' height='50' width='50'><br>";
                                 }
                                 
                                 document.getElementById("fb-albums").innerHTML = photosHtml;
