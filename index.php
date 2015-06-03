@@ -158,7 +158,14 @@ var_dump('5');
                     } else {
                         $photoIdFacebook = $fbPhotoId;
                     }
-var_dump('6');
+var_dump(array(
+                            ':id_concours' => $idConcours,
+                            ':id_user' => $idUser,
+                            ':id_facebook' => $photoIdFacebook,
+                            ':name' => $name,
+                            ':date_add' => $dateAdd,
+                            ':note' => $note,
+                        ));
                     $stmt = $pdo->prepare("INSERT INTO \"Photos\" (id_concours, id_user, id_facebook, name, date_add, note) VALUES (:id_concours, :id_user, :id_facebook, :name, :date_add, :note)");
                     $res = $stmt->execute(
                         array(
