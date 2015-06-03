@@ -12,7 +12,7 @@
     use Facebook\GraphUser;
     
     FacebookSession::setDefaultApplication(APP_ID, APP_SECRET);
-    
+var_dump('15');
     //Initialisation des variables
     $loginUrl = "";
     $graphObject = null;
@@ -21,7 +21,7 @@
     
     // Session
     $helper = new FacebookRedirectLoginHelper(REDIRECT_URL);
-    
+  var_dump('24');  
     // BDD
     $dbopts = parse_url(DATA_BASE_URL);
     
@@ -30,7 +30,7 @@
     } catch (PDOException $e) {
         var_dump($e->getMessage());
     }
-    
+var_dump('33');
     // Get session
     if (isset($_SESSION) && isset($_SESSION[FB_TOKEN]) && !empty($_SESSION[FB_TOKEN])) {
         $session = new FacebookSession($_SESSION[FB_TOKEN]);
@@ -43,25 +43,26 @@
 
         }
     }
-    
+var_dump('46');    
     // Récupère les infos de l'utilisateur
     if ($session) {
+var_dump('49');
         $_SESSION[FB_TOKEN] = $session->getAccessToken();
         
         try {
             $request = new FacebookRequest( $session, 'GET', '/me' );
             $response = $request->execute();
-
+var_dump('55');
             // Get response
             $graphObject = $response->getGraphObject(GraphUser::className());
-            
+var_dump('58');        
             if (isset($_POST['fileUpload'])) {
                 // Vérifie les valeurs
                 $_POST['photoName'] = htmlspecialchars($_POST['photoName']);
                 $_POST['name'] = htmlspecialchars($_POST['name']);
                 $_POST['email'] = htmlspecialchars($_POST['email']);
                 $_POST['city'] = htmlspecialchars($_POST['city']);
-
+var_dump('65');
                 if (empty($_POST['photoName']) || empty($_POST['name']) || empty($_POST['email']) || empty($_POST['city'])) {
                     $formErrors[] = "Vous devez remplir tous les champs du formulaire.";
                 }
@@ -73,7 +74,7 @@
                 if (!preg_match("#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#", $_POST['email'])) {
                     $formErrors[] = "L'adresse e-mail n'est pas valide.";
                 }
-                
+ var_dump('77');               
                 if (!isset($_FILES['photo'])) {
                     $formErrors[] = "Veuillez sélectionner un fichier à envoyer.";
                 } else if ($_FILES['photo']['size'] <= 0) {
@@ -87,7 +88,7 @@
                         $formErrors[] = "Le fichier envoyé n'est pas au bon format. Veuillez envoyer un fichier de type JPEG, PNG ou GIF.";
                     }
                 }
-                
+  var_dump('91');              
                 // Si les valeurs sont valides
                 if (count($formErrors) <= 0) {
                     // Upload to a user's profile. The photo will be in the
