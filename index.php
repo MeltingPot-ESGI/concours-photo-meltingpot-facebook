@@ -185,10 +185,10 @@ var_dump('error 3');
       $graphObjectAlbums = $responseAlbums->getGraphObject();
       
       $albums = $graphObjectAlbums->getProperty('data')->asArray();
+      $albumsHtml = "";
       
       foreach ($albums as $album) {
-          echo "<span onclick=\"clickFbAlbum('".$album->id."');\">".$album->name."</span>";
-          
+          $albumsHtml .= "<span onclick=\"clickFbAlbum('".$album->id."');\">".$album->name."</span><br>";
       }
     }
 ?>
@@ -256,7 +256,8 @@ var_dump('error 3');
                                     <td>
                                         <input type="file" name="photo" />
                                     </td>
-                                    <td>
+                                    <td class="fb-albums">
+                                        <?php echo $albumsHtml; ?>
                                     </td>
                                 </tr>
                             </table>
@@ -277,25 +278,22 @@ var_dump('error 3');
    <?php echo include_js(); ?>
    <script>
         function clickFbAlbum(id) {
-            
-        console.log('0');
         FB.getLoginStatus(function(response) {
-                console.log('1');
                 if (response.authResponse) {
-                    console.log('1.1');
                   //token = response.authResponse.accessToken;
                     FB.api(
                         "/"+id+"/photos",
                         function (response) {
                             if (response && !response.error) {
                                 console.log(response);
+                                
+                                document.getElementsByClassName("fb-albums").innerHTML = "toto";
                             } else {
                                 console.log(response);
                             }
                         }
                     );
                 } else {
-                    console.log('2');
                   // no user session available, someone you dont know
                 }
             });
