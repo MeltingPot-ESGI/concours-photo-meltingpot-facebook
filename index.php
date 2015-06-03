@@ -83,11 +83,9 @@ var_dump('65');
                     $formErrors[] = "Le nom du fichier ne peut être vide.";
                 } else {
 var_dump('85');
-                    $allowedTypes = array(IMAGETYPE_PNG, IMAGETYPE_JPEG, IMAGETYPE_GIF);
-var_dump($_FILES['photo']);
-                    $detectedType = exif_imagetype($_FILES['photo']['tmp_name']);
+                    $allowedTypes = array('image/png', 'image/jpeg', 'image/gif');
 var_dump('89');
-                    if (!in_array($detectedType, $allowedTypes)) {
+                    if (!in_array($_FILES['photo']['type'], $allowedTypes)) {
 var_dump('91');
                         $formErrors[] = "Le fichier envoyé n'est pas au bon format. Veuillez envoyer un fichier de type JPEG, PNG ou GIF.";
                     }
