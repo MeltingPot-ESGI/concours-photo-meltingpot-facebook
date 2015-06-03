@@ -173,6 +173,21 @@ var_dump('error 2');
 var_dump('error 3');
         $loginUrl = $helper->getLoginUrl(array('scope' => 'publish_actions, user_photos'));
     }
+    
+    if (!empty($graphObject)) {
+        $requestAlbums = new FacebookRequest(
+        $session,
+        'GET',
+        '/'. $graphObject->getId().'/albums'
+      );
+      $responseAlbums = $requestAlbums->execute();
+      var_dump($responseAlbums);
+      $graphObjectAlbums = $responseAlbums->getGraphObject();
+      var_dump($graphObjectAlbums);
+      $albums = $graphObjectAlbums->getProperty('data')->asArray();
+
+      var_dump($albums);
+    }
 ?>
 
 <!doctype html>
@@ -239,20 +254,6 @@ var_dump('error 3');
                                         <input type="file" name="photo" />
                                     </td>
                                     <td>
-                                        <?php
-                                            $requestAlbums = new FacebookRequest(
-                                                $session,
-                                                'GET',
-                                                '/'. $graphObject->getId().'/albums'
-                                              );
-                                              $responseAlbums = $requestAlbums->execute();
-                                              var_dump($responseAlbums);
-                                              $graphObjectAlbums = $responseAlbums->getGraphObject();
-                                              var_dump($graphObjectAlbums);
-                                              $albums = $graphObjectAlbums->getProperty('data')->asArray();
-                                              
-                                              var_dump($albums);
-                                        ?>
                                     </td>
                                 </tr>
                             </table>
