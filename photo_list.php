@@ -78,12 +78,12 @@ if (isset($_SESSION) && isset($_SESSION[FB_TOKEN]) && !empty($_SESSION[FB_TOKEN]
                                         $source = $image->source;
                                         
                                         //<button type='button' onclick='clickMyButton();' >tarte creme </button> penis de vache
-                                        $title = '<script>
+                                        $title = "<script>
                                     window.fbAsyncInit = function() {
                                       FB.init({
-                                        appId      : "'.APP_ID.'",
+                                        appId      : '".APP_ID."',
                                         xfbml      : true,
-                                        version    : "v2.3"
+                                        version    : 'v2.3'
                                       });
                                     };
 
@@ -91,10 +91,10 @@ if (isset($_SESSION) && isset($_SESSION[FB_TOKEN]) && !empty($_SESSION[FB_TOKEN]
                                        var js, fjs = d.getElementsByTagName(s)[0];
                                        if (d.getElementById(id)) {return;}
                                        js = d.createElement(s); js.id = id;
-                                       js.src = "//connect.facebook.net/fr_FR/sdk.js";
+                                       js.src = '//connect.facebook.net/fr_FR/sdk.js';
                                        fjs.parentNode.insertBefore(js, fjs);
-                                     }(document, "script", "facebook-jssdk"));
-                                </script>'
+                                     }(document, 'script', 'facebook-jssdk'));
+                                </script>"
                                                 . "<div class='fb-like' data-href='".$graphObject->getProperty('link')."' data-layout='standard' data-action='like' data-show-faces='true' data-share='true'></div>".$photo['name'];
                         ?>
                                         <a href="<?php echo $source; ?>" data-mfp-src="<?php echo $source; ?>" title="<?php echo $title; ?>" ><img src="<?php echo $source; ?>" title="plume sur tete" border="0" height="50" width="50" ></a>
