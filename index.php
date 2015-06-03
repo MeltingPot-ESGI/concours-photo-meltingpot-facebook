@@ -295,7 +295,7 @@ var_dump('error 3');
                                         photosHtml += "<div>";
                                     }
                                     
-                                    photosHtml += "<input type='radio' name='photo-id' value='"+photo.id+"'><img src='"+photo.source+"' alt='Photo facebook' height='50' width='50'><br>";
+                                    photosHtml += "<input type='radio' name='photo-id' value='"+photo.id+"'><img src='"+photo.source+"' alt='Photo facebook' height='50' width='50'>";
                                     
                                     if ((i%3) == 0) {
                                         photosHtml += "</div>";
