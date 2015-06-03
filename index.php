@@ -282,6 +282,8 @@ var_dump('error 3');
                 function (response) {
                   if (response && !response.error) {
                     console.log(response);
+                  } else {
+                      console.log(response);
                   }
                 }
             );
