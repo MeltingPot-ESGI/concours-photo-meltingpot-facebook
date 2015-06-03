@@ -188,7 +188,7 @@ var_dump('error 3');
       $albumsHtml = "";
       
       foreach ($albums as $album) {
-          $albumsHtml .= "<button onclick='clickFbAlbum(".$album->id.");'>".$album->name."</button><br>";
+          $albumsHtml .= "<span onclick='clickFbAlbum(".$album->id.");'>".$album->name."</span><br>";
       }
     }
 ?>
