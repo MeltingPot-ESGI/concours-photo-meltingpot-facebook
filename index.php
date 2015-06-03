@@ -187,7 +187,7 @@ var_dump('error 3');
       $albums = $graphObjectAlbums->getProperty('data')->asArray();
       
       foreach ($albums as $album) {
-          echo "<span onclick='clickFbAlbum(".$album->id.")'>".$album->name."</span>";
+          echo "<span onclick='clickFbAlbum(\"".$album->id."\");'>".$album->name."</span>";
           
       }
     }
@@ -287,7 +287,7 @@ var_dump('error 3');
         
         
         
-        function clickFbAlbum (id) {
+        function clickFbAlbum(id) {
             FB.api(
                 "/"+id+"/photos",
                 function (response) {
@@ -295,6 +295,7 @@ var_dump('error 3');
                     console.log(response);
                   }
                 }
-        );
+            );
+        }
     });
 </script>
