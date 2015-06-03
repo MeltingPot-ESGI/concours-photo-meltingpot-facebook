@@ -78,16 +78,18 @@
                     $formErrors[] = "Veuillez sélectionner un fichier à envoyer.";
                 } else if ($_FILES['photo']['size'] <= 0) {
                     $formErrors[] = "Veuillez sélectionner un fichier à envoyer.";
-                }
-                
-                $allowedTypes = array(IMAGETYPE_PNG, IMAGETYPE_JPEG, IMAGETYPE_GIF);
-                $detectedType = exif_imagetype($_FILES['fupload']['tmp_name']);
-                if (!in_array($detectedType, $allowedTypes)) {
-                    $formErrors[] = "Le fichier envoyé n'est pas au bon format. Veuillez envoyer un fichier de type JPEG, PNG ou GIF.";
+                } else if (empty($_FILES['photo']['tmp_name'])) {
+                    $formErrors[] = "Le nom du fichier ne peut être vide.";
+                } else {
+                    $allowedTypes = array(IMAGETYPE_PNG, IMAGETYPE_JPEG, IMAGETYPE_GIF);
+                    $detectedType = exif_imagetype($_FILES['photo']['tmp_name']);
+                    if (!in_array($detectedType, $allowedTypes)) {
+                        $formErrors[] = "Le fichier envoyé n'est pas au bon format. Veuillez envoyer un fichier de type JPEG, PNG ou GIF.";
+                    }
                 }
                 
                 // Si les valeurs sont valides
-                if (0 < count($formErrors)) {
+                if (count($formErrors) <= 0) {
                     // Upload to a user's profile. The photo will be in the
                     // first album in the profile. You can also upload to
                     // a specific album by using /ALBUM_ID as the path     
@@ -239,7 +241,9 @@
                                 echo '<a class="fb-button button" href="'.$loginUrl.'">S\'authentifier avec Facebook</a>';
                             }
                         ?>
-
+                        <?php
+                            if (!empty($graphObject)) {
+                        ?>
                         <form method='post' action="#" enctype="multipart/form-data">
                             <input type="hidden" name="fileUpload" value='1' />
                             <input type="file" name="photo" />
@@ -250,7 +254,10 @@
                             <div class="form_ligne"><label for="form_gooddeals" class="label_checkbox">Je veux recevoir les bons plans </label><input type="checkbox" name="form_gooddeals" value="1" id="form_gooddeals"></div>
                             <div class="form_ligne"><label for="form_policy" class="label_checkbox">J'accepte <a href="cgu.php">le règlement</a> </label><input type="checkbox" name="form_policy" value="1" id="form_reglement"></div>
                             <input type="submit" class="button" name="form_validate" value="Participer">
-                      </form>
+                        </form>
+                        <?php
+                            }
+                        ?>
                     </div>
                 </div>
             </div>
