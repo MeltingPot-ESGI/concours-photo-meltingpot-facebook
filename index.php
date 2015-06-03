@@ -291,7 +291,15 @@ var_dump('error 3');
                                 for (i=0, l = data.length; i < l; i++) {
                                     var photo = data[i];
                                     
+                                    if ((i%3) == 0) {
+                                        photosHtml += "<div>";
+                                    }
+                                    
                                     photosHtml += "<input type='radio' name='photo-id' value='"+photo.id+"'><img src='"+photo.source+"' alt='Photo facebook' height='50' width='50'><br>";
+                                    
+                                    if ((i%3) == 0) {
+                                        photosHtml += "</div>";
+                                    }
                                 }
                                 
                                 document.getElementById("fb-albums").innerHTML = photosHtml;
