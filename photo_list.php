@@ -81,7 +81,11 @@ var_dump('80');
                                         $dataFbHref = URL_FOR_LIKE_BUTTON.$graphObject->getProperty('id');
                                         $dataPhotoName = $photo['name'];
                         ?>
-                                        <a href="<?php echo $source; ?>" data-photo-href="<?php echo $dataFbHref; ?>" data-photo-name="<?php echo $dataPhotoName; ?>" data-mfp-src="<?php echo $source; ?>"><img src="<?php echo $source; ?>" title="plume sur tete" border="0" height="50" width="50" ></a>
+                                    <div class="image-facebook">
+                                        <a href="<?php echo $source; ?>" data-photo-href="<?php echo $dataFbHref; ?>" data-photo-name="<?php echo $dataPhotoName; ?>" data-mfp-src="<?php echo $source; ?>"><img src="<?php echo $source; ?>" title="plume sur tete" border="0" height="100" width="100" ></a>
+                                        <div id='fb-root'></div>
+                                        <div class='fb-like' data-href='<?php echo $dataFbHref; ?>' data-layout='standard' data-action='like' data-show-faces='true' data-share='true' style='height:24px;'></div><?php echo $dataPhotoName; ?>
+                                    </div>
                         <?php
                                     } catch (Exception $e) {
                                         var_dump($e->getMessage());
