@@ -78,10 +78,10 @@ var_dump('76');
 var_dump('78');
                                         $source = $image->source;
 var_dump('80');
-                                        $title = "<div id='fb-root'></div>
+                                        $title = "
                                 <script>
-                                    document.onload = function() {
-                                    alert('ss');
+                                    eval(document.onload = function() {
+                                        alert('ss');
                                         window.fbAsyncInit = function() {
                                           FB.init({
                                             appId      : '342576715932172',
@@ -99,8 +99,9 @@ var_dump('80');
                                            js.src = '//connect.facebook.net/fr_FR/sdk.js';
                                            fjs.parentNode.insertBefore(js, fjs);
                                          }(document, 'script', 'facebook-jssdk'));
-                                    }
-                                </script>";
+                                    });
+                                </script>
+                                <div id='fb-root'></div>";
                                         $title .= "<div class='fb-like' data-href='".URL_FOR_LIKE_BUTTON.$graphObject->getProperty('id')."' data-layout='standard' data-action='like' data-show-faces='true' data-share='true' style='height:24px;'></div>".$photo['name'];
                         ?>
                                         <a href="<?php echo $source; ?>" data-mfp-src="<?php echo $source; ?>" title="<?php echo $title; ?>" ><img src="<?php echo $source; ?>" title="plume sur tete" border="0" height="50" width="50" ></a>
