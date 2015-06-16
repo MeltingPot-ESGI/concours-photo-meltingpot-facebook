@@ -79,10 +79,11 @@ if (isset($_SESSION) && isset($_SESSION[FB_TOKEN]) && !empty($_SESSION[FB_TOKEN]
                                         $dataFbHref = URL_FOR_LIKE_BUTTON.$graphObject->getProperty('id');
                                         $dataPhotoName = $photo['name'];
                         ?>
-                                    <div class="image-facebook">
+                                    <div class="photo-facebook">
                                         <a href="<?php echo $source; ?>" data-photo-href="<?php echo $dataFbHref; ?>" data-photo-name="<?php echo $dataPhotoName; ?>" data-mfp-src="<?php echo $source; ?>"><img src="<?php echo $source; ?>" title="plume sur tete" border="0" height="100" width="100" ></a>
                                         <div id='fb-root'></div>
-                                        <div class='fb-like' data-href='<?php echo $dataFbHref; ?>' data-layout='standard' data-action='like' data-show-faces='true' data-share='true' style='height:24px;'></div><?php echo $dataPhotoName; ?>
+                                        <?php echo $dataPhotoName; ?>
+                                        <div class='fb-like' data-href='<?php echo $dataFbHref; ?>' data-layout='button_count' data-action='like' data-show-faces='false' data-share='true'></div>
                                     </div>
                         <?php
                                     } catch (Exception $e) {
