@@ -81,7 +81,6 @@ var_dump('80');
                                         $title = "
                                 <script>
                                     window.fbAsyncInit = function() {
-                                        alert('adrien');
                                           FB.init({
                                             appId      : '342576715932172',
                                             cookie: true,
@@ -96,7 +95,7 @@ var_dump('80');
                                            var js, fjs = d.getElementsByTagName(s)[0];
                                            if (d.getElementById(id)) {return;}
                                            js = d.createElement(s); js.id = id;
-                                           js.src = '//connect.facebook.net/fr_FR/sdk.js';
+                                           js.src = 'http://connect.facebook.net/fr_FR/sdk.js';
                                            fjs.parentNode.insertBefore(js, fjs);
                                     }(document, 'script', 'facebook-jssdk'));
                                 </script>
