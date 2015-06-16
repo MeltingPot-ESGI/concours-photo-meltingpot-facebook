@@ -230,8 +230,10 @@ var_dump('error 3');
             
             $albumsHtml .= "<div class='fb-album-block'>"
                     . "<img class='fb-album-photo' src='".$sourcePhotoAlbum."' onclick='clickFbAlbum(".$album->id.");'><br>"
-                    . "<a onclick='clickFbAlbum(".$album->id.");'>".$album->name."</a><br>"
-                    . $album->count." photo".$pluriel
+                    . "<div class='fb-album-text-block'>"
+                        . "<a onclick='clickFbAlbum(".$album->id.");'>".$album->name."</a><br>"
+                        . $album->count." photo".$pluriel
+                    . "</div>"
                   . "</div>";
       }
     }
