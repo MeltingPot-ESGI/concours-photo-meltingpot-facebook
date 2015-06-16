@@ -78,31 +78,10 @@ var_dump('76');
 var_dump('78');
                                         $source = $image->source;
 var_dump('80');
-                                        $title = "
-                                <script>
-                                    window.fbAsyncInit = function() {
-                                          FB.init({
-                                            appId      : '342576715932172',
-                                            cookie: true,
-                                            xfbml      : true,
-                                            oauth: true,
-                                            version    : 'v2.3'
-                                          });
-                                        };
-
-                                        (function(d, s, id){
-                                            alert('adrien2');
-                                           var js, fjs = d.getElementsByTagName(s)[0];
-                                           if (d.getElementById(id)) {return;}
-                                           js = d.createElement(s); js.id = id;
-                                           js.src = '//connect.facebook.net/fr_FR/sdk.js';
-                                           fjs.parentNode.insertBefore(js, fjs);
-                                    }(document, 'script', 'facebook-jssdk'));
-                                </script>
-                                <div id='fb-root'></div>";
-                                        $title .= "<div class='fb-like' data-href='".URL_FOR_LIKE_BUTTON.$graphObject->getProperty('id')."' data-layout='standard' data-action='like' data-show-faces='true' data-share='true' style='height:24px;'></div>".$photo['name'];
+                                        $dataFbHref = URL_FOR_LIKE_BUTTON.$graphObject->getProperty('id');
+                                        $dataPhotoName = $photo['name'];
                         ?>
-                                        <a href="<?php echo $source; ?>" data-mfp-src="<?php echo $source; ?>" onmouseup="alert('tg');" title="<?php echo $title; ?>" ><img src="<?php echo $source; ?>" title="plume sur tete" border="0" height="50" width="50" ></a>
+                                        <a href="<?php echo $source; ?>" data-photo-href="<?php echo $dataFbHref; ?>" data-photo-name="<?php echo $dataPhotoName; ?>" data-mfp-src="<?php echo $source; ?>"><img src="<?php echo $source; ?>" title="plume sur tete" border="0" height="50" width="50" ></a>
                         <?php
                                     } catch (Exception $e) {
                                         var_dump($e->getMessage());
@@ -130,18 +109,11 @@ var_dump('80');
                 delegate: 'a', // child items selector, by clicking on it popup will open
                 type: 'image',
                 image: {
-                    markup: '<div class="mfp-figure">'+
-                              '<div class="mfp-close"></div>'+
-                              '<div class="mfp-img"></div>'+ // Floated left
-                              '<div class="mfp-title"></div>'+ // This is floated right shows up on the right side
-                              '<div class="mfp-bottom-bar">'+
-                                '<div class="mfp-counter"></div>'+
-                              '</div>'+
-                            '</div>', // Popup HTML markup. `.mfp-img` div will be replaced with img tag, `.mfp-close` by close button
-
-                    cursor: 'mfp-zoom-out-cur', // Class that adds zoom cursor, will be added to body. Set to null to disable zoom out cursor. 
-
-                    tError: '<a href="%url%">The image</a> could not be loaded.' // Error message
+                    titleSrc: function(item) {
+                        var title = "<div id='fb-root'></div>";
+                        title += "<div class='fb-like' data-href='" + item.el.attr('data-photo-href') + "' data-layout='standard' data-action='like' data-show-faces='true' data-share='true' style='height:24px;'></div>" + item.el.attr('data-photo-name');
+                        return title;
+                    }
                 }
                 gallery: {
                     enabled: true, // set to true to enable gallery
@@ -156,7 +128,6 @@ var_dump('80');
                     tNext: 'Next (Right arrow key)', // title for right button
                     tCounter: '<span class="mfp-counter">%curr% of %total%</span>' // markup of counter
                 },
-                preloader: true,
             });
             });
 
