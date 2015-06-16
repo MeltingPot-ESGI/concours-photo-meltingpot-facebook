@@ -35,7 +35,6 @@ if (isset($_SESSION) && isset($_SESSION[FB_TOKEN]) && !empty($_SESSION[FB_TOKEN]
 
     }
 }
-var_dump('0');
 ?>
 
 <html>
@@ -59,25 +58,24 @@ var_dump('0');
                         <?php
                             if ($session) {
                                 $stmt = $pdo->query("SELECT * FROM \"Photos\" ORDER BY date_add DESC LIMIT 15;");
-                                var_dump('62');
+
                                 while ($photo = $stmt->fetch(PDO::FETCH_ASSOC)) {
                                     try {
-                                        var_dump('65');
                                         $request = new FacebookRequest(
                                             $session,
                                             'GET',
                                             '/'.trim($photo['id_facebook'])
                                         );
-var_dump('71');
+
                                         $response = $request->execute();
-var_dump('73');
+
                                         $graphObject = $response->getGraphObject();
                                         $images = $graphObject->getProperty('images')->asArray();
-var_dump('76');
+
                                         $image = $images[0];
-var_dump('78');
+
                                         $source = $image->source;
-var_dump('80');
+                                        
                                         $dataFbHref = URL_FOR_LIKE_BUTTON.$graphObject->getProperty('id');
                                         $dataPhotoName = $photo['name'];
                         ?>
