@@ -226,8 +226,16 @@ var_dump('error 3');
             <div class="under_wrapper">
                 <div id="wrapper_admin">
                     <div class="encart_concours">
-                        <div class="fb-profile-picture-block"><img src="http://graph.facebook.com/<?php echo $graphObject->getId(); ?>/picture" class="fb-profile-picture" alt="Facebook profile picture"><?php echo $graphObject->getName(); ?></div>
+                        <?php
+                            if (!empty($graphObject)) {
+                        ?>
+                            <div class="fb-profile-picture-block"><img src="http://graph.facebook.com/<?php echo $graphObject->getId(); ?>/picture" class="fb-profile-picture" alt="Facebook profile picture"><?php echo $graphObject->getName(); ?></div>
+                        <?php
+                            }
+                        ?>
+                            
                         <h1>PARTICIPER AU CONCOURS</h1>
+                        
                         <?php
                             if (isset($_POST['fileUpload'])) {
                                 if (count($formErrors) > 0) {
@@ -248,20 +256,6 @@ var_dump('error 3');
                             }
                         ?>
                         
-                        <?php
-                            if (!empty($graphObject)) {
-                                // GET PHOTO BY ID
-                                $request = new FacebookRequest(
-                                    $session,
-                                    'GET',
-                                    '/1405753299745910'
-                                  );
-                                  $response = $request->execute();
-                                  $graphObject = $response->getGraphObject();
-                            } else {
-                                echo '<a class="fb-button button" href="'.$loginUrl.'">S\'authentifier avec Facebook</a>';
-                            }
-                        ?>
                         <?php
                             if (!empty($graphObject)) {
                         ?>
