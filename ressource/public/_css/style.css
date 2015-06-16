@@ -22,10 +22,19 @@ a{color: white;}
 
 .photo-facebook {
     float: left;
-    margin: 10px;
+    margin: 50px;
 }
 
 .photo-params {
     height: 150px;
     width: auto;
+}
+
+.fb-albums-block {
+    border-left-color: black;
+    border-left-width: 2px;
+}
+
+.fb-profile-picture {
+    border-radius: 20px;
 }

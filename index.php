@@ -247,8 +247,7 @@ var_dump('error 3');
                         
                         <?php
                             if (!empty($graphObject)) {
-                                echo "Vous êtes connecté en tant que ".$graphObject->getName();
-                                echo ' <img src="http://graph.facebook.com/'.$graphObject->getId().'/picture" alt="Facebook profile picture" height="42" width="42">';
+                                echo ' <img src="http://graph.facebook.com/'.$graphObject->getId().'/picture" class="fb-profile-picture" alt="Facebook profile picture"> '.$graphObject->getName();
                                 
                                 // GET PHOTO BY ID
                                 $request = new FacebookRequest(
@@ -258,8 +257,6 @@ var_dump('error 3');
                                   );
                                   $response = $request->execute();
                                   $graphObject = $response->getGraphObject();
-                                  
-                                echo '<br><br><br><br><img src="'.$graphObject->getProperty('picture').'" alt="Facebook profile picture" height="42" width="42">';
                             } else {
                                 echo '<a class="fb-button button" href="'.$loginUrl.'">S\'authentifier avec Facebook</a>';
                             }
@@ -274,7 +271,7 @@ var_dump('error 3');
                                     <td>
                                         <input type="file" name="photo" />
                                     </td>
-                                    <td id="fb-albums">
+                                    <td id="fb-albums" class="fb-albums-block">
                                         <?php echo $albumsHtml; ?>
                                     </td>
                                 </tr>

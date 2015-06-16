@@ -80,7 +80,7 @@ if (isset($_SESSION) && isset($_SESSION[FB_TOKEN]) && !empty($_SESSION[FB_TOKEN]
                                         $dataPhotoName = $photo['name'];
                         ?>
                                     <div class="photo-facebook">
-                                        <a href="<?php echo $source; ?>" data-photo-href="<?php echo $dataFbHref; ?>" data-photo-name="<?php echo $dataPhotoName; ?>" data-mfp-src="<?php echo $source; ?>"><img src="<?php echo $source; ?>" title="plume sur tete" border="0" height="100" width="100" ></a>
+                                        <a href="<?php echo $source; ?>" data-mfp-src="<?php echo $source; ?>"><img src="<?php echo $source; ?>" title="plume sur tete" border="0" height="100" width="100" ></a>
                                         <div id='fb-root'></div>
                                         <p><?php echo $dataPhotoName; ?></p>
                                         <div class='fb-like' data-href='<?php echo $dataFbHref; ?>' data-layout='button_count' data-action='like' data-show-faces='false' data-share='true'></div>
@@ -111,11 +111,6 @@ if (isset($_SESSION) && isset($_SESSION[FB_TOKEN]) && !empty($_SESSION[FB_TOKEN]
                 delegate: 'a', // child items selector, by clicking on it popup will open
                 type: 'image',
                 image: {
-                    titleSrc: function(item) {
-                        var title = "<div id='fb-root'></div>";
-                        title += "<div class='fb-like' data-href='" + item.el.attr('data-photo-href') + "' data-layout='button_count' data-action='like' data-show-faces='false' data-share='true' style='height:24px;'></div>" + item.el.attr('data-photo-name');
-                        return title;
-                    }
                 },
                 gallery: {
                     enabled: true, // set to true to enable gallery
