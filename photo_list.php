@@ -80,23 +80,26 @@ var_dump('78');
 var_dump('80');
                                         $title = "<div id='fb-root'></div>
                                 <script>
-                                    window.fbAsyncInit = function() {
-                                      FB.init({
-                                        appId      : '342576715932172',
-                                        cookie: true,
-                                        xfbml      : true,
-                                        oauth: true,
-                                        version    : 'v2.3'
-                                      });
-                                    };
+                                    window.onload = function() {
+                                    alert('ss');
+                                        window.fbAsyncInit = function() {
+                                          FB.init({
+                                            appId      : '342576715932172',
+                                            cookie: true,
+                                            xfbml      : true,
+                                            oauth: true,
+                                            version    : 'v2.3'
+                                          });
+                                        };
 
-                                    (function(d, s, id){
-                                       var js, fjs = d.getElementsByTagName(s)[0];
-                                       if (d.getElementById(id)) {return;}
-                                       js = d.createElement(s); js.id = id;
-                                       js.src = '//connect.facebook.net/fr_FR/sdk.js';
-                                       fjs.parentNode.insertBefore(js, fjs);
-                                     }(document, 'script', 'facebook-jssdk'));
+                                        (function(d, s, id){
+                                           var js, fjs = d.getElementsByTagName(s)[0];
+                                           if (d.getElementById(id)) {return;}
+                                           js = d.createElement(s); js.id = id;
+                                           js.src = '//connect.facebook.net/fr_FR/sdk.js';
+                                           fjs.parentNode.insertBefore(js, fjs);
+                                         }(document, 'script', 'facebook-jssdk'));
+                                    }
                                 </script>";
                                         $title .= "<div class='fb-like' data-href='".URL_FOR_LIKE_BUTTON.$graphObject->getProperty('id')."' data-layout='standard' data-action='like' data-show-faces='true' data-share='true' style='height:24px;'></div>".$photo['name'];
                         ?>
