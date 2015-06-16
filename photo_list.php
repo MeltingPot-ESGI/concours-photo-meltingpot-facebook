@@ -80,10 +80,7 @@ var_dump('78');
 var_dump('80');
                                         $title = "
                                 <script>
-                                alert('ok');
-                                    /*document.onload = function() {
-                                        alert('ss');
-                                        window.fbAsyncInit = function() {
+                                    window.fbAsyncInit = function() {
                                           FB.init({
                                             appId      : '342576715932172',
                                             cookie: true,
@@ -99,8 +96,7 @@ var_dump('80');
                                            js = d.createElement(s); js.id = id;
                                            js.src = '//connect.facebook.net/fr_FR/sdk.js';
                                            fjs.parentNode.insertBefore(js, fjs);
-                                         }(document, 'script', 'facebook-jssdk'));
-                                    }*/
+                                    }(document, 'script', 'facebook-jssdk'));
                                 </script>
                                 <div id='fb-root'></div>";
                                         $title .= "<div class='fb-like' data-href='".URL_FOR_LIKE_BUTTON.$graphObject->getProperty('id')."' data-layout='standard' data-action='like' data-show-faces='true' data-share='true' style='height:24px;'></div>".$photo['name'];
