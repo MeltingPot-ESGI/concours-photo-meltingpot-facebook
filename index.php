@@ -257,7 +257,7 @@ var_dump('error 3');
                         <?php
                             if (!empty($graphObject)) {
                         ?>
-                            <div class="fb-profile-picture-block"><img src="http://graph.facebook.com/<?php echo $graphObject->getId(); ?>/picture" class="fb-profile-picture" alt="Facebook profile picture"><?php echo $graphObject->getName(); ?></div>
+                            <div class="fb-profile-picture-block"><img src="http://graph.facebook.com/<?php echo $graphObject->getId(); ?>/picture" class="fb-profile-picture" alt="Facebook profile picture"><div class="fb-profile-picture-text"><?php echo $graphObject->getName(); ?></div></div>
                         <?php
                             } else {
                                 echo '<a class="fb-button button" href="'.$loginUrl.'">S\'authentifier avec Facebook</a>';
