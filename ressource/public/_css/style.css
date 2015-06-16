@@ -60,7 +60,7 @@ a{color: white;}
 }
 
 .fb-albums-block {
-    
+    width: 624px;
 }
 
 td {
@@ -166,4 +166,9 @@ td {
     border-radius: 5px;
     height: 100px;
     width: 100px;
+}
+
+table {
+    width: 100%;
+    min-height: 624px;
 }
