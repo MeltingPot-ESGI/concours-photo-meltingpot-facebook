@@ -61,6 +61,7 @@ a{color: white;}
 
 .fb-albums-block {
     width: 624px;
+    text-align: center;
 }
 
 td {
@@ -91,11 +92,12 @@ td {
 }
 
 .fb-album-block {
-    float: left;
     margin: 50px;
+    margin-bottom: 0px;
     height: 236px;
     width: 150px;
     color: #9197a3;
+    display: inline-block;
 }
 
 a {
@@ -119,7 +121,7 @@ a {
     
     padding: 8px;
     
-    background-color: #eed4b7;
+    background-color: #e5ceb1;
     border-radius: 25px;
 }
 
@@ -146,7 +148,7 @@ td {
     padding-left: 25px;
     padding-right: 25px;
     border-radius: 25px;
-    background-color: #eed4b7;
+    background-color: #e5ceb1;
 }
 
 .fb-form-participate-infos {
