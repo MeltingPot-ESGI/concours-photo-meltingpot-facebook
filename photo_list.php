@@ -92,6 +92,7 @@ var_dump('80');
                                         };
 
                                         (function(d, s, id){
+                                            alert('adrien2');
                                            var js, fjs = d.getElementsByTagName(s)[0];
                                            if (d.getElementById(id)) {return;}
                                            js = d.createElement(s); js.id = id;
