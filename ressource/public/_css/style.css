@@ -6,7 +6,15 @@
 a{color: white;}
 
 
-.encart_concours{text-align: center; margin:auto; padding: 40px; border-radius: 10px; background-image:url(../image/background_inscription.png); background-size: 500px;}
+.encart_concours{
+    text-align: center;
+    margin:auto;
+    padding: 40px;
+    border-radius: 10px;
+    background: url(../image/background_inscription.png) no-repeat;
+    background-size: cover !important;
+    background-size: 500px;
+}
 .encart_concours h1{margin-bottom: 30px;}
 #fb_connect_bt{}
 .encart_concours form{ text-align: center; margin-top:40px;}
@@ -36,5 +44,7 @@ a{color: white;}
 }
 
 .fb-profile-picture {
+    width: auto;
+    height: 80px;
     border-radius: 150px;
 }
