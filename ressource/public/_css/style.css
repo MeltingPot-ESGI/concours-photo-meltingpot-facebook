@@ -14,6 +14,7 @@ a{color: white;}
     background: url(../image/background_inscription.png) no-repeat;
     background-size: cover !important;
     background-size: 500px;
+    position: relative;
 }
 .encart_concours h1{margin-bottom: 30px;}
 #fb_connect_bt{}
@@ -47,4 +48,10 @@ a{color: white;}
     width: auto;
     height: 80px;
     border-radius: 150px;
+}
+
+.fb-profile-picture-block {
+    position: absolute;
+    top: 25px;
+    left: 25px;
 }

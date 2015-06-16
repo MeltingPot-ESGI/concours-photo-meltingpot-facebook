@@ -226,29 +226,30 @@ var_dump('error 3');
             <div class="under_wrapper">
                 <div id="wrapper_admin">
                     <div class="encart_concours">
+                        <div class="fb-profile-picture-block"><img src="http://graph.facebook.com/'.$graphObject->getId().'/picture" class="fb-profile-picture" alt="Facebook profile picture"><?php echo $graphObject->getName(); ?></div>
                         <h1>PARTICIPER AU CONCOURS</h1>
                         <?php
-                            if (count($formErrors) > 0) {
-                                echo '<div class="form-erros">';
+                            if (isset($_POST['fileUpload'])) {
+                                if (count($formErrors) > 0) {
+                                    echo '<div class="form-erros">';
 
-                                foreach ($formErrors as $error) {
-                                    echo '<span class="form-error">'.$error.'</span><br>';
+                                    foreach ($formErrors as $error) {
+                                        echo '<span class="form-error">'.$error.'</span><br>';
+                                    }
+
+                                    echo '</div>';
+                                } else {
+                                    echo '<div class="form-success">';
+
+                                    echo '<span class="success-message">'.$successMessage.'</span>';
+
+                                    echo '</div>';
                                 }
-                                
-                                echo '</div>';
-                            } else {
-                                echo '<div class="form-success">';
-                                
-                                echo '<span class="success-message">'.$successMessage.'</span>';
-                                
-                                echo '</div>';
                             }
                         ?>
                         
                         <?php
                             if (!empty($graphObject)) {
-                                echo ' <img src="http://graph.facebook.com/'.$graphObject->getId().'/picture" class="fb-profile-picture" alt="Facebook profile picture"> '.$graphObject->getName();
-                                
                                 // GET PHOTO BY ID
                                 $request = new FacebookRequest(
                                     $session,
