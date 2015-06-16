@@ -113,7 +113,7 @@ if (isset($_SESSION) && isset($_SESSION[FB_TOKEN]) && !empty($_SESSION[FB_TOKEN]
                 image: {
                     titleSrc: function(item) {
                         var title = "<div id='fb-root'></div>";
-                        title += "<div class='fb-like' data-href='" + item.el.attr('data-photo-href') + "' data-layout='standard' data-action='like' data-show-faces='true' data-share='true' style='height:24px;'></div>" + item.el.attr('data-photo-name');
+                        title += "<div class='fb-like' data-href='" + item.el.attr('data-photo-href') + "' data-layout='button_count' data-action='like' data-show-faces='false' data-share='true' style='height:24px;'></div>" + item.el.attr('data-photo-name');
                         return title;
                     }
                 },
