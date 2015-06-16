@@ -87,7 +87,6 @@ if (isset($_SESSION) && isset($_SESSION[FB_TOKEN]) && !empty($_SESSION[FB_TOKEN]
                                     </div>
                         <?php
                                     } catch (Exception $e) {
-                                        var_dump($e->getMessage());
                                         continue;
                                     }
                                 }
