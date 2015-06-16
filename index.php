@@ -206,7 +206,8 @@ var_dump('error 3');
       $albumsHtml = "";
       
       foreach ($albums as $album) {
-          $albumsHtml .= "<span onclick='clickFbAlbum(".$album->id.");'>".$album->name."</span><br>";
+          $albumsHtml .= "<img src='http://graph.facebook.com/".$album->cover_photo."'/picture' onclick='clickFbAlbum(".$album->id.");'>"
+                  . "<span onclick='clickFbAlbum(".$album->id.");'>".$album->name."</span><br>";
       }
     }
 ?>
@@ -235,53 +236,55 @@ var_dump('error 3');
                                 echo '<a class="fb-button button" href="'.$loginUrl.'">S\'authentifier avec Facebook</a>';
                             }
                         ?>
-                            
-                        <h1>PARTICIPER AU CONCOURS</h1>
                         
-                        <?php
-                            if (isset($_POST['fileUpload'])) {
-                                if (count($formErrors) > 0) {
-                                    echo '<div class="form-erros">';
+                        <div class="encart-participe-concours">
+                            <h1>PARTICIPER AU CONCOURS</h1>
 
-                                    foreach ($formErrors as $error) {
-                                        echo '<span class="form-error">'.$error.'</span><br>';
+                            <?php
+                                if (isset($_POST['fileUpload'])) {
+                                    if (count($formErrors) > 0) {
+                                        echo '<div class="form-erros">';
+
+                                        foreach ($formErrors as $error) {
+                                            echo '<span class="form-error">'.$error.'</span><br>';
+                                        }
+
+                                        echo '</div>';
+                                    } else {
+                                        echo '<div class="form-success">';
+
+                                        echo '<span class="success-message">'.$successMessage.'</span>';
+
+                                        echo '</div>';
                                     }
-
-                                    echo '</div>';
-                                } else {
-                                    echo '<div class="form-success">';
-
-                                    echo '<span class="success-message">'.$successMessage.'</span>';
-
-                                    echo '</div>';
                                 }
-                            }
-                        ?>
-                        
-                        <?php
-                            if (!empty($graphObject)) {
-                        ?>
-                        <form method='post' action="#" enctype="multipart/form-data">
-                            <input type="hidden" name="fileUpload" value='1' />
-                            <table>
-                                <tr>
-                                    <td>
-                                        <input type="file" name="photo" />
-                                    </td>
-                                    <td id="fb-albums" class="fb-albums-block">
-                                        <?php echo $albumsHtml; ?>
-                                    </td>
-                                </tr>
-                            </table>
-                            
-                            <input type="text" name="photoName" value="" />
-                            <div class="form_ligne"><label for="form_gooddeals" class="label_checkbox">Je veux recevoir les bons plans </label><input type="checkbox" name="form_gooddeals" value="1" id="form_gooddeals"></div>
-                            <div class="form_ligne"><label for="form_policy" class="label_checkbox">J'accepte <a href="cgu.php">le règlement</a> </label><input type="checkbox" name="form_policy" value="1" id="form_reglement"></div>
-                            <input type="submit" class="button" name="form_validate" value="Participer">
-                        </form>
-                        <?php
-                            }
-                        ?>
+                            ?>
+
+                            <?php
+                                if (!empty($graphObject)) {
+                            ?>
+                            <form method='post' action="#" enctype="multipart/form-data">
+                                <input type="hidden" name="fileUpload" value='1' />
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <input type="file" name="photo" />
+                                        </td>
+                                        <td id="fb-albums" class="fb-albums-block">
+                                            <?php echo $albumsHtml; ?>
+                                        </td>
+                                    </tr>
+                                </table>
+
+                                <input type="text" name="photoName" value="" />
+                                <div class="form_ligne"><label for="form_gooddeals" class="label_checkbox">Je veux recevoir les bons plans </label><input type="checkbox" name="form_gooddeals" value="1" id="form_gooddeals"></div>
+                                <div class="form_ligne"><label for="form_policy" class="label_checkbox">J'accepte <a href="cgu.php">le règlement</a> </label><input type="checkbox" name="form_policy" value="1" id="form_reglement"></div>
+                                <input type="submit" class="button" name="form_validate" value="Participer">
+                            </form>
+                            <?php
+                                }
+                            ?>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -9,6 +9,7 @@ a{color: white;}
 .encart_concours{
     text-align: center;
     margin:auto;
+    margin-top: 50px;
     padding: 40px;
     border-radius: 10px;
     background: url(../image/background_inscription.png) no-repeat;
@@ -42,6 +43,11 @@ a{color: white;}
 .fb-albums-block {
     border-left-color: black;
     border-left-width: 2px;
+    border-left-style: solid;
+}
+
+td {
+    padding: 5px;
 }
 
 .fb-profile-picture {
@@ -54,4 +60,8 @@ a{color: white;}
     position: absolute;
     top: 25px;
     left: 25px;
+}
+
+.encart-participe-concours {
+    margin-top: 100px;
 }
