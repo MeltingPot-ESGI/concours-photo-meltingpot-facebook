@@ -80,7 +80,7 @@ var_dump('78');
 var_dump('80');
                                         $title = "<div id='fb-root'></div>
                                 <script>
-                                    window.onload = function() {
+                                    document.onload = function() {
                                     alert('ss');
                                         window.fbAsyncInit = function() {
                                           FB.init({
