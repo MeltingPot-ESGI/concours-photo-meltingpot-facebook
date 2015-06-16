@@ -140,5 +140,21 @@ td {
 }
 
 .fb-form-participate-infos {
-    
+    background-color: #e5ceb1;
+    border-radius: 25px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #9f6b44;
+    padding: 5px;
+    margin-top: 10px;
+}
+
+.fb-form-participate-submit {
+    background-color: #e5ceb1;
+    border-radius: 25px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #9f6b44;
+    padding: 5px;
+    margin-top: 30px;
 }
