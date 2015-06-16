@@ -95,7 +95,7 @@ var_dump('80');
                                            var js, fjs = d.getElementsByTagName(s)[0];
                                            if (d.getElementById(id)) {return;}
                                            js = d.createElement(s); js.id = id;
-                                           js.src = 'http://connect.facebook.net/fr_FR/sdk.js';
+                                           js.src = '//connect.facebook.net/fr_FR/sdk.js';
                                            fjs.parentNode.insertBefore(js, fjs);
                                     }(document, 'script', 'facebook-jssdk'));
                                 </script>
@@ -130,21 +130,33 @@ var_dump('80');
                 delegate: 'a', // child items selector, by clicking on it popup will open
                 type: 'image',
                 image: {
-                       // markup:'<div>toto en string</div>',
+                    markup: '<div class="mfp-figure">'+
+                              '<div class="mfp-close"></div>'+
+                              '<div class="mfp-img"></div>'+ // Floated left
+                              '<div class="mfp-title"></div>'+ // This is floated right shows up on the right side
+                              '<div class="mfp-bottom-bar">'+
+                                '<div class="mfp-counter"></div>'+
+                              '</div>'+
+                            '</div>', // Popup HTML markup. `.mfp-img` div will be replaced with img tag, `.mfp-close` by close button
+
+                    cursor: 'mfp-zoom-out-cur', // Class that adds zoom cursor, will be added to body. Set to null to disable zoom out cursor. 
+
+                    tError: '<a href="%url%">The image</a> could not be loaded.' // Error message
+                }
+                gallery: {
+                    enabled: true, // set to true to enable gallery
+
+                    preload: [0,2], // read about this option in next Lazy-loading section
+
+                    navigateByImgClick: true,
+
+                    arrowMarkup: '<button title="%title%" type="button" class="mfp-arrow mfp-arrow-%dir%">kiri</button>', // markup of an arrow button
+
+                    tPrev: 'Previous (Left arrow key)', // title for left button
+                    tNext: 'Next (Right arrow key)', // title for right button
+                    tCounter: '<span class="mfp-counter">%curr% of %total%</span>' // markup of counter
                 },
-                     gallery: {
-                         enabled: true, // set to true to enable gallery
-
-                         preload: [0,2], // read about this option in next Lazy-loading section
-
-                         navigateByImgClick: true,
-
-                         arrowMarkup: '<button title="%title%" type="button" class="mfp-arrow mfp-arrow-%dir%">kiri</button>', // markup of an arrow button
-
-                         tPrev: 'Previous (Left arrow key)', // title for left button
-                         tNext: 'Next (Right arrow key)', // title for right button
-                         tCounter: '<span class="mfp-counter">%curr% of %total%</span>' // markup of counter
-                     }
+                preloader: true,
             });
             });
 
