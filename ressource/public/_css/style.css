@@ -67,7 +67,19 @@ td {
 }
 
 .fb-album-photo {
-    height: 150px;
+    height: 200px;
+    width: 200px;
     width: auto;
     cursor: pointer;
+}
+
+.fb-album-block {
+    float: left;
+    margin: 50px;
+    height: 236px;
+    width: auto;
+}
+
+.fb-album-block a {
+    color: #3b5998;
 }

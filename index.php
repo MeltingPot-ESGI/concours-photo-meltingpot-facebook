@@ -211,7 +211,9 @@ var_dump('error 3');
                 'GET',
                 '/'.$album->cover_photo
             );
-
+            
+            $pluriel = "";
+            
             $responsePhotoAlbum = $requestPhotoAlbum->execute();
 
             $graphObjectPhotoAlbum = $responsePhotoAlbum->getGraphObject();
@@ -220,9 +222,17 @@ var_dump('error 3');
             $imagePhotoAlbum = $imagesPhotoAlbum[0];
 
             $sourcePhotoAlbum = $imagePhotoAlbum->source;
-
-          $albumsHtml .= "<img class='fb-album-photo' src='".$sourcePhotoAlbum."' onclick='clickFbAlbum(".$album->id.");'>"
-                  . "<span onclick='clickFbAlbum(".$album->id.");'>".$album->name."</span><br>";
+            
+            
+            if ($album->count > 1) {
+                $pluriel = "s";
+            }
+            
+            $albumsHtml .= "<div class='fb-album-block'>"
+                    . "<img class='fb-album-photo' src='".$sourcePhotoAlbum."' onclick='clickFbAlbum(".$album->id.");'>"
+                    . "<a onclick='clickFbAlbum(".$album->id.");'>".$album->name."</a><br>"
+                    . $album->count." photo".$pluriel
+                  . "</div>";
       }
     }
 ?>
