@@ -114,7 +114,7 @@ var_dump('80');
                         title += "<div class='fb-like' data-href='" + item.el.attr('data-photo-href') + "' data-layout='standard' data-action='like' data-show-faces='true' data-share='true' style='height:24px;'></div>" + item.el.attr('data-photo-name');
                         return title;
                     }
-                }
+                },
                 gallery: {
                     enabled: true, // set to true to enable gallery
 
@@ -127,7 +127,7 @@ var_dump('80');
                     tPrev: 'Previous (Left arrow key)', // title for left button
                     tNext: 'Next (Right arrow key)', // title for right button
                     tCounter: '<span class="mfp-counter">%curr% of %total%</span>' // markup of counter
-                },
+                }
             });
             });
 
