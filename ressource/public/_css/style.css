@@ -130,4 +130,5 @@ td {
     border-width: 1px;
     border-style: solid;
     border-color: #9f6b44;
+    display: inline;
 }
