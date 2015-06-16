@@ -82,7 +82,7 @@ if (isset($_SESSION) && isset($_SESSION[FB_TOKEN]) && !empty($_SESSION[FB_TOKEN]
                                     <div class="photo-facebook">
                                         <a href="<?php echo $source; ?>" data-photo-href="<?php echo $dataFbHref; ?>" data-photo-name="<?php echo $dataPhotoName; ?>" data-mfp-src="<?php echo $source; ?>"><img src="<?php echo $source; ?>" title="plume sur tete" border="0" height="100" width="100" ></a>
                                         <div id='fb-root'></div>
-                                        <?php echo $dataPhotoName; ?>
+                                        <p><?php echo $dataPhotoName; ?></p>
                                         <div class='fb-like' data-href='<?php echo $dataFbHref; ?>' data-layout='button_count' data-action='like' data-show-faces='false' data-share='true'></div>
                                     </div>
                         <?php

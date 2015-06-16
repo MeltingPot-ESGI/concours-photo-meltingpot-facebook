@@ -6,7 +6,7 @@
 a{color: white;}
 
 
-.encart_concours{text-align: center; width: 400px; margin:auto; padding: 40px; border-radius: 10px; background-image:url(../image/background_inscription.png); background-size: 500px;}
+.encart_concours{text-align: center; margin:auto; padding: 40px; border-radius: 10px; background-image:url(../image/background_inscription.png); background-size: 500px;}
 .encart_concours h1{margin-bottom: 30px;}
 #fb_connect_bt{}
 .encart_concours form{ text-align: center; margin-top:40px;}
@@ -22,4 +22,10 @@ a{color: white;}
 
 .photo-facebook {
     float: left;
+    margin: 10px;
+}
+
+.photo-params {
+    height: 150px;
+    width: auto;
 }
