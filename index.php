@@ -257,7 +257,7 @@ var_dump('error 3');
                         <?php
                             if (!empty($graphObject)) {
                         ?>
-                            <div class="fb-profile-picture-block"><img src="http://graph.facebook.com/<?php echo $graphObject->getId(); ?>/picture" class="fb-profile-picture" alt="Facebook profile picture"><h2 class="fb-profile-picture-text"><?php echo $graphObject->getName(); ?></h2></div>
+                            <div class="fb-profile-picture-block"><img src="http://graph.facebook.com/<?php echo $graphObject->getId(); ?>/picture" class="fb-profile-picture" alt="Facebook profile picture"><h3 class="fb-profile-picture-text"><?php echo $graphObject->getName(); ?></h3></div>
                         <?php
                             } else {
                                 echo '<a class="fb-button button" href="'.$loginUrl.'">S\'authentifier avec Facebook</a>';
@@ -302,11 +302,13 @@ var_dump('error 3');
                                         </td>
                                     </tr>
                                 </table>
-
-                                <input type="text" name="photoName" value="" />
-                                <div class="form_ligne"><label for="form_gooddeals" class="label_checkbox">Je veux recevoir les bons plans </label><input type="checkbox" name="form_gooddeals" value="1" id="form_gooddeals"></div>
-                                <div class="form_ligne"><label for="form_policy" class="label_checkbox">J'accepte <a href="cgu.php">le règlement</a> </label><input type="checkbox" name="form_policy" value="1" id="form_reglement"></div>
-                                <input type="submit" class="button" name="form_validate" value="Participer">
+                                
+                                <div class="fb-form-participate-infos">
+                                    <input type="text" name="photoName" value="" />
+                                    <div class="form_ligne"><label for="form_gooddeals" class="label_checkbox">Je veux recevoir les bons plans </label><input type="checkbox" name="form_gooddeals" value="1" id="form_gooddeals"></div>
+                                    <div class="form_ligne"><label for="form_policy" class="label_checkbox">J'accepte <a href="cgu.php">le règlement</a> </label><input type="checkbox" name="form_policy" value="1" id="form_reglement"></div>
+                                    <input type="submit" class="button" name="form_validate" value="Participer">
+                                </div>
                             </form>
                             <?php
                                 }
