@@ -206,7 +206,22 @@ var_dump('error 3');
       $albumsHtml = "";
       
       foreach ($albums as $album) {
-          $albumsHtml .= "<img src='http://graph.facebook.com/".$album->cover_photo."'/picture' onclick='clickFbAlbum(".$album->id.");'>"
+          $requestPhotoAlbum = new FacebookRequest(
+                $session,
+                'GET',
+                '/'.$album->cover_photo
+            );
+
+            $responsePhotoAlbum = $requestPhotoAlbum->execute();
+
+            $graphObjectPhotoAlbum = $responsePhotoAlbum->getGraphObject();
+            $imagesPhotoAlbum = $graphObjectPhotoAlbum->getProperty('images')->asArray();
+
+            $imagePhotoAlbum = $imagesPhotoAlbum[0];
+
+            $sourcePhotoAlbum = $imagePhotoAlbum->source;
+          
+          $albumsHtml .= "<img src='".$sourcePhotoAlbum."' onclick='clickFbAlbum(".$album->id.");'>"
                   . "<span onclick='clickFbAlbum(".$album->id.");'>".$album->name."</span><br>";
       }
     }
