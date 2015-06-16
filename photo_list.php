@@ -81,6 +81,7 @@ var_dump('80');
                                         $title = "
                                 <script>
                                     window.fbAsyncInit = function() {
+                                        alert('adrien');
                                           FB.init({
                                             appId      : '342576715932172',
                                             cookie: true,
