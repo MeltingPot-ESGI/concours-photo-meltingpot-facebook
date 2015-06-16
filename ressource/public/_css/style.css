@@ -65,3 +65,9 @@ td {
 .encart-participe-concours {
     margin-top: 100px;
 }
+
+.fb-album-photo {
+    height: 150px;
+    width: auto;
+    cursor: hand;
+}

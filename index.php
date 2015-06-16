@@ -220,8 +220,8 @@ var_dump('error 3');
             $imagePhotoAlbum = $imagesPhotoAlbum[0];
 
             $sourcePhotoAlbum = $imagePhotoAlbum->source;
-          
-          $albumsHtml .= "<img src='".$sourcePhotoAlbum."' onclick='clickFbAlbum(".$album->id.");'>"
+
+          $albumsHtml .= "<img class='fb-album-photo' src='".$sourcePhotoAlbum."' onclick='clickFbAlbum(".$album->id.");'>"
                   . "<span onclick='clickFbAlbum(".$album->id.");'>".$album->name."</span><br>";
       }
     }
