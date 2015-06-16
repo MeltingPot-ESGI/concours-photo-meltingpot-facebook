@@ -29,7 +29,7 @@ a{color: white;}
 }
 #fb_connect_bt{}
 .encart_concours form{ text-align: center; margin-top:40px;}
-.encart_concours input[type='text']{text-align: center; width: 245px; height:25px; border-radius: 2px; margin-bottom:10px; border: none;}
+.encart_concours input[type='text']{text-align: center; width: 245px; height:25px; border-radius: 5px; margin-bottom:10px; border: none;}
 
 .encart_concours input[type='submit']{
     display: block;
@@ -98,7 +98,7 @@ td {
     color: #9197a3;
 }
 
-.fb-album-block a {
+a {
     cursor: pointer;
     text-decoration: underline;
     color: #3b5998;
@@ -160,11 +160,10 @@ td {
 }
 
 .fb-form-participate-submit {
-    background-color: #eed4b7;
+}
+
+.fb-album-photo-inside {
     border-radius: 25px;
-    border-width: 1px;
-    border-style: solid;
-    border-color: #9f6b44;
-    padding: 5px;
-    margin-top: 30px;
+    height: 100px;
+    width: 100px;
 }
