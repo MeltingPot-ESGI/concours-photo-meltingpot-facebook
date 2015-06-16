@@ -67,9 +67,8 @@ td {
 }
 
 .fb-album-photo {
-    height: 200px;
-    width: 200px;
-    width: auto;
+    height: 150px;
+    width: 150px;
     cursor: pointer;
 }
 
@@ -78,8 +77,11 @@ td {
     margin: 50px;
     height: 236px;
     width: auto;
+    color: #9197a3;
 }
 
 .fb-album-block a {
+    cursor: pointer;
+    text-decoration: underline;
     color: #3b5998;
 }
