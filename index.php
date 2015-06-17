@@ -54,6 +54,7 @@ if (isset($_SESSION) && isset($_SESSION[FB_TOKEN]) && !empty($_SESSION[FB_TOKEN]
                 <div id="wrapper_admin">
                     <div class="encart_concours">
                         <h1>CONCOURS PHOTO TATOUAGE</h1>
+                        <a href="participate.php" class="fb-participate-link">Participer au concours</a>
                         <div class="parent-container">
                         <?php
                             if ($session) {
