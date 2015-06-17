@@ -113,7 +113,7 @@ if (!$session) {
                     <?php
                         if (!$session) {
                             $loginUrl = $helper->getLoginUrl(array('scope' => 'publish_actions'));
-
+header("Location: ".$loginUrl);
                             echo '<a class="fb-button button" href="'.$loginUrl.'">S\'authentifier avec Facebook</a>';
                         }
                     ?>
