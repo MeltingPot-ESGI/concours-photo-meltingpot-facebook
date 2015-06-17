@@ -4,6 +4,7 @@ require "./ressource/lib/facebook-php-sdk-v4-4.0-dev/autoload.php";
 include_once("ressource/include/fonction.php");
 
 error_reporting(E_ALL);
+ini_set('display_errors', '1');
 session_start();
 
 use Facebook\FacebookSession;
@@ -25,11 +26,9 @@ try {
 
 // Session
 if (isset($_SESSION) && isset($_SESSION[FB_TOKEN]) && !empty($_SESSION[FB_TOKEN])) {
-    var_dump("1");
     $session = new FacebookSession($_SESSION[FB_TOKEN]);
 } else {
     try {
-        var_dump("2");
         $session = $helper->getSessionFromRedirect();
         
         if ($session) {
@@ -62,7 +61,16 @@ if (isset($_SESSION) && isset($_SESSION[FB_TOKEN]) && !empty($_SESSION[FB_TOKEN]
                     <div class="encart_concours">
                         <h1>CONCOURS PHOTO TATOUAGE</h1>
                         
-                        <a href="participate.php" class="fb-participate-link">Participer au concours</a>
+                        
+                        <?php
+                        
+                        // Session
+                        $helperParticipate = new FacebookRedirectLoginHelper(REDIRECT_URL_PARTICIPATE);
+                        $loginUrlParticipate = $helperParticipate->getLoginUrl(array('scope' => 'publish_actions, user_photos'));
+                        
+                        ?>
+                        
+                        <a href="<?php echo $loginUrlParticipate; ?>" class="fb-participate-link">Participer au concours</a>
                         
                         <div class="parent-container">
                         <?php
