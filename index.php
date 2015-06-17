@@ -42,13 +42,6 @@ if (isset($_SESSION) && isset($_SESSION[FB_TOKEN]) && !empty($_SESSION[FB_TOKEN]
     }
 }
 
-if (!$session) {
-    var_dump('3');
-    /*$loginUrl = $helper->getLoginUrl(array('scope' => 'publish_actions'));
-    
-    header("Location: ".$loginUrl);*/
-}
-
 ?>
 
 <html>
@@ -113,8 +106,8 @@ if (!$session) {
                     <?php
                         if (!$session) {
                             $loginUrl = $helper->getLoginUrl(array('scope' => 'publish_actions'));
-header("Location: ".$loginUrl);
-                            echo '<a class="fb-button button" href="'.$loginUrl.'">S\'authentifier avec Facebook</a>';
+                            
+                            header("Location: ".$loginUrl);
                         }
                     ?>
                     </div>
