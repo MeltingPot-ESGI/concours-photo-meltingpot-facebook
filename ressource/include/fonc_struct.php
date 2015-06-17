@@ -28,6 +28,7 @@
 				<script type="text/javascript" src="'.$_SERVER["HTTP_HOST"].'/../../../ressource/public/_js/jquery-ui-1.10.4.custom.min.js"></script>	
 				<script type="text/javascript" src="'.$_SERVER["HTTP_HOST"].'/../../../ressource/public/_js/liveQuery.js"></script>	
 				<script type="text/javascript" src="'.$_SERVER["HTTP_HOST"].'/../../../ressource/public/_js/_js_admin.js"></script>
+                                <script type="text/javascript" src="'.$_SERVER["HTTP_HOST"].'/../../../ressource/public/_js/main.js"></script>
 				<script type="text/javascript" src="'.$_SERVER["HTTP_HOST"].'/../../../ressource/lib/Magnific-Popup-master/dist/jquery.magnific-popup.js"></script>
                                 <div id="fb-root"></div>
                                 <script>

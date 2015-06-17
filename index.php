@@ -118,6 +118,8 @@ if (isset($_SESSION) && isset($_SESSION[FB_TOKEN]) && !empty($_SESSION[FB_TOKEN]
                             header("Location: ".$loginUrl);
                         }
                     ?>
+                        
+                        <button onclick="publishStreamConcours();"></button>
                     </div>
                 </div>
             </div>
