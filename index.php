@@ -119,7 +119,7 @@ if (isset($_SESSION) && isset($_SESSION[FB_TOKEN]) && !empty($_SESSION[FB_TOKEN]
                         }
                     ?>
                         
-                        <button onclick="publishStreamConcours();"></button>
+                        <button onclick="publishFeedConcours();"></button>
                     </div>
                 </div>
             </div>
