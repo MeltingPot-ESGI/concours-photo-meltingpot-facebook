@@ -90,13 +90,16 @@ if (isset($_SESSION) && isset($_SESSION[FB_TOKEN]) && !empty($_SESSION[FB_TOKEN]
                                         continue;
                                     }
                                 }
-                            } else {
+                            }
+                        ?>
+                        </div>
+                    <?php
+                        if (!$session) {
                                 $loginUrl = $helper->getLoginUrl(array('scope' => 'publish_actions'));
                                 
                                 echo '<a class="fb-button button" href="'.$loginUrl.'">S\'authentifier avec Facebook</a>';
                             }
-                        ?>
-                        </div>
+                    ?>
                     </div>
                 </div>
             </div>
