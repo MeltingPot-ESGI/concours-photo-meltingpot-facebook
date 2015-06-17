@@ -25,21 +25,17 @@ try {
 
 // Session
 if (isset($_SESSION) && isset($_SESSION[FB_TOKEN]) && !empty($_SESSION[FB_TOKEN])) {
+    var_dump("1");
     $session = new FacebookSession($_SESSION[FB_TOKEN]);
 } else {
     try {
+        var_dump("2");
         $session = $helper->getSessionFromRedirect();
     } catch(FacebookRequestException $ex) {
 
     } catch(\Exception $ex) {
 
     }
-}
-
-if (!$session) {
-    $loginUrl = $helper->getLoginUrl(array('scope' => 'publish_actions'));
-    
-    header("Location: ".$loginUrl);
 }
 
 ?>
