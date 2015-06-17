@@ -13,7 +13,7 @@
     use Facebook\GraphUser;
     
     FacebookSession::setDefaultApplication(APP_ID, APP_SECRET);
-var_dump('15');
+
     //Initialisation des variables
     $loginUrl = "";
     $graphObject = null;
@@ -22,7 +22,7 @@ var_dump('15');
     
     // Session
     $helper = new FacebookRedirectLoginHelper(REDIRECT_URL_PARTICIPATE);
-  var_dump('24');  
+  
     // BDD
     $dbopts = parse_url(DATA_BASE_URL);
     
@@ -31,7 +31,7 @@ var_dump('15');
     } catch (PDOException $e) {
         var_dump($e->getMessage());
     }
-var_dump('33');
+
     // Get session
     if (isset($_SESSION) && isset($_SESSION[FB_TOKEN]) && !empty($_SESSION[FB_TOKEN])) {
         $session = new FacebookSession($_SESSION[FB_TOKEN]);
@@ -44,24 +44,24 @@ var_dump('33');
 
         }
     }
-var_dump('46');    
+
     // Récupère les infos de l'utilisateur
     if ($session) {
-var_dump('49');
+
         $_SESSION[FB_TOKEN] = $session->getAccessToken();
         
         try {
             $request = new FacebookRequest( $session, 'GET', '/me' );
             $response = $request->execute();
-var_dump('55');
+
             // Get response
             $graphObject = $response->getGraphObject(GraphUser::className());
             $graphObjectUser = $response->getGraphObject();
-var_dump('58');        
+       
             if (isset($_POST['fileUpload'])) {
                 // Vérifie les valeurs
                 $_POST['photoName'] = htmlspecialchars($_POST['photoName']);
-var_dump('65');
+
                 if (empty($_POST['photoName'])) {
                     $formErrors[] = "Vous devez remplir tous les champs du formulaire.";
                 }
@@ -70,7 +70,6 @@ var_dump('65');
                     $formErrors[] = "Vous devez accepter le règlement pour pouvoir participer au concours.";
                 }
 
- var_dump('77');               
                 if (isset($_POST['fb-photo-id'])) {
                     $fbPhotoId = $_POST['fb-photo-id'];
                 } else {
@@ -81,22 +80,19 @@ var_dump('65');
                     } else if (empty($_FILES['photo']['tmp_name'])) {
                         $formErrors[] = "Le nom du fichier ne peut être vide.";
                     } else {
-    var_dump('85');
                         $allowedTypes = array('image/png', 'image/jpeg', 'image/gif');
-    var_dump('89');
+
                         if (!in_array($_FILES['photo']['type'], $allowedTypes)) {
-    var_dump('91');
                             $formErrors[] = "Le fichier envoyé n'est pas au bon format. Veuillez envoyer un fichier de type JPEG, PNG ou GIF.";
                         }
                     }
                 }
-  var_dump('95');              
+                
                 // Si les valeurs sont valides
                 if (count($formErrors) <= 0) {
                     // Upload to a user's profile. The photo will be in the
                     // first album in the profile. You can also upload to
                     // a specific album by using /ALBUM_ID as the path     
-var_dump('0');
                     if (empty($fbPhotoId)) {
                         $response = (new FacebookRequest(
                           $session, 'POST', '/me/photos', array(
@@ -105,7 +101,7 @@ var_dump('0');
                           )
                         ))->execute()->getGraphObject();
                     }
-var_dump('1');
+
                     $stmt = $pdo->prepare("SELECT * FROM \"Utilisateur\" WHERE id_facebook = :id_facebook;");
                     
                     $stmt->execute(
@@ -114,7 +110,7 @@ var_dump('1');
 
                     // Utilisateur existe dans la BDD
                     $user = $stmt->fetch(PDO::FETCH_ASSOC);
-var_dump('2');
+
                     if (!$user) {
                         // Enregire utilisateur dans la BDD
                         $idFacebook= $graphObject->getId();
@@ -124,7 +120,7 @@ var_dump('2');
                         $acceptCgu = isset($_POST['form_policy']);
                         $acceptBonsPlans = isset($_POST['form_gooddeals']);
                         $isEnable = true;
-var_dump('3');
+
                         $stmt = $pdo->prepare("INSERT INTO \"Utilisateur\" (id_facebook, firstname, lastname, mail, accept_cgu, accept_bons_plans, is_enable) VALUES (:id_facebook, :firstname, :lastname, :mail, :accept_cgu, :accept_bons_plans, :is_enable)");
                         $res = $stmt->execute(
                             array(
@@ -137,12 +133,12 @@ var_dump('3');
                                 ':is_enable' => $isEnable,
                             )
                         );
-var_dump('4');
+
                         $stmt = $pdo->prepare("SELECT * FROM \"Utilisateur\" WHERE id_facebook = :id_facebook;");
                         $stmt->execute(
                             array(':id_facebook' => $graphObject->getId())
                         );
-var_dump('5');
+
                         // Utilisateur existe dans la BDD
                         $user = $stmt->fetch(PDO::FETCH_ASSOC);
                     }
@@ -159,14 +155,7 @@ var_dump('5');
                     } else {
                         $photoIdFacebook = $fbPhotoId;
                     }
-var_dump(array(
-                            ':id_concours' => $idConcours,
-                            ':id_user' => $idUser,
-                            ':id_facebook' => $photoIdFacebook,
-                            ':name' => $name,
-                            ':date_add' => $dateAdd,
-                            ':note' => $note,
-                        ));
+                    
                     $stmt = $pdo->prepare("INSERT INTO \"Photos\" (id_concours, id_user, id_facebook, name, date_add, note) VALUES (:id_concours, :id_user, :id_facebook, :name, :date_add, :note)");
                     $res = $stmt->execute(
                         array(
@@ -178,18 +167,14 @@ var_dump(array(
                             ':note' => $note,
                         )
                     );
-var_dump($res);
                 }
             }
         } catch (Exception $e) {
-var_dump('error1');
             echo $formErrors[] = 'Code: '.$e->getCode().' -- Messsage: '.$e->getMessage();
         }
     } elseif (isset($_POST['fileUpload'])) {
-var_dump('error 2');
         $formErrors[] = "Veuillez vous identifier à facebook pour participer au concours.";
     } else {
-var_dump('error 3');
         $loginUrl = $helper->getLoginUrl(array('scope' => 'publish_actions, user_photos'));
         
         header("Location: ".$loginUrl);
