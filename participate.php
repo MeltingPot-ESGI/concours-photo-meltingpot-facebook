@@ -190,6 +190,8 @@ var_dump('error 2');
     } else {
 var_dump('error 3');
         $loginUrl = $helper->getLoginUrl(array('scope' => 'publish_actions, user_photos'));
+        
+        header("Location: ".$loginUrl);
     }
     
     if (!empty($graphObject)) {
@@ -259,8 +261,6 @@ var_dump('error 3');
                         ?>
                             <div class="fb-profile-picture-block"><img src="http://graph.facebook.com/<?php echo $graphObject->getId(); ?>/picture" class="fb-profile-picture" alt="Facebook profile picture"><h3 class="fb-profile-picture-text"><?php echo $graphObject->getName(); ?></h3></div>
                         <?php
-                            } else {
-                                header("Location: ".$loginUrl);
                             }
                         ?>
                         
