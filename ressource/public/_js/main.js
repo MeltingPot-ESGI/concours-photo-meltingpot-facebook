@@ -2,7 +2,7 @@ function streamPublish(name, description, hrefTitle, hrefLink, userPrompt)
 {
     FB.ui(
     {
-        method: 'stream.publish',
+        method: 'feed',
         message: '',
         attachment: {
             name: name,
@@ -22,5 +22,5 @@ function streamPublish(name, description, hrefTitle, hrefLink, userPrompt)
 
 function publishStreamConcours()
 {
-    streamPublish("Concours photo tatouage", "J'ai participé au concours photo de Tatoo Nous ! Allez voir ma photo sur la page de Tatoo Nous !", 'Concours photo Tatoo Nous', 'www.tatoo-nous.com', "Demo Tatoo Nous");
+    streamPublish("Concours photo tatouage", "J'ai participé au concours photo de Tatoo Nous ! Allez voir ma photo sur la page de Tatoo Nous !", 'Concours photo Tatoo Nous', 'https://www.facebook.com/pages/Tatoo-nous/1404451319873347', "Demo Tatoo Nous");
 }
