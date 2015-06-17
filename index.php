@@ -35,6 +35,13 @@ if (isset($_SESSION) && isset($_SESSION[FB_TOKEN]) && !empty($_SESSION[FB_TOKEN]
 
     }
 }
+
+if (!$session) {
+    $loginUrl = $helper->getLoginUrl(array('scope' => 'publish_actions'));
+    
+    header("Location: ".$loginUrl);
+}
+
 ?>
 
 <html>
@@ -55,18 +62,9 @@ if (isset($_SESSION) && isset($_SESSION[FB_TOKEN]) && !empty($_SESSION[FB_TOKEN]
                     <div class="encart_concours">
                         <h1>CONCOURS PHOTO TATOUAGE</h1>
                         
-                        <?php
-                            if ($session) {
-                                $loginUrlParticipate = $helper->getLoginUrl(array('scope' => 'user_photos, publish_actions, user_about_me, user_birthday, user_location'));
-                        ?>
-                                <a href="<?php echo $loginUrlParticipate; ?>" class="fb-participate-link">Participer au concours</a>
-                        <?php
-                            }
-                        ?>
-                        
+                        <a href="participate.php" class="fb-participate-link">Participer au concours</a>
                         
                         <div class="parent-container">
-                        
                         <?php
                             if ($session) {
                                 $stmt = $pdo->query("SELECT * FROM \"Photos\" ORDER BY date_add DESC LIMIT 15;");
