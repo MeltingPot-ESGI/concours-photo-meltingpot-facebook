@@ -20,7 +20,7 @@ var_dump('15');
     $successMessage = "Merci pour votre participation ! Votre participation au concours a bien été enregistré.";
     
     // Session
-    $helper = new FacebookRedirectLoginHelper(REDIRECT_URL);
+    $helper = new FacebookRedirectLoginHelper(REDIRECT_URL_PARTICIPATE);
   var_dump('24');  
     // BDD
     $dbopts = parse_url(DATA_BASE_URL);
