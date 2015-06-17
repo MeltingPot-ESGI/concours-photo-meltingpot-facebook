@@ -31,6 +31,10 @@ if (isset($_SESSION) && isset($_SESSION[FB_TOKEN]) && !empty($_SESSION[FB_TOKEN]
     try {
         var_dump("2");
         $session = $helper->getSessionFromRedirect();
+        
+        if ($session) {
+            $_SESSION[FB_TOKEN] = $session->getAccessToken();
+        }
     } catch(FacebookRequestException $ex) {
 
     } catch(\Exception $ex) {
