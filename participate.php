@@ -296,7 +296,7 @@
                                 </div>
                                 
                                 <div class="fb-form-participate-submit">
-                                    <input type="submit" class="button" name="form_validate" value="Participer">
+                                    <input type="submit" class="button" onclick="publishFeedConcours();" name="form_validate" value="Participer">
                                 </div>
                             </form>
                             <?php

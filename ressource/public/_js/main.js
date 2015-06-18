@@ -45,7 +45,7 @@ function publishStreamConcours()
 
 function publishFeedConcours()
 {
-    var body = 'J\'ai participé au concours photo de Tatoo Nous ! Allez voir ma photo sur la page de <a href="https://www.facebook.com/pages/Tatoo-nous/1404451319873347">Tatoo Nous</a> ! https://www.facebook.com/pages/Tatoo-nous/1404451319873347';
+    var body = 'J\'ai participé au concours photo de Tatoo Nous ! Allez voir ma photo sur la page de Tatoo Nous ! https://www.facebook.com/pages/Tatoo-nous/1404451319873347';
     
     FB.getLoginStatus(function(response) {
         if (response.status === 'connected') {
