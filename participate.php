@@ -256,7 +256,7 @@
                             <?php
                                 if (isset($_POST['fileUpload'])) {
                                     if (count($formErrors) > 0) {
-                                        echo '<div class="form-erros">';
+                                        echo '<div class="form-erros fb-form-participate-infos">';
 
                                         foreach ($formErrors as $error) {
                                             echo '<span class="form-error">'.$error.'</span><br>';
@@ -264,7 +264,7 @@
 
                                         echo '</div>';
                                     } else {
-                                        echo '<div class="form-success">';
+                                        echo '<div class="form-success fb-form-participate-infos">';
 
                                         echo '<span class="success-message">'.$successMessage.'</span>';
 
