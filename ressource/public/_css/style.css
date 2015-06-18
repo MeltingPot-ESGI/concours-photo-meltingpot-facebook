@@ -180,3 +180,15 @@ table {
     display: block;
     width: 15%;
 }
+
+.fb-participate-link {
+    text-decoration: none;
+    display: block;
+    float: right;
+    width: 15%;
+}
+
+.fb-participate-link:hover, .fb-gallery-link:hover {
+  background-color: #cf9f7a;
+}
+

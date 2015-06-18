@@ -70,7 +70,7 @@ if (isset($_SESSION) && isset($_SESSION[FB_TOKEN]) && !empty($_SESSION[FB_TOKEN]
                         
                         ?>
                         
-                        <a href="<?php echo $loginUrlParticipate; ?>" class="fb-participate-link">Participer au concours</a>
+                        <a href="<?php echo $loginUrlParticipate; ?>" class="fb-participate-link fb-form-participate-infos">Participer au concours -></a>
                         
                         <div class="parent-container">
                         <?php
