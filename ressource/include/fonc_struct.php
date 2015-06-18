@@ -31,25 +31,6 @@
                                 <script type="text/javascript" src="'.$_SERVER["HTTP_HOST"].'/../../../ressource/public/_js/main.js"></script>
 				<script type="text/javascript" src="'.$_SERVER["HTTP_HOST"].'/../../../ressource/lib/Magnific-Popup-master/dist/jquery.magnific-popup.js"></script>
                                 <div id="fb-root"></div>
-                                <script>
-                                    window.fbAsyncInit = function() {
-                                      FB.init({
-                                        appId      : "'.APP_ID.'",
-                                        cookie: true,
-                                        xfbml      : true,
-                                        oauth: true,
-                                        version    : "v2.3"
-                                      });
-                                    };
-
-                                    (function(d, s, id){
-                                       var js, fjs = d.getElementsByTagName(s)[0];
-                                       if (d.getElementById(id)) {return;}
-                                       js = d.createElement(s); js.id = id;
-                                       js.src = "//connect.facebook.net/fr_FR/sdk.js";
-                                       fjs.parentNode.insertBefore(js, fjs);
-                                     }(document, "script", "facebook-jssdk"));
-                                </script>
           						';
 				
 		return $js;
