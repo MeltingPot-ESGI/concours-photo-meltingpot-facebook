@@ -178,14 +178,15 @@ table {
 .fb-gallery-link {
     text-decoration: none;
     display: block;
-    width: 15%;
+    width: 20%;
 }
 
 .fb-participate-link {
     text-decoration: none;
     display: block;
     float: right;
-    width: 15%;
+    width: 20%;
+    margin-left: 76%;
 }
 
 .fb-participate-link:hover, .fb-gallery-link:hover {
