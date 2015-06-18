@@ -47,11 +47,27 @@ function publishFeedConcours()
 {
     var body = 'Reading JS SDK documentation';
     
-    FB.api('/me/feed', 'post', { message: body }, function(response) {
-      if (!response || response.error) {
-        console.log(response);
-      } else {
-        console.log('Post ID: ' + response.id);
-      }
-    });
+    FB.getLoginStatus(function(response) {
+        if (response.status === 'connected') {
+            FB.api('/me/feed', 'post', { message: body }, function(response) {
+            if (!response || response.error) {
+              console.log(response);
+            } else {
+              console.log('Post ID: ' + response.id);
+            }
+          });
+          // the user is logged in and has authenticated your
+          // app, and response.authResponse supplies
+          // the user's ID, a valid access token, a signed
+          // request, and the time the access token 
+          // and signed request each expire
+          var uid = response.authResponse.userID;
+          var accessToken = response.authResponse.accessToken;
+        } else if (response.status === 'not_authorized') {
+          // the user is logged in to Facebook, 
+          // but has not authenticated your app
+        } else {
+          // the user isn't logged in to Facebook.
+        }
+   });
 }
