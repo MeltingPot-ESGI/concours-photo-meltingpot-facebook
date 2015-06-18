@@ -252,7 +252,7 @@
                         
                         <div class="encart-participe-concours">
                             <h1>PARTICIPER AU CONCOURS</h1>
-                            <a href="index.php" class="fb-gallery-link">Allez à la galerie</a>
+                            <a href="index.php" class="fb-gallery-link"><- Revenir à la galerie</a>
                             <?php
                                 if (isset($_POST['fileUpload'])) {
                                     if (count($formErrors) > 0) {

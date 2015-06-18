@@ -174,3 +174,9 @@ table {
     width: 100%;
     min-height: 624px;
 }
+
+.fb-gallery-link {
+    text-decoration: none;
+    display: block;
+    width: 15%;
+}
