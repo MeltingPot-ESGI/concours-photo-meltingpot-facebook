@@ -113,7 +113,7 @@ if (isset($_SESSION) && isset($_SESSION[FB_TOKEN]) && !empty($_SESSION[FB_TOKEN]
                         </div>
                     <?php
                         if (!$session) {
-                            $loginUrl = $helper->getLoginUrl(array('scope' => 'publish_actions'));
+                            $loginUrl = $helper->getLoginUrl();
                             
                             header("Location: ".$loginUrl);
                         }
