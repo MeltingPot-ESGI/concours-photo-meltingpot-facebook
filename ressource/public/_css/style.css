@@ -188,7 +188,7 @@ table {
     display: block;
     position: absolute;
     right: 40px;
-    bottom: 10px;
+    top: 105px;
     width: 20%;
     margin-left: 76%;
 }
@@ -197,3 +197,7 @@ table {
   background-color: #cf9f7a;
 }
 
+.facebook-pagination {
+    bottom: 15px;
+    position: absolute;
+}
