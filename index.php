@@ -115,6 +115,10 @@ if (isset($_SESSION) && isset($_SESSION[FB_TOKEN]) && !empty($_SESSION[FB_TOKEN]
                                     }
                                 }
                                 
+                                
+                                
+                                $sHtml = "";
+                                
                                 if ($nombreDePages > 6) {
                                     $sHtml .= getLinkPage(1);
 
@@ -157,6 +161,8 @@ if (isset($_SESSION) && isset($_SESSION[FB_TOKEN]) && !empty($_SESSION[FB_TOKEN]
                                             $sHtml .= getLinkPage($pageCourante);
                                     }
                                 }
+                                
+                                echo $sHtml;
                             }
                         ?>
                         </div>
