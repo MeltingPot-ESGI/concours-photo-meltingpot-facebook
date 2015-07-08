@@ -80,7 +80,7 @@ if (isset($_SESSION) && isset($_SESSION[FB_TOKEN]) && !empty($_SESSION[FB_TOKEN]
                                 $total = $result['total_photos'];
                                 $nombreDePages = ceil($total / 6);
                                 $pageCourante = isset($_GET['currentPage']) ? (int) $_GET['currentPage'] : 1;
-                                
+                                var_dump("hii");
                                 $stmt = $pdo->query("SELECT * FROM \"Photos\" ORDER BY date_add DESC LIMIT 15;");
                                 
                                 while ($photo = $stmt->fetch(PDO::FETCH_ASSOC)) {
@@ -115,11 +115,12 @@ if (isset($_SESSION) && isset($_SESSION[FB_TOKEN]) && !empty($_SESSION[FB_TOKEN]
                                     }
                                 }
                                 
-                                
+                                var_dump("0001");
                                 
                                 $sHtml = "";
                                 
                                 if ($nombreDePages > 6) {
+                                    var_dump("1");
                                     $sHtml .= getLinkPage(1);
 
                                     if ($pageCourante > 1) {
@@ -157,6 +158,7 @@ if (isset($_SESSION) && isset($_SESSION[FB_TOKEN]) && !empty($_SESSION[FB_TOKEN]
 
                                     $sHtml .= getLinkPage($nombreDePages, ">>");
                                 } elseif ($nombreDePages > 1) {
+                                    var_dump("100");
                                     for ($pageCourante = 1 ; $pageCourante <= $nombreDePages ; $pageCourante++) {
                                             $sHtml .= getLinkPage($pageCourante);
                                     }
