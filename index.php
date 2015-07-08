@@ -118,7 +118,7 @@ if (isset($_SESSION) && isset($_SESSION[FB_TOKEN]) && !empty($_SESSION[FB_TOKEN]
                                     }
                                 }
                                 
-                                $sHtml = "";
+                                $sHtml = "<div class='facebook-pagination'>";
                                 
                                 if ($nombreDePages > 6) {
                                     $sHtml .= getLinkPage(1);
@@ -164,6 +164,8 @@ if (isset($_SESSION) && isset($_SESSION[FB_TOKEN]) && !empty($_SESSION[FB_TOKEN]
                                 } else {
                                     $sHtml .= getLinkPage(1);
                                 }
+                                
+                                $sHtml .= "</div>";
                                 
                                 echo $sHtml;
                             }
