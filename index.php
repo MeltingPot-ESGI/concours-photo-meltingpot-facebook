@@ -117,7 +117,7 @@ if (isset($_SESSION) && isset($_SESSION[FB_TOKEN]) && !empty($_SESSION[FB_TOKEN]
                                 
                                 
                                 
-                                $link = $_SERVER[HTTP_HOST].$_SERVER[REQUEST_URI];
+                                $link = $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
                                 
                                 
                                 echo '<a href="'.$link.'?page=1">1</a>';
@@ -165,7 +165,7 @@ if (isset($_SESSION) && isset($_SESSION[FB_TOKEN]) && !empty($_SESSION[FB_TOKEN]
 //                                                $sHtml .= Html::button("page", "getNewsPage('".$pageCourante."', '".$total."')", $pageCourante);
 //                                        }
 //                                }
-//                            }
+                            }
                         ?>
                         </div>
                     <?php
