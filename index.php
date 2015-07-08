@@ -162,6 +162,9 @@ if (isset($_SESSION) && isset($_SESSION[FB_TOKEN]) && !empty($_SESSION[FB_TOKEN]
                                     for ($pageCourante = 1 ; $pageCourante <= $nombreDePages ; $pageCourante++) {
                                             $sHtml .= getLinkPage($pageCourante);
                                     }
+                                } else {
+                                    var_dump("bibi la citrouille");
+                                    var_dump($total);
                                 }
                                 
                                 echo $sHtml;
