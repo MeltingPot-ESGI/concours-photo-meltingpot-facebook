@@ -104,7 +104,7 @@ if (isset($_SESSION) && isset($_SESSION[FB_TOKEN]) && !empty($_SESSION[FB_TOKEN]
                                         $dataPhotoName = $photo['name'];
                         ?>
                                     <div class="photo-facebook">
-                                        <a href="<?php echo $source; ?>" data-mfp-src="<?php echo $source; ?>"><img src="<?php echo $source; ?>" title="plume sur tete" border="0" height="100" width="100" ></a>
+                                        <a class="photo-facebook-js" href="<?php echo $source; ?>" data-mfp-src="<?php echo $source; ?>"><img src="<?php echo $source; ?>" title="plume sur tete" border="0" height="100" width="100" ></a>
                                         <div id='fb-root'></div>
                                         <p><?php echo $dataPhotoName; ?></p>
                                         <div class='fb-like' data-href='<?php echo $dataFbHref; ?>' data-layout='button_count' data-action='like' data-show-faces='false' data-share='false'></div>
@@ -190,7 +190,7 @@ if (isset($_SESSION) && isset($_SESSION[FB_TOKEN]) && !empty($_SESSION[FB_TOKEN]
             }
 
             $('.parent-container').magnificPopup({
-                delegate: 'a', // child items selector, by clicking on it popup will open
+                delegate: 'a.photo-facebook-js', // child items selector, by clicking on it popup will open
                 type: 'image',
                 image: {
                 },
