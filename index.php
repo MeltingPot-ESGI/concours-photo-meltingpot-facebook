@@ -83,8 +83,8 @@ if (isset($_SESSION) && isset($_SESSION[FB_TOKEN]) && !empty($_SESSION[FB_TOKEN]
                                 $pageCourante = isset($_GET['currentPage']) ? (int) $_GET['currentPage'] : 1;
                                 
                                 $premierePhoto = ($pageCourante-1) * $photosParPage;
-                                var_dump("SELECT * FROM \"Photos\" ORDER BY date_add DESC LIMIT ".$photosParPage." OFFSET ".$premierePhoto.";");
-                                $stmt = $pdo->query("SELECT * FROM \"Photos\" ORDER BY date_add DESC LIMIT ".$premierePhoto.", ".$photosParPage.";");
+                                
+                                $stmt = $pdo->query("SELECT * FROM \"Photos\" ORDER BY date_add DESC LIMIT ".$photosParPage." OFFSET ".$premierePhoto.";");
                                 
                                 while ($photo = $stmt->fetch(PDO::FETCH_ASSOC)) {
                                     try {
