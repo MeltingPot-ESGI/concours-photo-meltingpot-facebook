@@ -79,7 +79,7 @@ if (isset($_SESSION) && isset($_SESSION[FB_TOKEN]) && !empty($_SESSION[FB_TOKEN]
                                 $result = $stmtCount->fetch(PDO::FETCH_ASSOC);
                                 $total = $result['total_photos'];
                                 $nombreDePages = ceil($total / 6);
-                                $currentPage = isset($_POST['currentPage']) ? (int) $_POST['currentPage'] : 1;
+                                $pageCourante = isset($_GET['currentPage']) ? (int) $_GET['currentPage'] : 1;
                                 
                                 $stmt = $pdo->query("SELECT * FROM \"Photos\" ORDER BY date_add DESC LIMIT 15;");
                                 
@@ -115,56 +115,48 @@ if (isset($_SESSION) && isset($_SESSION[FB_TOKEN]) && !empty($_SESSION[FB_TOKEN]
                                     }
                                 }
                                 
-                                
-                                
-                                $link = $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
-                                
-                                
-                                echo '<a href="'.$link.'?page=1">1</a>';
-                                
-                                
-//                                if ($nombreDePages > 6) {
-//                                    $sHtml .= '<a href="'.$link.'?page=1">1</a>';
-//
-//                                    if ($pageCourante > 1) {
-//                                            $sHtml .= Html::button("page", "getNewsPage('".($pageCourante-1)."', '".$total."')", "precedent", "<");
-//                                    }
-//
-//                                    $sHtml .= Html::button("page", "getNewsPage('1', '".$total."')", 1);
-//
-//                                    if ($pageCourante >= ($nombreDePages-2)) {
-//                                            $sHtml .= "...";
-//                                            $sHtml .= Html::button("page", "getNewsPage('".($nombreDePages-3)."', '".$total."')", ($nombreDePages-3));
-//                                            $sHtml .= Html::button("page", "getNewsPage('".($nombreDePages-2)."', '".$total."')", ($nombreDePages-2));
-//                                            $sHtml .= Html::button("page", "getNewsPage('".($nombreDePages-1)."', '".$total."')", ($nombreDePages-1));
-//                                    } elseif ($pageCourante > 3 && $pageCourante < ($nombreDePages-2)) {
-//                                            $pagePrecedente = ($pageCourante-1);
-//                                            $pageSuivante = ($pageCourante+1);
-//
-//                                            $sHtml .= "...";
-//                                            $sHtml .= Html::button("page", "getNewsPage('".$pagePrecedente."', '".$total."')", $pagePrecedente);
-//                                            $sHtml .= Html::button("page", "getNewsPage('".$pageCourante."', '".$total."')", $pageCourante);
-//                                            $sHtml .= Html::button("page", "getNewsPage('".$pageSuivante."', '".$total."')", $pageSuivante);
-//                                            $sHtml .= "...";
-//                                    } else {
-//                                            $sHtml .= Html::button("page", "getNewsPage('2'), '".$total."'", 2);
-//                                            $sHtml .= Html::button("page", "getNewsPage('3'), '".$total."'", 3);
-//                                            $sHtml .= Html::button("page", "getNewsPage('4'), '".$total."'", 4);
-//                                            $sHtml .= "...";
-//                                    } 
-//
-//                                    $sHtml .= Html::button("page", "getNewsPage('".$nombreDePages."', '".$total."')", $nombreDePages);
-//
-//                                    if ($pageCourante < $nombreDePages) {
-//                                            $sHtml .= Html::button("page", "getNewsPage('".($pageCourante+1)."', '".$total."')", "suivant", ">");
-//                                    }
-//
-//                                    $sHtml .= Html::button("page", "getNewsPage('".$nombreDePages."', '".$total."')", 'fin', ">>");
-//                                } elseif ($nombreDePages > 1) {
-//                                        for ($pageCourante = 1 ; $pageCourante <= $nombreDePages ; $pageCourante++) {
-//                                                $sHtml .= Html::button("page", "getNewsPage('".$pageCourante."', '".$total."')", $pageCourante);
-//                                        }
-//                                }
+                                if ($nombreDePages > 6) {
+                                    $sHtml .= getLinkPage(1);
+
+                                    if ($pageCourante > 1) {
+                                            $sHtml .= getLinkPage(($pageCourante-1), '<');
+                                    }
+
+                                    $sHtml .= getLinkPage(1);
+
+                                    if ($pageCourante >= ($nombreDePages-2)) {
+                                            $sHtml .= "...";
+                                            $sHtml .= getLinkPage(($nombreDePages-3));
+                                            $sHtml .= getLinkPage(($nombreDePages-2));
+                                            $sHtml .= getLinkPage(($nombreDePages-1));
+                                    } elseif ($pageCourante > 3 && $pageCourante < ($nombreDePages-2)) {
+                                            $pagePrecedente = ($pageCourante-1);
+                                            $pageSuivante = ($pageCourante+1);
+
+                                            $sHtml .= "...";
+                                            $sHtml .= getLinkPage($pagePrecedente);
+                                            $sHtml .= getLinkPage($pageCourante);
+                                            $sHtml .= getLinkPage($pageSuivante);
+                                            $sHtml .= "...";
+                                    } else {
+                                            $sHtml .= getLinkPage(2);
+                                            $sHtml .= getLinkPage(3);
+                                            $sHtml .= getLinkPage(4);
+                                            $sHtml .= "...";
+                                    } 
+
+                                    $sHtml .= getLinkPage($nombreDePages);
+
+                                    if ($pageCourante < $nombreDePages) {
+                                            $sHtml .= getLinkPage(($pageCourante+1), ">");
+                                    }
+
+                                    $sHtml .= getLinkPage($nombreDePages, ">>");
+                                } elseif ($nombreDePages > 1) {
+                                    for ($pageCourante = 1 ; $pageCourante <= $nombreDePages ; $pageCourante++) {
+                                            $sHtml .= getLinkPage($pageCourante);
+                                    }
+                                }
                             }
                         ?>
                         </div>

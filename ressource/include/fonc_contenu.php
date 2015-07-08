@@ -34,4 +34,12 @@ function get_login(){
 		return $html;
 	}
 	
+        function getLinkPage ($numberOfPage, $text="")
+        {
+            $link = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+            
+            $text = $text ? $text : $numberOfPage;
+            
+            return '<a href="'.$link.'?currentPage='.$numberOfPage.'">'.$text.'</a>';
+        }
 ?>
