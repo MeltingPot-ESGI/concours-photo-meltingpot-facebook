@@ -124,42 +124,42 @@ if (isset($_SESSION) && isset($_SESSION[FB_TOKEN]) && !empty($_SESSION[FB_TOKEN]
                                     $sHtml .= getLinkPage(1);
 
                                     if ($pageCourante > 1) {
-                                            $sHtml .= getLinkPage(($pageCourante-1), '<');
+                                        $sHtml .= getLinkPage(($pageCourante-1), '<');
                                     }
 
                                     $sHtml .= getLinkPage(1);
 
                                     if ($pageCourante >= ($nombreDePages-2)) {
-                                            $sHtml .= "...";
-                                            $sHtml .= getLinkPage(($nombreDePages-3));
-                                            $sHtml .= getLinkPage(($nombreDePages-2));
-                                            $sHtml .= getLinkPage(($nombreDePages-1));
+                                        $sHtml .= "...";
+                                        $sHtml .= getLinkPage(($nombreDePages-3));
+                                        $sHtml .= getLinkPage(($nombreDePages-2));
+                                        $sHtml .= getLinkPage(($nombreDePages-1));
                                     } elseif ($pageCourante > 3 && $pageCourante < ($nombreDePages-2)) {
-                                            $pagePrecedente = ($pageCourante-1);
-                                            $pageSuivante = ($pageCourante+1);
+                                        $pagePrecedente = ($pageCourante-1);
+                                        $pageSuivante = ($pageCourante+1);
 
-                                            $sHtml .= "...";
-                                            $sHtml .= getLinkPage($pagePrecedente);
-                                            $sHtml .= getLinkPage($pageCourante);
-                                            $sHtml .= getLinkPage($pageSuivante);
-                                            $sHtml .= "...";
+                                        $sHtml .= "...";
+                                        $sHtml .= getLinkPage($pagePrecedente);
+                                        $sHtml .= getLinkPage($pageCourante);
+                                        $sHtml .= getLinkPage($pageSuivante);
+                                        $sHtml .= "...";
                                     } else {
-                                            $sHtml .= getLinkPage(2);
-                                            $sHtml .= getLinkPage(3);
-                                            $sHtml .= getLinkPage(4);
-                                            $sHtml .= "...";
+                                        $sHtml .= getLinkPage(2);
+                                        $sHtml .= getLinkPage(3);
+                                        $sHtml .= getLinkPage(4);
+                                        $sHtml .= "...";
                                     } 
 
                                     $sHtml .= getLinkPage($nombreDePages);
 
                                     if ($pageCourante < $nombreDePages) {
-                                            $sHtml .= getLinkPage(($pageCourante+1), ">");
+                                        $sHtml .= getLinkPage(($pageCourante+1), ">");
                                     }
 
                                     $sHtml .= getLinkPage($nombreDePages, ">>");
                                 } elseif ($nombreDePages > 1) {
                                     for ($pageCourante = 1 ; $pageCourante <= $nombreDePages ; $pageCourante++) {
-                                            $sHtml .= getLinkPage($pageCourante);
+                                        $sHtml .= getLinkPage($pageCourante)." ";
                                     }
                                 } else {
                                     $sHtml .= getLinkPage(1);
