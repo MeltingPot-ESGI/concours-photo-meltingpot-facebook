@@ -40,6 +40,6 @@ function get_login(){
             
             $text = $text ? $text : $numberOfPage;
             
-            return '<a href="'.$link.'?currentPage='.$numberOfPage.'">'.$text.'</a>';
+            return '<a class="fb-form-participate-infos" href="'.$link.'?currentPage='.$numberOfPage.'">'.$text.'</a>';
         }
 ?>
