@@ -2,7 +2,7 @@
 
 
 #wrapper {
-	min-height: 100%;
+    width: 100%;
 }
 
 body {
@@ -32,6 +32,7 @@ font-family: AxelRegular,"Helvetica Neue",Helvetica,Arial,sans-serif;
 
 #wrapper_admin{
 	height: 100%;
+        width: 100%;
 }
 
 .bloc_login{

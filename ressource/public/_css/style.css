@@ -52,6 +52,7 @@ a{color: white;}
 .photo-facebook {
     float: left;
     margin: 50px;
+    text-align: justify;
 }
 
 .photo-params {
