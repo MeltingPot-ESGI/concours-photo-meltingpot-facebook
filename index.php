@@ -78,10 +78,13 @@ if (isset($_SESSION) && isset($_SESSION[FB_TOKEN]) && !empty($_SESSION[FB_TOKEN]
                                 $stmtCount = $pdo->query("SELECT COUNT(*) as total_photos FROM \"Photos\";");
                                 $result = $stmtCount->fetch(PDO::FETCH_ASSOC);
                                 $total = $result['total_photos'];
-                                $nombreDePages = ceil($total / 6);
+                                $photosParPage = 6;
+                                $nombreDePages = ceil($total / $photosParPage);
                                 $pageCourante = isset($_GET['currentPage']) ? (int) $_GET['currentPage'] : 1;
-                                var_dump("hii");
-                                $stmt = $pdo->query("SELECT * FROM \"Photos\" ORDER BY date_add DESC LIMIT 15;");
+                                
+                                $premierePhoto = ($pageCourante-1) * $photosParPage;
+                                
+                                $stmt = $pdo->query("SELECT * FROM \"Photos\" ORDER BY date_add DESC LIMIT ".$premierePhoto.", ".$photosParPage.";");
                                 
                                 while ($photo = $stmt->fetch(PDO::FETCH_ASSOC)) {
                                     try {
