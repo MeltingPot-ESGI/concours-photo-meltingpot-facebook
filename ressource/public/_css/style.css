@@ -200,4 +200,6 @@ table {
 .facebook-pagination {
     bottom: 200px;
     position: absolute;
+    width: 100%;
+    text-align: center;
 }
