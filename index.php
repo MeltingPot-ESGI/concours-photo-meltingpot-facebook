@@ -165,6 +165,7 @@ if (isset($_SESSION) && isset($_SESSION[FB_TOKEN]) && !empty($_SESSION[FB_TOKEN]
                                 } else {
                                     var_dump("bibi la citrouille");
                                     var_dump($total);
+                                    $sHtml .= getLinkPage(1);
                                 }
                                 
                                 echo $sHtml;
