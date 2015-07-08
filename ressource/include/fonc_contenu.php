@@ -36,7 +36,7 @@ function get_login(){
 	
         function getLinkPage ($numberOfPage, $text="")
         {
-            $link = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+            $link = 'http://'.$_SERVER['HTTP_HOST'];
             
             $text = $text ? $text : $numberOfPage;
             
