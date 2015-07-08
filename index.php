@@ -76,7 +76,7 @@ if (isset($_SESSION) && isset($_SESSION[FB_TOKEN]) && !empty($_SESSION[FB_TOKEN]
                         <?php
                             if ($session) {
                                 $stmtCount = $pdo->query("SELECT COUNT(*) as nbre_photo FROM \"Photos\";");
-                                $result = $stmt->fetch(PDO::FETCH_ASSOC);
+                                $result = $stmtCount->fetch(PDO::FETCH_ASSOC);
                                 var_dump($result);
                                 
                                 die();
