@@ -17,6 +17,7 @@ a{color: white;}
     background-size: 500px;
     position: relative;
     color: #302e36;
+    height: 100%;
 }
 .encart_concours h1{
     margin-bottom: 30px;
@@ -185,7 +186,9 @@ table {
 .fb-participate-link {
     text-decoration: none;
     display: block;
-    float: right;
+    position: absolute;
+    right: 40px;
+    bottom: 10px;
     width: 20%;
     margin-left: 76%;
 }

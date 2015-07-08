@@ -75,6 +75,12 @@ if (isset($_SESSION) && isset($_SESSION[FB_TOKEN]) && !empty($_SESSION[FB_TOKEN]
                         <div class="parent-container">
                         <?php
                             if ($session) {
+                                $stmtCount = $pdo->query("SELECT COUNT(*) as nbre_photo FROM \"Photos\";");
+                                $result = $stmt->fetch(PDO::FETCH_ASSOC);
+                                var_dump($result);
+                                
+                                die();
+                                
                                 $stmt = $pdo->query("SELECT * FROM \"Photos\" ORDER BY date_add DESC LIMIT 15;");
 
                                 while ($photo = $stmt->fetch(PDO::FETCH_ASSOC)) {
