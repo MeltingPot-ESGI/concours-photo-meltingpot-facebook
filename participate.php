@@ -345,8 +345,8 @@
             });
         }
         
-        function setHighlighted(this) {
-            this.classList.add("highlited");
+        function setHighlighted(element) {
+            element.classList.add("highlited");
         }
         
         function clickReturnAlbums() {
