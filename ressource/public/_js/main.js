@@ -45,8 +45,9 @@ function publishStreamConcours()
 
 function validateForm() {
     var errors = [];
+    var photoName = document.getElementById('photoName');
     
-    if (document.getElementById('photoName').length == 0) {
+    if (photoName.length == 0) {
         console.log('VIDE');
     } else {
         console.log('plein');
