@@ -203,3 +203,7 @@ table {
     width: 100%;
     text-align: center;
 }
+
+.highlited {
+    border: 5px solid #6e8fd3;
+}

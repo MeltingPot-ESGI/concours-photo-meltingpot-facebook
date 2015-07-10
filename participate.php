@@ -276,12 +276,18 @@
                             <?php
                                 if (!empty($graphObject)) {
                             ?>
+                            <div class="fb-form-participate-infos">
+                                Veuillez sélectionner la photo avec laquelle vous souhaitez participer.
+                            </div>
                             <form method='post' action="#" enctype="multipart/form-data">
                                 <input type="hidden" name="fileUpload" value='1' />
                                 <table>
                                     <tr>
                                         <td>
                                             <input type="file" name="photo" />
+                                        </td>
+                                        <td>
+                                            ou
                                         </td>
                                         <td id="fb-albums" class="fb-albums-block">
                                             <?php echo $albumsHtml; ?>
@@ -324,7 +330,7 @@
                                 for (i=0, l = data.length; i < l; i++) {
                                     var photo = data[i];
                                     
-                                    photosHtml += "<input type='radio' name='fb-photo-id' value='"+photo.id+"'><img src='"+photo.source+"' class='fb-album-photo-inside' alt='Photo facebook'>";
+                                    photosHtml += "<img src='"+photo.source+"' onclick='setHighlighted(this);' class='fb-album-photo-inside' alt='Photo facebook'>";
                                 }
                                 
                                 document.getElementById("fb-albums").innerHTML = photosHtml;
@@ -337,6 +343,10 @@
                   // no user session available, someone you dont know
                 }
             });
+        }
+        
+        function setHighlighted(this) {
+            this.classList.add("highlited");
         }
         
         function clickReturnAlbums() {
