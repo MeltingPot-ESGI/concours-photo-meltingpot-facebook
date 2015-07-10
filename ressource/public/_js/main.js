@@ -60,12 +60,19 @@ function validateForm() {
     }
     
     if (errors.length > 0) {
-        console.log(errors);
+        var errorsString = "";
+        
+        for (var i = 0, l=errors.length; i<l;i++) {
+            errorsString += "<span>"+errors[i]+"</span><br>";
+        }
+        
+        document.getElementById('participate-end-form').innerHTML = errorsString + document.getElementById('participate-end-form').innerHTML;
+        
         return false;
     } else {
-        console.log(errors);
-        return true;
         publishFeedConcours();
+        
+        return true;
     }
 }
 
