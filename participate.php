@@ -330,7 +330,7 @@
                                 for (i=0, l = data.length; i < l; i++) {
                                     var photo = data[i];
                                     
-                                    photosHtml += "<img src='"+photo.source+"' id='".photo.id."' onclick='setHighlighted(this);' class='fb-album-photo-inside' alt='Photo facebook'>";
+                                    photosHtml += "<img src='"+photo.source+"' id='"+photo.id+"' onclick='setHighlighted(this);' class='fb-album-photo-inside' alt='Photo facebook'>";
                                 }
                                 
                                 photosHtml += "<input type='hidden' id='fb-photo-id' value='' />";
