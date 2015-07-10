@@ -45,10 +45,10 @@ function publishStreamConcours()
 
 function validateForm() {
     var errors = [];
-    var photoName = document.getElementById('photoName');
     
-    if (photoName.length == 0) {
+    if (document.getElementById('photoName').value.length == 0) {
         console.log('VIDE');
+        errors.push("Vous devez remplir tous les champs du formulaire.");
     } else {
         console.log('plein');
     }
