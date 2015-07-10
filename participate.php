@@ -70,7 +70,7 @@
                     $formErrors[] = "Vous devez accepter le règlement pour pouvoir participer au concours.";
                 }
 
-                if (isset($_POST['fb-photo-id'])) {
+                if (!empty($_POST['fb-photo-id'])) {
                     $fbPhotoId = $_POST['fb-photo-id'];
                 } else {
                     if (!isset($_FILES['photo'])) {
@@ -330,8 +330,10 @@
                                 for (i=0, l = data.length; i < l; i++) {
                                     var photo = data[i];
                                     
-                                    photosHtml += "<img src='"+photo.source+"' onclick='setHighlighted(this);' class='fb-album-photo-inside' alt='Photo facebook'>";
+                                    photosHtml += "<img src='"+photo.source+"' id='".photo.id."' onclick='setHighlighted(this);' class='fb-album-photo-inside' alt='Photo facebook'>";
                                 }
+                                
+                                photosHtml += "<input type='hidden' id='fb-photo-id' value='' />";
                                 
                                 document.getElementById("fb-albums").innerHTML = photosHtml;
                             } else {
@@ -347,6 +349,7 @@
         
         function setHighlighted(element) {
             var hightliteds = document.getElementsByClassName("highlited");
+            var hidden = document.getElementById('fb-photo-id');
             
             for (i=0, l=hightliteds.length; i < l; i++) {
                 var hightlited = hightliteds[i];
@@ -355,6 +358,8 @@
             }
             
             element.classList.add("highlited");
+            
+            hidden.value = element.id;
         }
         
         function clickReturnAlbums() {
