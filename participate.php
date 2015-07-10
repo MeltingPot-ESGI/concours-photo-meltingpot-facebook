@@ -279,7 +279,7 @@
                             <div class="fb-form-participate-infos">
                                 Veuillez sélectionner la photo avec laquelle vous souhaitez participer.
                             </div>
-                            <form method='post' action="#" enctype="multipart/form-data">
+                            <form method='post' action="#" enctype="multipart/form-data" onsubmit="return validateForm();">
                                 <input type="hidden" name="fileUpload" value='1' />
                                 <table>
                                     <tr>
@@ -302,7 +302,7 @@
                                 </div>
                                 
                                 <div class="fb-form-participate-submit">
-                                    <input type="submit" class="button" onclick="publishFeedConcours();" name="form_validate" value="Participer">
+                                    <input type="submit" class="button" name="form_validate" value="Participer">
                                 </div>
                             </form>
                             <?php

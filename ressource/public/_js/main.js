@@ -40,6 +40,10 @@ function streamPublish(name, description, hrefTitle, hrefLink, userPrompt)
 
 function publishStreamConcours()
 {
+    streamPublish("Concours photo tatouage", "", 'Concours photo Tatoo Nous', '', "Demo Tatoo Nous");
+}
+
+function validateForm() {
     var errors = [];
     
     if (document.getElementById('photoName').length == 0) {
@@ -52,7 +56,7 @@ function publishStreamConcours()
     } else {
         console.log('VIDE2');
         return true;
-        streamPublish("Concours photo tatouage", "", 'Concours photo Tatoo Nous', '', "Demo Tatoo Nous");
+        publishFeedConcours();
     }
 }
 
