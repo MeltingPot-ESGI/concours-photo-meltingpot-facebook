@@ -346,6 +346,14 @@
         }
         
         function setHighlighted(element) {
+            var hightliteds = getElementsByClassName("highlited");
+            
+            for (i=0, l=hightliteds.length; i < l; i++) {
+                var hightlited = hightliteds[i];
+                
+                hightlited.classList.remove("highlited");
+            }
+            
             element.classList.add("highlited");
         }
         
