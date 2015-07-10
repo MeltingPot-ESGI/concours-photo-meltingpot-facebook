@@ -49,15 +49,21 @@ function validateForm() {
     if (document.getElementById('photoName').value.length == 0) {
         console.log('VIDE');
         errors.push("Vous devez remplir tous les champs du formulaire.");
-    } else {
-        console.log('plein');
+    }
+    
+    if (!document.getElementById('form_policy').checked) {
+        errors.push("Vous devez accepter le règlement pour pouvoir participer au concours.");
+    }
+    
+    if (document.getElementById('fb-photo-id').value.length == 0) {
+        errors.push("Veuillez sélectionner un fichier à envoyer.");
     }
     
     if (errors.length > 0) {
-        console.log('VIDE1');
+        console.log(errors);
         return false;
     } else {
-        console.log('VIDE2');
+        console.log(errors);
         return true;
         publishFeedConcours();
     }
