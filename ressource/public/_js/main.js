@@ -48,6 +48,8 @@ function validateForm() {
     
     if (document.getElementById('photoName').length == 0) {
         console.log('VIDE');
+    } else {
+        console.log('plein');
     }
     
     if (errors.length > 0) {
