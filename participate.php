@@ -296,6 +296,7 @@
                                 </table>
                                 
                                 <div class="fb-form-participate-infos" id="participate-end-form">
+                                    <div id="participate-end-errors-form" class="form_ligne"></div>
                                     <label>Nom de l'image : </label><input type="text" name="photoName" id="photoName" value="" />
                                     <div class="form_ligne"><label for="form_gooddeals" class="label_checkbox">Je veux recevoir les bons plans </label><input type="checkbox" name="form_gooddeals" value="1" id="form_gooddeals"></div>
                                     <div class="form_ligne"><label for="form_policy" class="label_checkbox">J'accepte <a href="cgu.php">le règlement</a> </label><input type="checkbox" name="form_policy" id="form_policy" value="1" id="form_reglement"></div>

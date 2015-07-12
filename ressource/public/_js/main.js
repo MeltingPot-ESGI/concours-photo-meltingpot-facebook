@@ -66,7 +66,7 @@ function validateForm() {
             errorsString += "<span>"+errors[i]+"</span><br>";
         }
         
-        document.getElementById('participate-end-form').innerHTML = errorsString + document.getElementById('participate-end-form').innerHTML;
+        document.getElementById('participate-end-errors-form').innerHTML = errorsString + document.getElementById('participate-end-form').innerHTML;
         
         return false;
     } else {
