@@ -46,16 +46,16 @@ function publishStreamConcours()
 function validateForm() {
     var errors = [];
     
-    if (document.getElementById('photoName').value.length == 0) {
+    if (!document.getElementById('photoName') || document.getElementById('photoName').value.length == 0) {
         console.log('VIDE');
         errors.push("Vous devez remplir tous les champs du formulaire.");
     }
     
-    if (!document.getElementById('form_policy').checked) {
+    if (!document.getElementById('form_policy') || !document.getElementById('form_policy').checked) {
         errors.push("Vous devez accepter le règlement pour pouvoir participer au concours.");
     }
     
-    if (document.getElementById('fb-photo-id').value.length == 0) {
+    if (!document.getElementById('fb-photo-id') || document.getElementById('fb-photo-id').value.length == 0) {
         errors.push("Veuillez sélectionner un fichier à envoyer.");
     }
     
