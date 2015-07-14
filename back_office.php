@@ -82,8 +82,8 @@ if (isset($_POST['formSend'])) {
         $res = $stmt->execute(
             array(
                 ':name' => $name,
-                ':date_start' => date('Y-m-d', $dateStart),
-                ':date_end' => date('Y-m-d', $dateEnd),
+                ':date_start' => date('Y-m-d', strtotime($dateStart)),
+                ':date_end' => date('Y-m-d', strtotime($dateEnd)),
                 ':is_stopped' => $isStopped,
             )
         );
