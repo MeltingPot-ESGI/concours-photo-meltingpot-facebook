@@ -78,7 +78,7 @@ if (isset($_POST['formSend'])) {
     }
     
     if (count($formErrors) < 1) {
-        $stmt = $pdo->prepare("INSERT INTO \"Concours\" (name, date_start, date_end, is_stopped) VALUES (:name, :date_start, :date_end, :is_stopped)");
+        $stmt = $pdo->prepare("UPDATE \"Concours\" SET name = :name, date_start = :date_start, date_end= :date_end, is_stopped = :is_stopped WHERE id = 1");
         $res = $stmt->execute(
             array(
                 ':name' => $name,
