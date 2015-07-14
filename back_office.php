@@ -99,7 +99,7 @@ if (isset($_POST['formSend'])) {
         $successMessage = "Vous êtes authentifié.";
         $_SESSION['back_office_authentified'] = true;
     } else {
-        die('666');
+        die('667');
         $formErrors[] = "Identifiant ou mot de passe incorrect.";
     }
 }
