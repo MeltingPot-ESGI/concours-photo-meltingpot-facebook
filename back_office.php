@@ -130,7 +130,7 @@ $concours = $stmt->fetch(PDO::FETCH_ASSOC);
                 <div id="wrapper_admin">
                     <div class="encart_concours">
                         <h1>Administration du concours</h1>
-                        
+                        <a href="index.php" class="fb-gallery-link fb-form-participate-infos"><- Revenir à la galerie</a>
                         <?php
                             if (isset($_POST['formSend']) || isset($_POST['formAuthenticatedSend'])) {
                                 if (count($formErrors) > 0) {
