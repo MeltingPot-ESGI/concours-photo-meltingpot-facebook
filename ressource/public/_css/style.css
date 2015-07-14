@@ -207,3 +207,10 @@ table {
 .highlited {
     border: 5px solid #6e8fd3;
 }
+
+.fb-admin-link {
+    bottom: 50px;
+    position: absolute;
+    width: 100%;
+    left: 0px;
+}

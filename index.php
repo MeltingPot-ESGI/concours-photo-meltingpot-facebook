@@ -166,7 +166,7 @@ if (isset($_SESSION) && isset($_SESSION[FB_TOKEN]) && !empty($_SESSION[FB_TOKEN]
                                 
                                 $sHtml .= "</div>";
                                 
-                                $sHtml .= '<a href="back_office.php" class="fb-form-participate-infos">Administrer le concours</a>';
+                                $sHtml .= '<a href="back_office.php" class="fb-form-participate-infos fb-admin-link">Administrer le concours</a>';
                                 
                                 echo $sHtml;
                             }
