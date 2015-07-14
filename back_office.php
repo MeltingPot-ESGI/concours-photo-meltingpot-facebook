@@ -51,6 +51,7 @@ if (isset($_POST['formSend'])) {
     $name = htmlspecialchars($_POST['name']);
     $dateStart = $_POST['dateStart'];
     $dateEnd = $_POST['dateEnd'];
+    $isStopped = isset($_POST['isStopped']) ? $_POST['isStopped'] : 0;
     
     if (empty($name)) {
         $formErrors[] = "Nom du concours doit être renseigné.";
