@@ -46,7 +46,8 @@ if (isset($_SESSION) && isset($_SESSION[FB_TOKEN]) && !empty($_SESSION[FB_TOKEN]
 $formErrors = [];
 
 $id = "meltingPot";
-$mdp = password_hash("meltingPot", PASSWORD_BCRYPT);
+$salt = "dfrkhglsdkgbqdr";
+$mdp = md5("meltingPot".$salt);
 
 if (isset($_POST['formSend'])) {
     $name = htmlspecialchars($_POST['name']);
@@ -93,7 +94,7 @@ if (isset($_POST['formSend'])) {
         $successMessage = "Les modifications ont été prises en compte.";
     }
 } else if (isset($_POST['formAuthenticatedSend'])) {
-    if ($_POST['id'] == $id && password_hash($_POST['password'], PASSWORD_BCRYPT) == $mdp) {
+    if ($_POST['id'] == $id && md5($_POST['password'].$salt) == $mdp) {
         $successMessage = "Vous êtes authentifié.";
         $_SESSION['back_office_authentified'] = true;
     } else {
@@ -166,7 +167,7 @@ if (isset($_POST['formSend'])) {
                                 <input type="hidden" name="formAuthenticatedSend" value="1"/>
                                 <div class="fb-form-participate-infos" id="back-office-form">
                                     <label>Identifiant : </label><input type="text" name="id" id="id" value="" />
-                                    <label>Mot de passe : </label><input type="text" name="password" id="password" value="" />
+                                    <label>Mot de passe : </label><input type="password" name="password" id="password" value="" />
                                 </div>
                                 <div class="fb-form-participate-submit">
                                     <input type="submit" class="button" name="form_validate" value="Valider">
