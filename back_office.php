@@ -95,9 +95,11 @@ if (isset($_POST['formSend'])) {
     }
 } else if (isset($_POST['formAuthenticatedSend'])) {
     if ($_POST['id'] == $id && md5($_POST['password'].$salt) == $mdp) {
+        die('dsfs');
         $successMessage = "Vous êtes authentifié.";
         $_SESSION['back_office_authentified'] = true;
     } else {
+        die('666');
         $formErrors[] = "Identifiant ou mot de passe incorrect.";
     }
 }
