@@ -72,7 +72,6 @@ $concours = $stmtConcours->fetch(PDO::FETCH_ASSOC);
                         <h1>CONCOURS PHOTO TATOUAGE</h1>
                         
                         <?php
-                            var_dump($concours);
                         if ((strtotime($concours['date_end']) < time()) || ($concours['is_stopped'])) {
                         ?>
                         <div class="parent-container">
