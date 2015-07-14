@@ -160,7 +160,7 @@ $concours = $stmt->fetch(PDO::FETCH_ASSOC);
                                 <div class="fb-form-participate-infos" id="back-office-form">
                                     <div class="form_ligne"><label>Nom du concours : </label><input type="text" name="name" id="name" value="<?php echo $concours['name']; ?>" /></div>
                                     <div class="form_ligne"><label>Date de début (jj-mm-aaaa) : </label><input type="text" name="dateStart" id="dateStart" value="<?php echo date('m-d-Y', strtotime($concours['date_start'])); ?>" /></div>
-                                    <div class="form_ligne"><label>Date de fin (jj-mm-aaaa) : </label><input type="text" name="dateEnd" id="dateEnd" value="<?php echo $concours['date_end']; ?>" /></div>
+                                    <div class="form_ligne"><label>Date de fin (jj-mm-aaaa) : </label><input type="text" name="dateEnd" id="dateEnd" value="<?php echo date('m-d-Y', strtotime($concours['date_end'])); ?>" /></div>
                                     <div class="form_ligne"><label for="isStopped" class="label_checkbox">Stopper le concours</a> </label><input type="checkbox" name="isStopped" value="1" <?php echo $concours['is_stopped'] ? 'checked' : ''; ?> id="isStopped"></div>
                                 </div>
                                 <div class="fb-form-participate-submit">
