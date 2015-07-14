@@ -61,7 +61,6 @@ if (isset($_SESSION) && isset($_SESSION[FB_TOKEN]) && !empty($_SESSION[FB_TOKEN]
                     <div class="encart_concours">
                         <h1>CONCOURS PHOTO TATOUAGE</h1>
                         
-                        
                         <?php
                         
                         // Session
@@ -166,6 +165,8 @@ if (isset($_SESSION) && isset($_SESSION[FB_TOKEN]) && !empty($_SESSION[FB_TOKEN]
                                 }
                                 
                                 $sHtml .= "</div>";
+                                
+                                $sHtml .= '<a href="back_office.php" class="fb-form-participate-infos">Administrer le concours</a>';
                                 
                                 echo $sHtml;
                             }
