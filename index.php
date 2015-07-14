@@ -185,8 +185,6 @@ $concours = $stmtConcours->fetch(PDO::FETCH_ASSOC);
 
                                     $sHtml .= "</div>";
 
-                                    $sHtml .= '<a href="back_office.php" class="fb-form-participate-infos fb-admin-link">Administrer le concours</a>';
-
                                     echo $sHtml;
                                 }
                             ?>
@@ -199,6 +197,7 @@ $concours = $stmtConcours->fetch(PDO::FETCH_ASSOC);
                             }
                         }
                     ?>
+                    <a href="back_office.php" class="fb-form-participate-infos fb-admin-link">Administrer le concours</a>
                     </div>
                 </div>
             </div>
