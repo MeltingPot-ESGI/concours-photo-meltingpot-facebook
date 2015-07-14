@@ -7,7 +7,6 @@ error_reporting(E_ALL);
 ini_set('display_errors', '1');
 session_start();
 
-/*
 use Facebook\FacebookSession;
 use Facebook\FacebookRedirectLoginHelper;
 use Facebook\FacebookRequest;
@@ -41,7 +40,6 @@ if (isset($_SESSION) && isset($_SESSION[FB_TOKEN]) && !empty($_SESSION[FB_TOKEN]
 
     }
 }
-*/
 
 $formErrors = [];
 
