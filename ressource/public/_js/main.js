@@ -16,6 +16,16 @@ window.fbAsyncInit = function() {
      fjs.parentNode.insertBefore(js, fjs);
 }(document, "script", "facebook-jssdk"));
 
+/*
+var fbLikeButtons = document.getElementsByClassName('pluginButtonContainer');
+
+for (i=0, l=fbLikeButtons.length; i<l; i++) {
+    fbLikeButtons[i].onclick = function() {
+        this.get
+    };
+}
+*/
+
 function streamPublish(name, description, hrefTitle, hrefLink, userPrompt)
 {
     FB.ui(

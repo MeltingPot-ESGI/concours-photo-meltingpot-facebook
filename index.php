@@ -46,7 +46,7 @@ if (isset($_SESSION) && isset($_SESSION[FB_TOKEN]) && !empty($_SESSION[FB_TOKEN]
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Titre de la page</title>
+        <title>Concours photo</title>
         <meta name="description" content="description de ma page">
     </head>
     
