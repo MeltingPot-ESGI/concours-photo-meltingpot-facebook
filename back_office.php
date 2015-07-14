@@ -77,8 +77,6 @@ if (isset($_POST['formSend'])) {
     }
     
     if (count($formErrors) < 1) {
-        
-        /*
         $stmt = $pdo->prepare("INSERT INTO \"Concours\" (name, date_start, date_end, is_stopped) VALUES (:name, :date_start, :date_end, :is_stopped)");
         $res = $stmt->execute(
             array(
@@ -87,7 +85,7 @@ if (isset($_POST['formSend'])) {
                 ':date_end' => $dateEnd,
                 ':is_stopped' => $isStopped,
             )
-        );*/
+        );
         
         $successMessage = "Les modifications ont été prises en compte.";
     }
