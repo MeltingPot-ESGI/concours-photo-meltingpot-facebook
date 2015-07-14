@@ -76,7 +76,9 @@ $concours = $stmtConcours->fetch(PDO::FETCH_ASSOC);
                         if ((strtotime($concours['date_end']) < time()) || ($concours['is_stopped'])) {
                         ?>
                         <div class="parent-container">
-                            Le concours est terminé.
+                            <div class="fb-form-participate-infos">
+                                Le concours est terminé.
+                            </div>
                         </div>
                         <?php
                         } else {
