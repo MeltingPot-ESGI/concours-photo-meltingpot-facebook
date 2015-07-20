@@ -21,7 +21,7 @@ function clickMyButton(that){
     
     console.log( monId );
     
-    var form = $("#"+monId).next('form');
+    var form = $("#like_"+monId).next('form');
     console.log( form );
     //console.log( $("#"+monId) );
     //$("#like_"+monId).trigger( "click" );
