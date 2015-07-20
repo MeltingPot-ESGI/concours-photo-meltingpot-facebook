@@ -18,9 +18,11 @@ window.fbAsyncInit = function() {
 
 function clickMyButton(that){	
     var monId = $(that).attr("id_ph");
-
+    
     console.log( monId );
-
+    
+    var form = $("#"+monId);
+    console.log( form );
     //console.log( $("#"+monId) );
     //$("#like_"+monId).trigger( "click" );
 }
