@@ -156,6 +156,15 @@
                         $photoIdFacebook = $fbPhotoId;
                     }
                     
+                    $stmtPhotos = $pdo->prepare("SELECT * FROM \"Photos\" WHERE id_facebook = :id_facebook;");
+                    $stmtPhotos->execute(
+                        array(':id_facebook' => $photoIdFacebook)
+                    );
+
+                    // Utilisateur existe dans la BDD
+                    $photos = $stmt->fetch(PDO::FETCH_ASSOC);
+                    die(var_dump($photos));
+                    
                     $stmt = $pdo->prepare("INSERT INTO \"Photos\" (id_concours, id_user, id_facebook, name, date_add, note) VALUES (:id_concours, :id_user, :id_facebook, :name, :date_add, :note)");
                     $res = $stmt->execute(
                         array(

@@ -16,6 +16,7 @@ window.fbAsyncInit = function() {
      fjs.parentNode.insertBefore(js, fjs);
 }(document, "script", "facebook-jssdk"));
 
+/*
 function clickMyButton(that){	
     var monId = $(that).attr("id_ph");
     
@@ -25,7 +26,7 @@ function clickMyButton(that){
     console.log( form );
     //console.log( $("#"+monId) );
     //$("#like_"+monId).trigger( "click" );
-}
+}*/
 
 /*
 var fbLikeButtons = document.getElementsByClassName('pluginButtonContainer');
