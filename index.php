@@ -124,7 +124,7 @@ $concours = $stmtConcours->fetch(PDO::FETCH_ASSOC);
                                             $dataPhotoName = $photo['name'];
                             ?>
                                         <div class="photo-facebook">
-                                            <a class="photo-facebook-js" title="<button id_ph='<?php echo trim($photo['id_facebook']); ?>'>test</button>" href="<?php echo $source; ?>" id='<?php echo trim($photo['id_facebook']); ?>' data-mfp-src="<?php echo $source; ?>"><img src="<?php echo $source; ?>" title="plume sur tete" border="0" height="100" width="100" ></a>
+                                            <a class="photo-facebook-js" title="<button id_ph='<?php echo trim($photo['id_facebook']); ?>' onclick='clickMyButton(this);'>test</button>" href="<?php echo $source; ?>" id='<?php echo trim($photo['id_facebook']); ?>' data-mfp-src="<?php echo $source; ?>"><img src="<?php echo $source; ?>" title="plume sur tete" border="0" height="100" width="100" ></a>
                                             <div id='fb-root'></div>
                                             <p><?php echo $dataPhotoName; ?></p>
                                             <div class='fb-like' data-href='<?php echo $dataFbHref; ?>' data-layout='button_count' data-action='like' data-show-faces='false' data-share='false'></div>
