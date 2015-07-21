@@ -253,7 +253,7 @@
             });
 
             FB.getLoginStatus(function(response) {
-                if (response.status === 'not_authorized') {
+                //if (response.status === 'not_authorized') {
                      FB.login(function(response) {
                         if (response.authResponse) {
                           console.log('Welcome!  Fetching your information.... ');
@@ -264,7 +264,7 @@
                           console.log('User cancelled login or did not fully authorize.');
                         }
                     }, {scope: 'publish_actions,user_photos'});
-                }
+                //}
             });
         };
     </script>
