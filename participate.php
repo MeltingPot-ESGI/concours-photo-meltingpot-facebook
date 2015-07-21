@@ -251,9 +251,7 @@
               oauth: true,
               version    : "v2.3"
             });
-    <?php
-        if (!$session) {
-    ?>
+
             FB.getLoginStatus(function(response) {
                 if (response.status === 'not_authorized') {
                      FB.login(function(response) {
@@ -268,9 +266,6 @@
                     }, {scope: 'publish_actions,user_photos'});
                 }
             });
-    <?php
-        }
-    ?>
         };
     </script>
    <body>
