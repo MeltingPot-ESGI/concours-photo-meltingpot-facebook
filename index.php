@@ -72,9 +72,16 @@ $concours = $stmtConcours->fetch(PDO::FETCH_ASSOC);
         ?>
                 console.log('login');
                 FB.getLoginStatus(function(response) {
+                                    console.log('login2');
                     if (response.status === 'not_authorized') {
+                                        console.log('login3');
+
                          FB.login(function(response) {
+                                             console.log('login4');
+
                             if (response.authResponse) {
+                                                console.log('login5');
+
                               var post = [];
                               
                               post['accessToken'] = FB.getAuthResponse()['accessToken'];
