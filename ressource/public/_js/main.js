@@ -1,36 +1,8 @@
-function statusChangeCallback(response) {
-    console.log('statusChangeCallback');
-    console.log(response);
-
-    if (response.status === 'not_authorized') {
-      console.log('error not auth');
-    } else {
-      console.log('bite cul poil');
-    }
-}
-
-  // This function is called when someone finishes with the Login
-  // Button.  See the onlogin handler attached to it in the sample
-  // code below.
 function checkLoginState() {
     FB.getLoginStatus(function(response) {
       statusChangeCallback(response);
     });
 }
-
-window.fbAsyncInit = function() {
-  FB.init({
-    appId      : '342576715932172',
-    cookie: true,
-    xfbml      : true,
-    oauth: true,
-    version    : "v2.3"
-  });
-  
-    FB.getLoginStatus(function(response) {
-        statusChangeCallback(response);
-    });
-};
 
 (function(d, s, id){
    var js, fjs = d.getElementsByTagName(s)[0];

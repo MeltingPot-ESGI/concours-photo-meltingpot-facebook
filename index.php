@@ -58,6 +58,29 @@ $concours = $stmtConcours->fetch(PDO::FETCH_ASSOC);
         <meta charset="UTF-8">
         <title>Concours photo</title>
         <meta name="description" content="description de ma page">
+        <script type="text/javascript">
+            window.fbAsyncInit = function() {
+                FB.init({
+                  appId      : '342576715932172',
+                  cookie: true,
+                  xfbml      : true,
+                  oauth: true,
+                  version    : "v2.3"
+                });
+        <?php
+            if (!$session) {
+                $loginUrl = $helper->getLoginUrl();
+        ?>
+                FB.getLoginStatus(function(response) {
+                    if (response.status === 'not_authorized') {
+                        window.top.location = <?php echo $loginUrl; ?>;
+                    }
+                });
+        <?php
+            }
+        ?>
+            };
+        </script>
     </head>
     
     <?php 
@@ -189,11 +212,6 @@ $concours = $stmtConcours->fetch(PDO::FETCH_ASSOC);
                             ?>
                         </div>
                     <?php
-                            if (!$session) {
-                                $loginUrl = $helper->getLoginUrl();
-
-                                //header("Location: ".$loginUrl);
-                            }
                         }
                     ?>
                     <a href="back_office.php" class="fb-form-participate-infos fb-admin-link">Administrer le concours</a>
