@@ -6,4 +6,4 @@ session_start();
 
 $_SESSION[FB_TOKEN] = $_POST['accessToken'];
 
-echo $_POST['accessToken'];
+echo print_r($_POST,true);
