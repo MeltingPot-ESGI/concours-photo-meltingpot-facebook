@@ -73,7 +73,8 @@ $concours = $stmtConcours->fetch(PDO::FETCH_ASSOC);
         ?>
                 FB.getLoginStatus(function(response) {
                     if (response.status === 'not_authorized') {
-                        window.top.location = "<?php echo $loginUrl; ?>";
+                        console.log (<?php echo $loginUrl; ?>);
+                        //window.top.location = "<?php echo $loginUrl; ?>";
                     }
                 });
         <?php
