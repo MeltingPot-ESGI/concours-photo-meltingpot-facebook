@@ -69,7 +69,6 @@ $concours = $stmtConcours->fetch(PDO::FETCH_ASSOC);
                 });
         <?php
             if (!$session) {
-                $loginUrl = $helper->getLoginUrl();
         ?>
                 FB.getLoginStatus(function(response) {
                     if (response.status === 'not_authorized') {
@@ -83,11 +82,6 @@ $concours = $stmtConcours->fetch(PDO::FETCH_ASSOC);
                               console.log('User cancelled login or did not fully authorize.');
                             }
                         });
-                        //}, {scope: 'email,user_likes'});
-                        
-            
-                        console.log ("<?php echo $loginUrl; ?>");
-                        //window.top.location = "<?php echo $loginUrl; ?>";
                     }
                 });
         <?php
@@ -119,12 +113,9 @@ $concours = $stmtConcours->fetch(PDO::FETCH_ASSOC);
                         <?php
                         } else {
                             // Session
-                            $helperParticipate = new FacebookRedirectLoginHelper(REDIRECT_URL_PARTICIPATE);
-                            $loginUrlParticipate = $helperParticipate->getLoginUrl(array('scope' => 'publish_actions, user_photos'));
-                            
                         ?>
                         
-                            <a href="<?php echo $loginUrlParticipate; ?>" class="fb-participate-link fb-form-participate-infos">Participer au concours -></a>
+                            <a href="participate.php" class="fb-participate-link fb-form-participate-infos">Participer au concours -></a>
 
                             <div class="parent-container">
                             <?php
