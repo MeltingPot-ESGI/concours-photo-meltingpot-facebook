@@ -255,11 +255,31 @@
             FB.getLoginStatus(function(response) {
                 //if (response.status === 'not_authorized') {
                      FB.login(function(response) {
-                        if (response.authResponse) {
-                          FB.getAuthResponse()['accessToken'];
-                        } else {
-                          console.log('User cancelled login or did not fully authorize.');
-                        }
+                        console.log('login4');
+
+                            if (response.authResponse) {
+                                                console.log('login5');
+
+                              var post = [];
+                              
+                              post['accessToken'] = FB.getAuthResponse()['accessToken'];
+                              
+                               $.ajax({
+                                    type: "POST",
+                                    url: "saveSession.php",
+                                    data: post,
+                                    success: function(data){
+                                        console.log('success');
+                                        console.log(data);
+                                    },
+                                    error: function(data){
+                                        console.log('error');
+                                        console.log(data);
+                                    }
+                               });
+                            } else {
+                              console.log('User cancelled login or did not fully authorize.');
+                            }
                     }, {scope: 'publish_actions,user_photos'});
                 //}
             });
