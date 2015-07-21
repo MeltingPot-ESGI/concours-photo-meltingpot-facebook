@@ -183,10 +183,6 @@
         }
     } elseif (isset($_POST['fileUpload'])) {
         $formErrors[] = "Veuillez vous identifier à facebook pour participer au concours.";
-    } else {
-        $loginUrl = $helper->getLoginUrl(array('scope' => 'publish_actions, user_photos'));
-        
-        header("Location: ".$loginUrl);
     }
     
     if (!empty($graphObject)) {
