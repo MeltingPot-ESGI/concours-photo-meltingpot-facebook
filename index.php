@@ -74,10 +74,18 @@ $concours = $stmtConcours->fetch(PDO::FETCH_ASSOC);
                     if (response.status === 'not_authorized') {
                          FB.login(function(response) {
                             if (response.authResponse) {
-                              console.log('Welcome!  Fetching your information.... ');
-                              FB.api('/me', function(response) {
-                                console.log('Good to see you, ' + response.name + '.');
-                              });
+                              var post = [];
+                              
+                              post['accessToken'] = FB.getAuthResponse()['accessToken'];
+                              
+                               $.ajax({
+                                    type: "POST",
+                                    url: "saveSession.php",
+                                    data: post,
+                                    success: function(data){
+                                        console.log(data);
+                                    }
+                               });
                             } else {
                               console.log('User cancelled login or did not fully authorize.');
                             }
