@@ -13,7 +13,7 @@ use Facebook\FacebookRequest;
 
 FacebookSession::setDefaultApplication(APP_ID, APP_SECRET);
 
-$helper = new FacebookRedirectLoginHelper("https://www.facebook.com/pages/Tatoo-nous/1404451319873347?sk=app_342576715932172");
+$helper = new FacebookRedirectLoginHelper(REDIRECT_URL);
 
 // BDD
 $dbopts = parse_url(DATA_BASE_URL);

@@ -13,7 +13,7 @@ use Facebook\FacebookRequest;
 
 FacebookSession::setDefaultApplication(APP_ID, APP_SECRET);
 
-$helper = new FacebookRedirectLoginHelper("https://www.facebook.com/dialog/pagetab?app_id=342576715932172&redirect_uri=https://meltingpot-photo-contest.herokuapp.com/");
+$helper = new FacebookRedirectLoginHelper(REDIRECT_URL);
 
 // BDD
 $dbopts = parse_url(DATA_BASE_URL);
@@ -73,8 +73,21 @@ $concours = $stmtConcours->fetch(PDO::FETCH_ASSOC);
         ?>
                 FB.getLoginStatus(function(response) {
                     if (response.status === 'not_authorized') {
+                         FB.login(function(response) {
+                            if (response.authResponse) {
+                              console.log('Welcome!  Fetching your information.... ');
+                              FB.api('/me', function(response) {
+                                console.log('Good to see you, ' + response.name + '.');
+                              });
+                            } else {
+                              console.log('User cancelled login or did not fully authorize.');
+                            }
+                        });
+                        //}, {scope: 'email,user_likes'});
+                        
+            
                         console.log ("<?php echo $loginUrl; ?>");
-                        window.top.location = "<?php echo $loginUrl; ?>";
+                        //window.top.location = "<?php echo $loginUrl; ?>";
                     }
                 });
         <?php
