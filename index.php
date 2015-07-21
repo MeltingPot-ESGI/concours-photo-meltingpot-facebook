@@ -85,6 +85,9 @@ $concours = $stmtConcours->fetch(PDO::FETCH_ASSOC);
                                     data: post,
                                     success: function(data){
                                         console.log(data);
+                                    },
+                                    error: function(data){
+                                        console.log(data);
                                     }
                                });
                             } else {
