@@ -1,42 +1,45 @@
-window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '342576715932172',
-      cookie: true,
-      xfbml      : true,
-      oauth: true,
-      version    : "v2.3"
-    });
-    };
+function statusChangeCallback(response) {
+    console.log('statusChangeCallback');
+    console.log(response);
 
-    (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "//connect.facebook.net/fr_FR/sdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
+    if (response.status === 'not_authorized') {
+      console.log('error not auth');
+    } else {
+      console.log('bite cul poil');
+    }
+}
+
+  // This function is called when someone finishes with the Login
+  // Button.  See the onlogin handler attached to it in the sample
+  // code below.
+function checkLoginState() {
+    FB.getLoginStatus(function(response) {
+      statusChangeCallback(response);
+    });
+}
+
+window.fbAsyncInit = function() {
+  FB.init({
+    appId      : '342576715932172',
+    cookie: true,
+    xfbml      : true,
+    oauth: true,
+    version    : "v2.3"
+  });
+  
+    FB.getLoginStatus(function(response) {
+        statusChangeCallback(response);
+    });
+};
+
+(function(d, s, id){
+   var js, fjs = d.getElementsByTagName(s)[0];
+   if (d.getElementById(id)) {return;}
+   js = d.createElement(s); js.id = id;
+   js.src = "//connect.facebook.net/fr_FR/sdk.js";
+   fjs.parentNode.insertBefore(js, fjs);
 }(document, "script", "facebook-jssdk"));
 
-/*
-function clickMyButton(that){	
-    var monId = $(that).attr("id_ph");
-    
-    console.log( monId );
-    
-    var form = $("#like_"+monId).next('form');
-    console.log( form );
-    //console.log( $("#"+monId) );
-    //$("#like_"+monId).trigger( "click" );
-}*/
-
-/*
-var fbLikeButtons = document.getElementsByClassName('pluginButtonContainer');
-
-for (i=0, l=fbLikeButtons.length; i<l; i++) {
-    fbLikeButtons[i].onclick = function() {
-        this.get
-    };
-}
-*/
 
 function streamPublish(name, description, hrefTitle, hrefLink, userPrompt)
 {
