@@ -192,7 +192,7 @@ $concours = $stmtConcours->fetch(PDO::FETCH_ASSOC);
                             if (!$session) {
                                 $loginUrl = $helper->getLoginUrl();
 
-                                header("Location: ".$loginUrl);
+                                //header("Location: ".$loginUrl);
                             }
                         }
                     ?>
