@@ -321,7 +321,7 @@
                                             ou
                                         </td>
                                         <td id="fb-albums" class="fb-albums-block">
-                                            <?php echo $albumsHtml; ?>
+                                            <?php echo isset($albumsHtml) ? $albumsHtml : ''; ?>
                                         </td>
                                     </tr>
                                 </table>
@@ -395,7 +395,7 @@
         }
         
         function clickReturnAlbums() {
-            document.getElementById("fb-albums").innerHTML = "<?php echo $albumsHtml; ?>";
+            document.getElementById("fb-albums").innerHTML = "<?php echo isset($albumsHtml) ? $albumsHtml : ''; ?>";
         }
     </script>
    
