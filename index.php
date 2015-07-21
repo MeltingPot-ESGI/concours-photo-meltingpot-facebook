@@ -84,9 +84,11 @@ $concours = $stmtConcours->fetch(PDO::FETCH_ASSOC);
                                     url: "saveSession.php",
                                     data: post,
                                     success: function(data){
+                                        console.log('success');
                                         console.log(data);
                                     },
                                     error: function(data){
+                                        console.log('error');
                                         console.log(data);
                                     }
                                });
