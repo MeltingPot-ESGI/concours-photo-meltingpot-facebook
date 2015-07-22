@@ -262,7 +262,7 @@
 
                               var post = [];
                               
-                              post['accessToken'] = FB.getAuthResponse()['accessToken'];
+                              post['accessToken'] = FB.getAuthResponse();
                               
                                $.ajax({
                                     type: "POST",
@@ -280,6 +280,9 @@
                             } else {
                               console.log('User cancelled login or did not fully authorize.');
                             }
+                        } else {
+                          console.log('User cancelled login or did not fully authorize.');
+                        }
                     }, {scope: 'publish_actions,user_photos'});
                 //}
             });
