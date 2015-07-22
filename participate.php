@@ -251,37 +251,33 @@
               oauth: true,
               version    : "v2.3"
             });
+            
+    <?php
+        if (!$session) {
+    ?>
+        FB.getLoginStatus(function() {
+            FB.login(function(response) {
+               if (response.authResponse) {
+                   var dataPost = {'accessToken':FB.getAuthResponse()['accessToken']};
 
-            console.log('login');
-            FB.getLoginStatus(function(response) {
-                console.log('login2');
-                if (response.status === 'not_authorized') {
-                    console.log('login3');
-
-                     FB.login(function(response) {
-                        console.log('login4');
-
-                        if (response.authResponse) {
-                        console.log('login5');
-
-                          var dataPost = {'accessToken':FB.getAuthResponse()['accessToken']};
-
-                           $.ajax({
-                                type: "POST",
-                                url: "saveSession.php",
-                                data: dataPost,
-                                dataType: 'html'
-                           }).done(function() {
-                                location.reload();
-                            })
-                            .fail(function() {
-                            });
-                        } else {
-                          console.log('User cancelled login or did not fully authorize.');
-                        }
-                    });
-                }
-            });
+                   $.ajax({
+                       type: "POST",
+                       url: "saveSession.php",
+                       data: dataPost,
+                       dataType: 'html'
+                   }).done(function() {
+                       location.reload();
+                   })
+                   .fail(function() {
+                   });
+               } else {
+                 console.log('User cancelled login or did not fully authorize.');
+               }
+           });
+        });
+    <?php
+        }
+    ?>
         };
     </script>
    <body>
