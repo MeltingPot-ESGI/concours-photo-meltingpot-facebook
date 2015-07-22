@@ -62,26 +62,28 @@ $concours = $stmtConcours->fetch(PDO::FETCH_ASSOC);
         ?>
                 console.log('debut');
             FB.getLoginStatus(function(response) {
-                FB.login(function(response) {
-                    console.log('test');
-                   if (response.authResponse) {
-                       var dataPost = {'accessToken':FB.getAuthResponse()['accessToken']};
+                if (response.status === 'not_authorized') {
+                    FB.login(function(response) {
+                        console.log('test');
+                       if (response.authResponse) {
+                           var dataPost = {'accessToken':FB.getAuthResponse()['accessToken']};
 
-                       $.ajax({
-                           type: "POST",
-                           url: "saveSession.php",
-                           data: dataPost,
-                           dataType: 'html'
-                       }).done(function() {
-                           console.log('test2');
-                            location.reload();
-                       })
-                       .fail(function() {
-                       });
-                   } else {
-                     console.log('User cancelled login or did not fully authorize.');
-                   }
-               });
+                           $.ajax({
+                               type: "POST",
+                               url: "saveSession.php",
+                               data: dataPost,
+                               dataType: 'html'
+                           }).done(function() {
+                               console.log('test2');
+                                location.reload();
+                           })
+                           .fail(function() {
+                           });
+                       } else {
+                         console.log('User cancelled login or did not fully authorize.');
+                       }
+                   });
+                }
             });
         <?php
             } else {
