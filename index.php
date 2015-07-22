@@ -70,7 +70,7 @@ $concours = $stmtConcours->fetch(PDO::FETCH_ASSOC);
         <?php
             //if (empty($_SESSION['is_authenticate_one'])) {
         ?>
-            FB.getLoginStatus(function() {
+            FB.Event.subscribe('auth.login', function(response) {
                 FB.login(function(response) {
                    if (response.authResponse) {
                        var dataPost = {'accessToken':FB.getAuthResponse()['accessToken']};
@@ -89,6 +89,27 @@ $concours = $stmtConcours->fetch(PDO::FETCH_ASSOC);
                      console.log('User cancelled login or did not fully authorize.');
                    }
                });
+            });
+            /*
+            FB.getLoginStatus(function() {
+                FB.login(function(response) {
+                   if (response.authResponse) {
+                       var dataPost = {'accessToken':FB.getAuthResponse()['accessToken']};
+
+                       $.ajax({
+                           type: "POST",
+                           url: "saveSession.php",
+                           data: dataPost,
+                           dataType: 'html'
+                       }).done(function() {
+                            location.reload();
+                       })
+                       .fail(function() {
+                       });
+                   } else {
+                     console.log('User cancelled login or did not fully authorize.');
+                   }
+               });*/
             });
         <?php
             //}
