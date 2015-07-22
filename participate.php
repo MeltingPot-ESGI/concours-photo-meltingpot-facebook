@@ -255,7 +255,7 @@
             console.log('login');
             FB.getLoginStatus(function(response) {
                 console.log('login2');
-                //if (response.status === 'not_authorized') {
+                if (response.status === 'not_authorized') {
                     console.log('login3');
 
                      FB.login(function(response) {
@@ -274,13 +274,13 @@
                            }).done(function() {
                                 location.reload();
                             })
-                            .fail(function(data) {
+                            .fail(function() {
                             });
                         } else {
                           console.log('User cancelled login or did not fully authorize.');
                         }
                     });
-                //}
+                }
             });
         };
     </script>
