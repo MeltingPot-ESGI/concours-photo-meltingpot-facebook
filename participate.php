@@ -271,7 +271,6 @@
                    .fail(function() {
                    });
                } else {
-                 console.log('User cancelled login or did not fully authorize.');
                }
            });
         }, {scope: 'publish_actions,user_photos'});
@@ -381,12 +380,10 @@
                                 
                                 document.getElementById("fb-albums").innerHTML = photosHtml;
                             } else {
-                                console.log(response);
                             }
                         }
                     );
                 } else {
-                  // no user session available, someone you dont know
                 }
             });
         }

@@ -60,11 +60,9 @@ $concours = $stmtConcours->fetch(PDO::FETCH_ASSOC);
         <?php
             if (!$session) {
         ?>
-                console.log('debut');
             FB.getLoginStatus(function(response) {
                 if (response.status === 'not_authorized') {
                     FB.login(function(response) {
-                        console.log('test');
                        if (response.authResponse) {
                            var dataPost = {'accessToken':FB.getAuthResponse()['accessToken']};
 
@@ -74,13 +72,11 @@ $concours = $stmtConcours->fetch(PDO::FETCH_ASSOC);
                                data: dataPost,
                                dataType: 'html'
                            }).done(function() {
-                               console.log('test2');
-                                location.reload();
+                               location.reload();
                            })
                            .fail(function() {
                            });
                        } else {
-                         console.log('User cancelled login or did not fully authorize.');
                        }
                    });
                 }
@@ -88,13 +84,9 @@ $concours = $stmtConcours->fetch(PDO::FETCH_ASSOC);
         <?php
             } else {
         ?>
-                console.log('test3');
                 FB.Event.subscribe('auth.statusChange', function(response) {
-                    console.log('test4');
                 FB.login(function(response) {
-                    console.log('test5');
                    if (response.authResponse) {
-                       console.log('test6');
                        var dataPost = {'accessToken':FB.getAuthResponse()['accessToken']};
 
                        $.ajax({
@@ -103,13 +95,11 @@ $concours = $stmtConcours->fetch(PDO::FETCH_ASSOC);
                            data: dataPost,
                            dataType: 'html'
                        }).done(function() {
-                           console.log('test7');
                             location.reload();
                        })
                        .fail(function() {
                        });
                    } else {
-                     console.log('User cancelled login or did not fully authorize.');
                    }
                });
             });
@@ -258,11 +248,6 @@ $concours = $stmtConcours->fetch(PDO::FETCH_ASSOC);
     <?php echo include_js(); ?>
     <script>
         $(document).ready(function() {
-            function clickMyButton(){
-                console.log('mon beau button');	
-
-            }
-
             $('.parent-container').magnificPopup({
                 delegate: 'a.photo-facebook-js', // child items selector, by clicking on it popup will open
                 type: 'image',
