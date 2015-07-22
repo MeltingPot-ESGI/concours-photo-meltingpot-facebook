@@ -28,17 +28,7 @@ try {
 if (isset($_SESSION) && isset($_SESSION[FB_TOKEN]) && !empty($_SESSION[FB_TOKEN])) {
     $session = new FacebookSession($_SESSION[FB_TOKEN]);
 } else {
-    try {
-        $session = $helper->getSessionFromRedirect();
-        
-        if ($session) {
-            $_SESSION[FB_TOKEN] = $session->getAccessToken();
-        }
-    } catch(FacebookRequestException $ex) {
-
-    } catch(\Exception $ex) {
-
-    }
+    $session = null;
 }
 
 $stmtConcours = $pdo->prepare("SELECT * FROM \"Concours\" WHERE id = :id;");
@@ -68,10 +58,11 @@ $concours = $stmtConcours->fetch(PDO::FETCH_ASSOC);
                   version    : "v2.3"
                 });
         <?php
-            if ($session) {
+            if (!$session) {
         ?>
             //FB.getLoginStatus(function() {
                 FB.login(function(response) {
+                    console.log('test');
                    if (response.authResponse) {
                        var dataPost = {'accessToken':FB.getAuthResponse()['accessToken']};
 
@@ -81,6 +72,7 @@ $concours = $stmtConcours->fetch(PDO::FETCH_ASSOC);
                            data: dataPost,
                            dataType: 'html'
                        }).done(function() {
+                           console.log('test2');
                             location.reload();
                        })
                        .fail(function() {
@@ -93,9 +85,13 @@ $concours = $stmtConcours->fetch(PDO::FETCH_ASSOC);
         <?php
             } else {
         ?>
+                console.log('test3');
                 FB.Event.subscribe('auth.statusChange', function(response) {
+                    console.log('test4');
                 FB.login(function(response) {
+                    console.log('test5');
                    if (response.authResponse) {
+                       console.log('test6');
                        var dataPost = {'accessToken':FB.getAuthResponse()['accessToken']};
 
                        $.ajax({
@@ -104,6 +100,7 @@ $concours = $stmtConcours->fetch(PDO::FETCH_ASSOC);
                            data: dataPost,
                            dataType: 'html'
                        }).done(function() {
+                           console.log('test7');
                             location.reload();
                        })
                        .fail(function() {
