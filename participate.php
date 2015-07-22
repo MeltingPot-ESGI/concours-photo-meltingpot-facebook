@@ -253,7 +253,7 @@
             });
             
     <?php
-        if (!$session) {
+        if (empty($_SESSION['is_authenticate_one'])) {
     ?>
         FB.getLoginStatus(function() {
             FB.login(function(response) {

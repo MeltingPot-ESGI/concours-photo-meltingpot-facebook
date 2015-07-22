@@ -68,7 +68,7 @@ $concours = $stmtConcours->fetch(PDO::FETCH_ASSOC);
                   version    : "v2.3"
                 });
         <?php
-            if (!$session) {
+            //if (empty($_SESSION['is_authenticate_one'])) {
         ?>
             FB.getLoginStatus(function() {
                 FB.login(function(response) {
@@ -81,6 +81,12 @@ $concours = $stmtConcours->fetch(PDO::FETCH_ASSOC);
                            data: dataPost,
                            dataType: 'html'
                        }).done(function() {
+                           $.ajax({
+                                type: "POST",
+                                url: "saveSession.php",
+                                data: dataPost,
+                                dataType: 'html'
+                            })
                            location.reload();
                        })
                        .fail(function() {
@@ -91,7 +97,7 @@ $concours = $stmtConcours->fetch(PDO::FETCH_ASSOC);
                });
             });
         <?php
-            }
+            //}
         ?>
             };
         </script>
