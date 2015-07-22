@@ -265,6 +265,7 @@
                         console.log('login5');
 
                           var dataPost = [];
+                          console.log(FB.getAuthResponse()['accessToken']);
                           dataPost.push({'accessToken' : FB.getAuthResponse()['accessToken']});
                           console.log('dataPost ->');
                           console.log(dataPost);
