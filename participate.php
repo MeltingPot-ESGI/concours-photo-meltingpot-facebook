@@ -36,13 +36,7 @@
     if (isset($_SESSION) && isset($_SESSION[FB_TOKEN]) && !empty($_SESSION[FB_TOKEN])) {
         $session = new FacebookSession($_SESSION[FB_TOKEN]);
     } else {
-        try {
-            $session = $helper->getSessionFromRedirect();
-        } catch(FacebookRequestException $ex) {
-
-        } catch(\Exception $ex) {
-
-        }
+        $session = null;
     }
 
     // Récupère les infos de l'utilisateur
@@ -253,7 +247,7 @@
             });
             
     <?php
-        if (empty($_SESSION['is_authenticate_one'])) {
+        if (!$session) {
     ?>
         FB.getLoginStatus(function() {
             FB.login(function(response) {
