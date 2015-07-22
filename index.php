@@ -81,13 +81,7 @@ $concours = $stmtConcours->fetch(PDO::FETCH_ASSOC);
                            data: dataPost,
                            dataType: 'html'
                        }).done(function() {
-                           $.ajax({
-                                type: "POST",
-                                url: "saveSession.php",
-                                data: dataPost,
-                                dataType: 'html'
-                            })
-                           location.reload();
+                            location.reload();
                        })
                        .fail(function() {
                        });
