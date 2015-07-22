@@ -265,23 +265,16 @@
                         console.log('login5');
 
                           var dataPost = {'accessToken':FB.getAuthResponse()['accessToken']};
-                          console.log(FB.getAuthResponse()['accessToken']);
-                          //dataPost.push({'accessToken' : });
-                          console.log('dataPost ->');
-                          console.log(dataPost);
+
                            $.ajax({
                                 type: "POST",
                                 url: "saveSession.php",
                                 data: dataPost,
                                 dataType: 'html'
                            }).done(function( data ) {
-                                    console.log('ajax success');
-                                    console.log(data);
-
+                               
                             })
                             .fail(function(data) {
-                                    console.log('ajax error');
-                                    console.log(data);
                             });
                         } else {
                           console.log('User cancelled login or did not fully authorize.');
