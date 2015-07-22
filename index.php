@@ -70,7 +70,7 @@ $concours = $stmtConcours->fetch(PDO::FETCH_ASSOC);
         <?php
             //if (empty($_SESSION['is_authenticate_one'])) {
         ?>
-            FB.Event.subscribe('auth.login', function(response) {
+            FB.Event.subscribe('auth.statusChange', function(response) {
                 FB.login(function(response) {
                    if (response.authResponse) {
                        var dataPost = {'accessToken':FB.getAuthResponse()['accessToken']};
