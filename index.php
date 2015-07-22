@@ -70,40 +70,26 @@ $concours = $stmtConcours->fetch(PDO::FETCH_ASSOC);
         <?php
             if (!$session) {
         ?>
-                FB.getLoginStatus(function(response) {
-                                    console.log('login2');
-                    if (response.status === 'not_authorized') {
-                                        console.log('login3');
+            FB.getLoginStatus(function() {
+                FB.login(function(response) {
+                   if (response.authResponse) {
+                       var dataPost = {'accessToken':FB.getAuthResponse()['accessToken']};
 
-                         FB.login(function(response) {
-                                             console.log('login4');
-
-                            if (response.authResponse) {
-                                                console.log('login5');
-
-                              var post = [];
-                              
-                              post['accessToken'] = FB.getAuthResponse()['accessToken'];
-                              
-                               $.ajax({
-                                    type: "POST",
-                                    url: "saveSession.php",
-                                    data: post,
-                                    success: function(data){
-                                        console.log('success');
-                                        console.log(data);
-                                    },
-                                    error: function(data){
-                                        console.log('error');
-                                        console.log(data);
-                                    }
-                               });
-                            } else {
-                              console.log('User cancelled login or did not fully authorize.');
-                            }
-                        });
-                    }
-                });
+                       $.ajax({
+                           type: "POST",
+                           url: "saveSession.php",
+                           data: dataPost,
+                           dataType: 'html'
+                       }).done(function() {
+                           location.reload();
+                       })
+                       .fail(function() {
+                       });
+                   } else {
+                     console.log('User cancelled login or did not fully authorize.');
+                   }
+               });
+            });
         <?php
             }
         ?>
