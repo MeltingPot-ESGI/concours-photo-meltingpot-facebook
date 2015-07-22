@@ -27,7 +27,6 @@ try {
 // Session
 if (isset($_SESSION) && isset($_SESSION[FB_TOKEN]) && !empty($_SESSION[FB_TOKEN])) {
     $session = new FacebookSession($_SESSION[FB_TOKEN]);
-    die(var_dump('test'));
 } else {
     try {
         $session = $helper->getSessionFromRedirect();
@@ -36,9 +35,9 @@ if (isset($_SESSION) && isset($_SESSION[FB_TOKEN]) && !empty($_SESSION[FB_TOKEN]
             $_SESSION[FB_TOKEN] = $session->getAccessToken();
         }
     } catch(FacebookRequestException $ex) {
-
+        location.reload();
     } catch(\Exception $ex) {
-
+        
     }
 }
 
