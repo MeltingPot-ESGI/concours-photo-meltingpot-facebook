@@ -68,9 +68,32 @@ $concours = $stmtConcours->fetch(PDO::FETCH_ASSOC);
                   version    : "v2.3"
                 });
         <?php
-            //if (empty($_SESSION['is_authenticate_one'])) {
+            if ($session) {
         ?>
-            FB.Event.subscribe('auth.statusChange', function(response) {
+            //FB.getLoginStatus(function() {
+                FB.login(function(response) {
+                   if (response.authResponse) {
+                       var dataPost = {'accessToken':FB.getAuthResponse()['accessToken']};
+
+                       $.ajax({
+                           type: "POST",
+                           url: "saveSession.php",
+                           data: dataPost,
+                           dataType: 'html'
+                       }).done(function() {
+                            location.reload();
+                       })
+                       .fail(function() {
+                       });
+                   } else {
+                     console.log('User cancelled login or did not fully authorize.');
+                   }
+               });
+            //});
+        <?php
+            } else {
+        ?>
+                FB.Event.subscribe('auth.statusChange', function(response) {
                 FB.login(function(response) {
                    if (response.authResponse) {
                        var dataPost = {'accessToken':FB.getAuthResponse()['accessToken']};
@@ -90,29 +113,8 @@ $concours = $stmtConcours->fetch(PDO::FETCH_ASSOC);
                    }
                });
             });
-            /*
-            FB.getLoginStatus(function() {
-                FB.login(function(response) {
-                   if (response.authResponse) {
-                       var dataPost = {'accessToken':FB.getAuthResponse()['accessToken']};
-
-                       $.ajax({
-                           type: "POST",
-                           url: "saveSession.php",
-                           data: dataPost,
-                           dataType: 'html'
-                       }).done(function() {
-                            location.reload();
-                       })
-                       .fail(function() {
-                       });
-                   } else {
-                     console.log('User cancelled login or did not fully authorize.');
-                   }
-               });*/
-            });
         <?php
-            //}
+            }
         ?>
             };
         </script>
