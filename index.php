@@ -35,9 +35,9 @@ if (isset($_SESSION) && isset($_SESSION[FB_TOKEN]) && !empty($_SESSION[FB_TOKEN]
             $_SESSION[FB_TOKEN] = $session->getAccessToken();
         }
     } catch(FacebookRequestException $ex) {
-        location.reload();
+
     } catch(\Exception $ex) {
-        
+
     }
 }
 
@@ -91,12 +91,9 @@ $concours = $stmtConcours->fetch(PDO::FETCH_ASSOC);
                                     url: "saveSession.php",
                                     data: post,
                                     success: function(data){
-                                        console.log('success');
-                                        console.log(data);
+                                        location.reload();
                                     },
                                     error: function(data){
-                                        console.log('error');
-                                        console.log(data);
                                     }
                                });
                             } else {
