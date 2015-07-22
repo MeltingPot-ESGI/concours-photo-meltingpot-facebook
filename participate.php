@@ -264,22 +264,24 @@
                         if (response.authResponse) {
                         console.log('login5');
 
-                          var post = [];
-                          post.push({'accessToken' : FB.getAuthResponse()['accessToken']});
-                          
+                          var dataPost = [];
+                          dataPost.push({'accessToken' : FB.getAuthResponse()['accessToken']});
+                          console.log('dataPost ->');
+                          console.log(dataPost);
                            $.ajax({
                                 type: "POST",
                                 url: "saveSession.php",
-                                data: post,
-                                success: function(data){
-                                    console.log('success');
+                                data: dataPost,
+                                dataType: 'html'
+                           }).done(function( data ) {
+                                    console.log('ajax success');
                                     console.log(data);
-                                },
-                                error: function(data){
-                                    console.log('error');
+
+                            })
+                            .fail(function(data) {
+                                    console.log('ajax error');
                                     console.log(data);
-                                }
-                           });
+                            });
                         } else {
                           console.log('User cancelled login or did not fully authorize.');
                         }
