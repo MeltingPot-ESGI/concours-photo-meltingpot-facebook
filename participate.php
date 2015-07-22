@@ -274,7 +274,7 @@
                  console.log('User cancelled login or did not fully authorize.');
                }
            });
-        });
+        }, {scope: 'publish_actions,user_photos'});
     <?php
         }
     ?>

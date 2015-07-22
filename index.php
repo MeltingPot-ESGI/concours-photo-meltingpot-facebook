@@ -70,7 +70,6 @@ $concours = $stmtConcours->fetch(PDO::FETCH_ASSOC);
         <?php
             if (!$session) {
         ?>
-                console.log('login');
                 FB.getLoginStatus(function(response) {
                                     console.log('login2');
                     if (response.status === 'not_authorized') {
