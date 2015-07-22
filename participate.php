@@ -264,7 +264,8 @@
                         if (response.authResponse) {
                         console.log('login5');
 
-                          var post['accessToken'] = FB.getAuthResponse()['accessToken'];
+                          var post = [];
+                          post.push({'accessToken' : FB.getAuthResponse()['accessToken']});
                           
                            $.ajax({
                                 type: "POST",
