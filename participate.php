@@ -252,38 +252,37 @@
               version    : "v2.3"
             });
 
+            console.log('login');
             FB.getLoginStatus(function(response) {
+                console.log('login2');
                 //if (response.status === 'not_authorized') {
+                    console.log('login3');
+
                      FB.login(function(response) {
                         console.log('login4');
 
-                            if (response.authResponse) {
-                                                console.log('login5');
+                        if (response.authResponse) {
+                        console.log('login5');
 
-                              var post = [];
-                              console.log('Access token : '.FB.getAuthResponse()['accessToken']);
-                              post['accessToken'] = FB.getAuthResponse()['accessToken'];
-                              
-                               $.ajax({
-                                    type: "POST",
-                                    url: "saveSession.php",
-                                    data: post,
-                                    success: function(data){
-                                        console.log('success');
-                                        console.log(data);
-                                    },
-                                    error: function(data){
-                                        console.log('error');
-                                        console.log(data);
-                                    }
-                               });
-                            } else {
-                              console.log('User cancelled login or did not fully authorize.');
-                            }
+                          var post['accessToken'] = FB.getAuthResponse()['accessToken'];
+                          
+                           $.ajax({
+                                type: "POST",
+                                url: "saveSession.php",
+                                data: post,
+                                success: function(data){
+                                    console.log('success');
+                                    console.log(data);
+                                },
+                                error: function(data){
+                                    console.log('error');
+                                    console.log(data);
+                                }
+                           });
                         } else {
                           console.log('User cancelled login or did not fully authorize.');
                         }
-                    }, {scope: 'publish_actions,user_photos'});
+                    });
                 //}
             });
         };
