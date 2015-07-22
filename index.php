@@ -60,6 +60,7 @@ $concours = $stmtConcours->fetch(PDO::FETCH_ASSOC);
         <?php
             if (!$session) {
         ?>
+                console.log('debut');
             //FB.getLoginStatus(function() {
                 FB.login(function(response) {
                     console.log('test');
