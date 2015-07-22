@@ -271,8 +271,8 @@
                                 url: "saveSession.php",
                                 data: dataPost,
                                 dataType: 'html'
-                           }).done(function( data ) {
-                               
+                           }).done(function() {
+                                location.reload();
                             })
                             .fail(function(data) {
                             });
