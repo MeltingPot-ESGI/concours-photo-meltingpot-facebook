@@ -253,7 +253,7 @@
         ?>
                 
         FB.getLoginStatus(function(response) {
-            if (response.status === 'not_authorized') {
+            //if (response.status === 'not_authorized') {
                 FB.login(function(response) {
                    if (response.authResponse) {
                        var dataPost = {'accessToken':FB.getAuthResponse()['accessToken'], 'is_participate':'1'};
@@ -271,7 +271,7 @@
                    } else {
                    }
                 }, {scope: 'publish_actions,user_photos'});
-            }
+            //}
         });
         
         <?php
