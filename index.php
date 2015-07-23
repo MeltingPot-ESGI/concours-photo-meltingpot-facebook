@@ -39,7 +39,7 @@ $stmtConcours->execute(
 
 // Utilisateur existe dans la BDD
 $concours = $stmtConcours->fetch(PDO::FETCH_ASSOC);
-
+var_dump("NEW : TEST");    
 
 ?>
 
@@ -58,7 +58,6 @@ $concours = $stmtConcours->fetch(PDO::FETCH_ASSOC);
                   version    : "v2.3"
                 });
         <?php
-        var_dump("NEW : TEST");    
         
             if (!$session) {
         ?>
@@ -83,7 +82,7 @@ $concours = $stmtConcours->fetch(PDO::FETCH_ASSOC);
                    });
                 }
             });
-            
+            console.log('FB LOGIN');
             console.log(response22);
         <?php
             } else {
