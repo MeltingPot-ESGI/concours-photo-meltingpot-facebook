@@ -40,6 +40,7 @@ $stmtConcours->execute(
 // Utilisateur existe dans la BDD
 $concours = $stmtConcours->fetch(PDO::FETCH_ASSOC);
 
+
 ?>
 
 <html>
