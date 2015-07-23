@@ -52,9 +52,6 @@ function validateForm() {
         errors.push("Vous devez accepter le règlement pour pouvoir participer au concours.");
     }
     
-    if (!document.getElementById('fb-photo-id') || document.getElementById('fb-photo-id').value.length == 0) {
-        errors.push("Veuillez sélectionner un fichier à envoyer.");
-    }
     
     if (errors.length > 0) {
         var errorsString = "";
