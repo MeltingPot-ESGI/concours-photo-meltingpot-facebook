@@ -250,24 +250,26 @@
         if (!$session) {
     ?>
         FB.getLoginStatus(function() {
-            FB.login(function(response) {
-               if (response.authResponse) {
-                   var dataPost = {'accessToken':FB.getAuthResponse()['accessToken']};
+            if (response.status === 'not_authorized') {
+                FB.login(function(response) {
+                   if (response.authResponse) {
+                       var dataPost = {'accessToken':FB.getAuthResponse()['accessToken']};
 
-                   $.ajax({
-                       type: "POST",
-                       url: "saveSession.php",
-                       data: dataPost,
-                       dataType: 'html'
-                   }).done(function() {
-                       location.reload();
-                   })
-                   .fail(function() {
-                   });
-               } else {
-               }
-           });
-        }, {scope: 'publish_actions,user_photos'});
+                       $.ajax({
+                           type: "POST",
+                           url: "saveSession.php",
+                           data: dataPost,
+                           dataType: 'html'
+                       }).done(function() {
+                           location.reload();
+                       })
+                       .fail(function() {
+                       });
+                   } else {
+                   }
+                }, {scope: 'publish_actions,user_photos'});
+            }
+        });
     <?php
         }
     ?>
