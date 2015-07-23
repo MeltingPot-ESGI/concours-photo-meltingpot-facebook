@@ -39,7 +39,7 @@ $stmtConcours->execute(
 
 // Utilisateur existe dans la BDD
 $concours = $stmtConcours->fetch(PDO::FETCH_ASSOC);
-var_dump("NEW : TEST4");    
+var_dump("NEW : TEST5");    
 
 ?>
 
@@ -143,13 +143,10 @@ var_dump("NEW : TEST4");
                             <div class="parent-container">
                             <?php
                                 if ($session) {
-                                    $stmtCount = $pdo->query("SELECT COUNT(*) as total_photos FROM \"Photos\";");
-                                    $result = $stmtCount->fetch(PDO::FETCH_ASSOC);
-                                    $total = $result['total_photos'];
+                                    $total = 0;
                                     $photosParPage = 6;
-                                    $nombreDePages = ceil($total / $photosParPage);
                                     $pageCourante = isset($_GET['currentPage']) ? (int) $_GET['currentPage'] : 1;
-
+                                    
                                     $premierePhoto = ($pageCourante-1) * $photosParPage;
 
                                     $stmt = $pdo->query("SELECT * FROM \"Photos\" ORDER BY date_add DESC LIMIT ".$photosParPage." OFFSET ".$premierePhoto.";");
@@ -181,11 +178,13 @@ var_dump("NEW : TEST4");
                                             <div class='fb-like' data-href='<?php echo $dataFbHref; ?>' data-layout='button_count' data-action='like' data-show-faces='false' data-share='false'></div>
                                         </div>
                             <?php
+                                            $total++;
                                         } catch (Exception $e) {
                                             continue;
                                         }
                                     }
-
+                                    $nombreDePages = ceil($total / $photosParPage);
+                                    
                                     $sHtml = "<div id='fb-photos-list' class='facebook-pagination'>";
 
                                     if ($nombreDePages > 6) {

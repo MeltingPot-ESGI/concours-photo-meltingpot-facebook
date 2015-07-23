@@ -153,7 +153,7 @@
                     );
 
                     // Utilisateur existe dans la BDD
-                    $photos = $stmt->fetch(PDO::FETCH_ASSOC);
+                    $photos = $stmtPhotos->fetch(PDO::FETCH_ASSOC);
                     
                     if ($photos) {
                         throw new Exception("La photo existe déjà");
