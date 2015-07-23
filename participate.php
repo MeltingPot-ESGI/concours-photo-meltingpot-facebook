@@ -237,18 +237,15 @@
    	echo get_head();	
    ?>
     <script type="text/javascript">
-        window.fbAsyncInit = function() {
-            FB.init({
-              appId      : '342576715932172',
-              cookie: true,
-              xfbml      : true,
-              oauth: true,
-              version    : "v2.3"
-            });
-            
-    <?php
-        if (!$session) {
-    ?>
+    window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '342576715932172',
+          cookie: true,
+          xfbml      : true,
+          oauth: true,
+          version    : "v2.3"
+        });
+        
         FB.getLoginStatus(function(response) {
             if (response.status === 'not_authorized') {
                 FB.login(function(response) {
@@ -270,10 +267,7 @@
                 }, {scope: 'publish_actions,user_photos'});
             }
         });
-    <?php
-        }
-    ?>
-        };
+    };
     </script>
    <body>
         <div id="wrapper">
