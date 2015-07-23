@@ -41,9 +41,6 @@
 
     // Récupère les infos de l'utilisateur
     if ($session) {
-
-        $_SESSION[FB_TOKEN] = $session->getAccessToken();
-        
         try {
             $request = new FacebookRequest( $session, 'GET', '/me' );
             $response = $request->execute();
