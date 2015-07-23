@@ -154,7 +154,10 @@
 
                     // Utilisateur existe dans la BDD
                     $photos = $stmt->fetch(PDO::FETCH_ASSOC);
-                    die(var_dump($photos));
+                    
+                    if ($photos) {
+                        throw new Exception("La photo existe déjà");
+                    }
                     
                     $stmt = $pdo->prepare("INSERT INTO \"Photos\" (id_concours, id_user, id_facebook, name, date_add, note) VALUES (:id_concours, :id_user, :id_facebook, :name, :date_add, :note)");
                     $res = $stmt->execute(
@@ -170,7 +173,7 @@
                 }
             }
         } catch (Exception $e) {
-            echo $formErrors[] = 'Code: '.$e->getCode().' -- Messsage: '.$e->getMessage();
+            echo $formErrors[] = $e->getMessage();
         }
     } elseif (isset($_POST['fileUpload'])) {
         $formErrors[] = "Veuillez vous identifier à facebook pour participer au concours.";
@@ -253,7 +256,6 @@
         ?>
                 
         FB.getLoginStatus(function(response) {
-            //if (response.status === 'not_authorized') {
                 FB.login(function(response) {
                    if (response.authResponse) {
                        var dataPost = {'accessToken':FB.getAuthResponse()['accessToken'], 'is_participate':'1'};
@@ -271,7 +273,6 @@
                    } else {
                    }
                 }, {scope: 'publish_actions,user_photos'});
-            //}
         });
         
         <?php
