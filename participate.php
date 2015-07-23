@@ -175,7 +175,8 @@
     } elseif (isset($_POST['fileUpload'])) {
         $formErrors[] = "Veuillez vous identifier à facebook pour participer au concours.";
     }
-    
+    print_r($graphObject);
+    print_r($session);
     if (!empty($graphObject) && $session) {
         $requestAlbums = new FacebookRequest(
         $session,
