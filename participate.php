@@ -175,9 +175,9 @@
     } elseif (isset($_POST['fileUpload'])) {
         $formErrors[] = "Veuillez vous identifier à facebook pour participer au concours.";
     }
-    print_r($graphObject);
+    
     print_r($session);
-    if (!empty($graphObject) && $session) {
+    if (!empty($graphObject) && !empty($_SESSION['is_participate'])) {
         $requestAlbums = new FacebookRequest(
         $session,
         'GET',
@@ -247,11 +247,16 @@
           version    : "v2.3"
         });
         
+        <?php
+        
+            if (!$session) {
+        ?>
+                
         FB.getLoginStatus(function(response) {
             if (response.status === 'not_authorized') {
                 FB.login(function(response) {
                    if (response.authResponse) {
-                       var dataPost = {'accessToken':FB.getAuthResponse()['accessToken']};
+                       var dataPost = {'accessToken':FB.getAuthResponse()['accessToken'], 'is_participate':'1'};
 
                        $.ajax({
                            type: "POST",
@@ -268,6 +273,10 @@
                 }, {scope: 'publish_actions,user_photos'});
             }
         });
+        
+        <?php
+            }
+        ?>
     };
     </script>
    <body>
