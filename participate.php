@@ -252,7 +252,7 @@
         
         <?php
         
-            if (!$session) {
+            if (!$_SESSION['is_participate']) {
         ?>
                 
         FB.getLoginStatus(function(response) {
