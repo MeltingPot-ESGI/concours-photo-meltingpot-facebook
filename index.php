@@ -39,7 +39,7 @@ $stmtConcours->execute(
 
 // Utilisateur existe dans la BDD
 $concours = $stmtConcours->fetch(PDO::FETCH_ASSOC);
-var_dump("NEW : 6");    
+var_dump("NEW : 7");    
 
 ?>
 
@@ -84,28 +84,6 @@ var_dump("NEW : 6");
             });
             console.log('FB LOGIN');
             console.log(response22);
-        <?php
-            } else {
-        ?>
-                FB.Event.subscribe('auth.statusChange', function(response) {
-                FB.login(function(response) {
-                   if (response.authResponse) {
-                       var dataPost = {'accessToken':FB.getAuthResponse()['accessToken']};
-
-                       $.ajax({
-                           type: "POST",
-                           url: "saveSession.php",
-                           data: dataPost,
-                           dataType: 'html'
-                       }).done(function() {
-                            location.reload();
-                       })
-                       .fail(function() {
-                       });
-                   } else {
-                   }
-               });
-            });
         <?php
             }
         ?>

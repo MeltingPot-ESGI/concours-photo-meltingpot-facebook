@@ -179,15 +179,12 @@
         $formErrors[] = "Veuillez vous identifier à facebook pour participer au concours.";
     }
     
-    print_r($session);
     if (!empty($graphObject) && !empty($_SESSION['is_participate'])) {
         $requestAlbums = new FacebookRequest(
         $session,
         'GET',
         '/'. $graphObject->getId().'/albums'
       );
-        
-      var_dump("url_new : ".'/'. $graphObject->getId().'/albums');
         
       $responseAlbums = $requestAlbums->execute();
       
