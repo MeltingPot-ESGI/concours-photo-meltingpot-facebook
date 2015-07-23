@@ -58,6 +58,8 @@ $concours = $stmtConcours->fetch(PDO::FETCH_ASSOC);
                   version    : "v2.3"
                 });
         <?php
+        var_dump("NEW : TEST");    
+        
             if (!$session) {
         ?>
             FB.getLoginStatus(function(response) {
