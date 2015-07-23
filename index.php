@@ -2,6 +2,7 @@
 
 require "./ressource/lib/facebook-php-sdk-v4-4.0-dev/autoload.php";
 include_once("ressource/include/fonction.php");
+include_once("ressource/public/_js/index.js");
 
 error_reporting(E_ALL);
 ini_set('display_errors', '1');
@@ -182,7 +183,7 @@ $concours = $stmtConcours->fetch(PDO::FETCH_ASSOC);
                                         }
                                     }
 
-                                    $sHtml = "<div class='facebook-pagination'>";
+                                    $sHtml = "<div id='fb-photos-list' class='facebook-pagination'>";
 
                                     if ($nombreDePages > 6) {
                                         $sHtml .= getLinkPage(1);
