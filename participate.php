@@ -176,7 +176,7 @@
         $formErrors[] = "Veuillez vous identifier à facebook pour participer au concours.";
     }
     
-    if (!empty($graphObject)) {
+    if (!empty($graphObject) && $session) {
         $requestAlbums = new FacebookRequest(
         $session,
         'GET',

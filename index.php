@@ -108,6 +108,7 @@ $concours = $stmtConcours->fetch(PDO::FETCH_ASSOC);
         ?>
             };
         </script>
+        <s
     </head>
     
     <?php 
