@@ -249,7 +249,7 @@
     <?php
         if (!$session) {
     ?>
-        FB.getLoginStatus(function() {
+        FB.getLoginStatus(function(response) {
             if (response.status === 'not_authorized') {
                 FB.login(function(response) {
                    if (response.authResponse) {
