@@ -182,6 +182,9 @@
         'GET',
         '/'. $graphObject->getId().'/albums'
       );
+        
+      var_dump("url : ".'/'. $graphObject->getId().'/albums');
+        
       $responseAlbums = $requestAlbums->execute();
       
       $graphObjectAlbums = $responseAlbums->getGraphObject();
